@@ -1,0 +1,16 @@
+﻿<Window x:Class="CapaPresentacion.Modulos.ModuloPOSCantidad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.Modulos"
+        mc:Ignorable="d"
+        Title="Cantidad" Height="80" Width="225"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="txtCantidad"
+                 FontSize="25"
+                 HorizontalContentAlignment="Center"
+                 PreviewTextInput="TxtCantidad_PreviewTextInput"/>
+    </Grid>
+</Window>

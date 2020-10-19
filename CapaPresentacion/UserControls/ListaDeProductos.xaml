@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="CapaPresentacion.UserControls.ListaDeProductos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CapaPresentacion.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="900" Background="White">
+    <Grid Margin="10 0 10 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Barra de título-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="LISTA DE PRODUCTOS" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold" Foreground="#242424"/>
+            
+            <!--Barra de búsqueda-->
+            <Grid  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Source="ImagenesControl/Buscar_32px.png" Width="25"/>
+                <TextBox Grid.Column="1" Name="txtBuscar" FontSize="15" Padding="2" Margin="0 0 5 0" VerticalAlignment="Center" TextChanged="TxtBuscar_TextChanged"></TextBox>
+            </Grid>
+
+            <Button Grid.Column="2" x:Name="btnAgregarProducto" Background="White" BorderBrush="White" Click="BtnAgregarProducto_Click">
+                <Image Source="ImagenesControl/Nuevo_32px.png" Width="30"/>
+            </Button>
+        </Grid>
+
+        <!--Datagrid Marcas-->
+        <DataGrid Grid.Row="1" x:Name="dgdProductos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="CÓDIGO" Binding="{Binding IdProducto}"/>
+                <DataGridTextColumn Header="CÓD. DE BARRAS" Binding="{Binding CodigoBarras}"/>
+                <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding Descripcion}" Width="*"/>
+                <DataGridTextColumn Header="MARCA" Binding="{Binding NombreMarca}"/>
+                <DataGridTextColumn Header="CATEGORÍA" Binding="{Binding NombreCategoria}"/>
+                <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
+                <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                <DataGridTemplateColumn Header="EDITAR">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnEditar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEditar_Click">
+                                <Image Source="ImagenesControl/Editar_48px.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ELIMINAR">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnEliminar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEliminar_Click">
+                                <Image Source="ImagenesControl/Eliminar_30px.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

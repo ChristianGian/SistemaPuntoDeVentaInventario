@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="CapaPresentacion.Modulos.ModuloStock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.Modulos"
+        mc:Ignorable="d"
+        d:DesignHeight="560" d:DesignWidth="900" Background="White">
+    <Grid Margin="10 0 10 10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="154*"/>
+            <ColumnDefinition Width="71*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Barra de título-->
+        <Label Grid.Row="0" Content="STOCK" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold" Foreground="#242424" Grid.ColumnSpan="2" Margin="0,5"/>
+
+        <!--TabControl-->
+        <TabControl Grid.Row="1" Grid.ColumnSpan="2">
+            <!--Entrada de Stock-->
+            <TabItem Header="Entrada de Stock">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--CONTENIDO-->
+                    <!--Ingreso de datos-->
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 10 0 10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="105"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="N° de referencia" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtNumReferencia" Padding="2" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Height="25" PreviewTextInput="TxtNumReferencia_PreviewTextInput"/>
+
+                        <Label Content="Ingresado por" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBox x:Name="txtIngresadoPor" Padding="2" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Height="25"/>
+
+                        <Label Content="Fecha de ingreso" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                        <DatePicker Name="dtpFechaHora" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="25" IsEnabled="False"/>
+
+                        <Label Content="Producto" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBox x:Name="txtProducto" IsReadOnly="True" Padding="2" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Height="25"/>
+                        <Button x:Name="btnProducto" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
+                                    Width="40" Margin="5 0 0 0" Style="{StaticResource BotonBuscar}"
+                                    Click="BtnAgregarProducto_Click">
+                            <Image Source="ImagenesModulos/BuscarBlaco_32px.png" Width="18"/>
+                        </Button>
+
+                        <Label Content="Cantidad" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtCantidad"  Padding="2" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="25" PreviewTextInput="TxtCantidad_PreviewTextInput"/>
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4" Grid.RowSpan="3">
+                            <Button x:Name="btnAgregarALista" Content="Agregar" Style="{StaticResource BotonModulo}" Margin="0 20 0 0" Click="BtnAgregarALista_Click"/>
+                            <Button x:Name="btnCancelar" Content="Limpiar" Style="{StaticResource BotonModulo}" Margin="20 10 20 20" Click="BtnCancelar_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--DataGrid Stock-->
+                    <DataGrid x:Name="dgdStock" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="REF#" Binding="{Binding NumReferencia}"/>
+                            <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}"/>
+                            <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                            <DataGridTextColumn Header="INGRESADO POR" Binding="{Binding IngresadoPor}"/>
+                            <DataGridTextColumn Header="FECHA DE INGRESO" Binding="{Binding FechaHora}"/>
+
+                            <DataGridTextColumn Header="ESTADO" Binding="{Binding EstadoProducto}"/>
+                            <DataGridTemplateColumn Header="QUITAR">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnQuitar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnQuitar_Click">
+                                            <Image Source="ImagenesModulos/Eliminar_48px.png"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!--Boton guardar-->
+                    <Button x:Name="btnGuardar" Content="Guardar" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource BotonModulo}" Click="BtnGuardar_Click" Margin="0 5"/>
+                </Grid>
+            </TabItem>
+
+            <!--Tab Historial-->
+            <TabItem Header="Historial">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!--Filtro de búsqueda-->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Filtro por fecha:"/>
+                        <DatePicker Name="dtpFechaInicio" Width="150" Margin="5 0 10 0"/>
+                        <DatePicker Name="dtpFechaFin" Width="150"/>
+                        <Button x:Name="btnCargarRegistros" Content="Cargar" Margin="10 0" Style="{StaticResource BotonModulo}" Click="BtnCargarRegistros_Click"/>
+                        <Button x:Name="btnListarTodoHistorial" Content="Listar todo" Style="{StaticResource BotonModulo}" Click="BtnListarTodoHistorial_Click"/>
+                    </StackPanel>
+                    
+                    <!--DataGrid Historial Stock-->
+                    <DataGrid x:Name="dgdHistorialStock" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="REF#" Binding="{Binding NumReferencia}"/>
+                            <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
+                            <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                            <DataGridTextColumn Header="INGRESADO POR" Binding="{Binding IngresadoPor}"/>
+                            <DataGridTextColumn Header="FECHA DE INGRESO" Binding="{Binding FechaHora}"/>
+
+                            <DataGridTextColumn Header="ESTADO" Binding="{Binding EstadoProducto}"/>
+                            <DataGridTemplateColumn Header="ELIMINAR">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnEliminar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEliminar_Click">
+                                            <Image Source="ImagenesModulos/Eliminar_48px.png"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</UserControl>

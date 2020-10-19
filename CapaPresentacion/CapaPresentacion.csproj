@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44C964FE-62EB-40E7-944A-9A61AE16D05B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CapaPresentacion</RootNamespace>
+    <AssemblyName>CapaPresentacion</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helps\DataValidation.cs" />
+    <Compile Include="Modulos\ModuloCategoria.xaml.cs">
+      <DependentUpon>ModuloCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloDescuento.xaml.cs">
+      <DependentUpon>ModuloDescuento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloLiquidarPago.xaml.cs">
+      <DependentUpon>ModuloLiquidarPago.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloMarca.xaml.cs">
+      <DependentUpon>ModuloMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloPOSCantidad.xaml.cs">
+      <DependentUpon>ModuloPOSCantidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloProducto.xaml.cs">
+      <DependentUpon>ModuloProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloStock.xaml.cs">
+      <DependentUpon>ModuloStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloVistaProductos.xaml.cs">
+      <DependentUpon>ModuloVistaProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloVistaProductosPOS.xaml.cs">
+      <DependentUpon>ModuloVistaProductosPOS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoDeVenta.xaml.cs">
+      <DependentUpon>PuntoDeVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListaDeCategorias.xaml.cs">
+      <DependentUpon>ListaDeCategorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListaDeMarcas.xaml.cs">
+      <DependentUpon>ListaDeMarcas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListaDeProductos.xaml.cs">
+      <DependentUpon>ListaDeProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validaciones.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Modulos\ModuloCategoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloDescuento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloLiquidarPago.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloPOSCantidad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloVistaProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloVistaProductosPOS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PuntoDeVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListaDeCategorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListaDeMarcas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListaDeProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Dashboard_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\foto_perfil.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\CerrarSesion_32px.png" />
+    <Resource Include="Imagenes\ConfiguracionSistema_32px.png" />
+    <Resource Include="Imagenes\ConfiguracionUsuario_32px.png" />
+    <Resource Include="Imagenes\GestionarCategoria_32px.png" />
+    <Resource Include="Imagenes\GestionarMarca_32px.png" />
+    <Resource Include="Imagenes\GestionarProducto_32px.png" />
+    <Resource Include="Imagenes\GestionarVentas.png" />
+    <Resource Include="Imagenes\Registros_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
+      <Project>{77fce01d-62f9-40f0-85ce-a3d213c92029}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserControls\ImagenesControl\Editar_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserControls\ImagenesControl\Nuevo_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\Cerrar18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Stock_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\ok_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\Eliminar_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\Buscar_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\BuscarBlaco_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\AgregarDescuento_32px.png" />
+    <Resource Include="Imagenes\BuscarProducto_32px.png" />
+    <Resource Include="Imagenes\CambiarPassword_32px.png" />
+    <Resource Include="Imagenes\CancelarVentas_32px.png" />
+    <Resource Include="Imagenes\LiquidarPago_32px.png" />
+    <Resource Include="Imagenes\NuevaTransaccion_32px.png" />
+    <Resource Include="Imagenes\VentasDiarias_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\POS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\BuscarBlaco_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserControls\ImagenesControl\Buscar_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\CarritoCompras_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserControls\ImagenesControl\Eliminar_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Eliminar_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\puntos-venta.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

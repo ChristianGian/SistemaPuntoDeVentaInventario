@@ -1,0 +1,180 @@
+﻿<Application x:Class="CapaPresentacion.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CapaPresentacion"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         <!--Estilo botones de sidebar-->
+        <Style x:Key="BotonSideMenu" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+ 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#242424" Padding="30 0 0 0" Width="270" Height="35">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5862F8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Estilo Botón cerrar ventanas-->
+        <Style x:Key="BotonCerrar" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#088F84"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" Width="30">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E81123"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Estilo Botones de módulos-->
+        <Style x:Key="BotonModulo" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Foreground" Value="White"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" Width="80" Height="25" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5D5D5D"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#838383"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Estilo Botones de módulos (Buscar)-->
+        <Style x:Key="BotonBuscar" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Foreground" Value="White"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" Width="40" Height="25" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5D5D5D"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#838383"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Estilo Botones de calculadora-->
+        <Style x:Key="BotonCalculadora" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#089085"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="3"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#088F84">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4DAEA7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Estilo datagrid-->
+        <Style x:Key="GridPersonalizado" TargetType="{x:Type DataGrid}">
+            <!--Barra de título-->
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                        <Setter Property="Background" Value="#242424" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="BorderBrush" Value="#242424"/>
+                        <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                        <Setter Property="Margin" Value="-1,-1,0,0" />
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Height" Value="28"/>
+                        <Setter Property="Width" Value="auto"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <!--Filas-->
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background" Value="White"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="#EDF7FF" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="#AEC4DF" />
+                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                <Setter Property="BorderBrush" Value="White"></Setter>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <!--Celdas-->
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                <Setter Property="Background" Value="#AEC4DF" />
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
