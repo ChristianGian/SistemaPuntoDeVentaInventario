@@ -27,7 +27,7 @@
             </TextBlock>
             <Button Grid.Column="1" Name="btnCerrar"
                         Click="BtnCerrar_Click"
-                        Style="{StaticResource BotonCerrar}">
+                        Style="{StaticResource BotonCerrar}" Height="30" VerticalAlignment="Top">
                 <Image Source="ImagenesModulos/Cerrar18.png" Width="18"/>
             </Button>
         </Grid>

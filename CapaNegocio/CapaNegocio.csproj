@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Models\CategoriaModel.cs" />
     <Compile Include="Models\MarcaModel.cs" />
+    <Compile Include="Models\MReportes\R_LiquidarPagoModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\StockModel.cs" />
     <Compile Include="Models\TransaccionModel.cs" />

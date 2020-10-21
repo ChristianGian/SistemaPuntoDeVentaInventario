@@ -49,6 +49,7 @@
     <Compile Include="Contracts\IStockRepository.cs" />
     <Compile Include="Contracts\ITransaccionRepository.cs" />
     <Compile Include="Entities\Categoria.cs" />
+    <Compile Include="Entities\EReportes\R_LiquidarPago.cs" />
     <Compile Include="Entities\Igv.cs" />
     <Compile Include="Entities\Marca.cs" />
     <Compile Include="Entities\Producto.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Repositories\MasterRepository.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RReportes\R_LiquidarPagoRepository.cs" />
     <Compile Include="Repositories\StockRepository.cs" />
     <Compile Include="Repositories\TransaccionRepository.cs" />
   </ItemGroup>

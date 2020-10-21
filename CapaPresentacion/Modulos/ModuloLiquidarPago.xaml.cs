@@ -1,7 +1,11 @@
 ﻿using CapaNegocio.Models;
+using CapaNegocio.Models.MReportes;
+using CapaPresentacion.Reportes;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Services;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,9 +27,15 @@ namespace CapaPresentacion.Modulos
         //Campos
         private ProductoModel producto = new ProductoModel();
         private TransaccionModel transaccion = new TransaccionModel();
-        private List<TransaccionModel> listaIdProductoAPagar;
 
+        private List<TransaccionModel> listaIdProductoAPagar;
+        private string numTransaccion;
+
+        public bool enter = false;
+
+        //Propiedades
         public List<TransaccionModel> ListaIdProductoAPagar { private get => listaIdProductoAPagar; set => listaIdProductoAPagar = value; }
+        public string NumTransaccion { get => numTransaccion; set => numTransaccion = value; }
 
         //Método constructor
         public ModuloLiquidarPago()
@@ -154,7 +164,21 @@ namespace CapaPresentacion.Modulos
                         transaccion.ActualizarEstadoTransaccion(listaIdProductoAPagar[i].IdTransaccion);
                     }
 
+                    //Mostramos el ticket de pago - Vista previa
+                    List<ReportDataSource> datos = new List<ReportDataSource>();
+                    ReportDataSource pago = new ReportDataSource();
+
+                    pago.Name = "DS_LiquidarPago";
+                    var lp  = new R_LiquidarPagoModel();
+                    pago.Value = lp.InfoLiquidarPago(listaIdProductoAPagar[0].NumTransaccion);
+                    datos.Add(pago);
+
+                    ReporteLiquidarPago reporte = new ReporteLiquidarPago("CapaPresentacion.Reportes.ReporteLiquidarPago.rdlc", datos);
+                    reporte.ShowDialog();
+
+                    //
                     MessageBox.Show("Pago exitoso", "Liquidar pago", MessageBoxButton.OK, MessageBoxImage.Information);
+                    enter = true;
                     this.Close();
                 }
             }

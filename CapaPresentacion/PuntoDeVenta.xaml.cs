@@ -218,15 +218,16 @@ namespace CapaPresentacion
                 {
                     IdTransaccion = item.IdTransaccion,
                     IdProducto = item.IdProducto,
-                    Cantidad = item.Cantidad
+                    Cantidad = item.Cantidad,
+                    NumTransaccion = lblNumTransaccion.Content.ToString()
                 });
             }
 
             liquidarPago.ListaIdProductoAPagar = listaIdProductoAPagar;
-
+            liquidarPago.NumTransaccion = lblNumTransaccion.Content.ToString();
             liquidarPago.ShowDialog();
 
-            Limpiar();
+            if (liquidarPago.enter) Limpiar();
         }
 
         private void btnCancelarVentas_Click(object sender, RoutedEventArgs e)
