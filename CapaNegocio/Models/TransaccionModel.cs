@@ -28,7 +28,7 @@ namespace CapaNegocio.Models
 
         private ITransaccionRepository transaccionRepository;
 
-        public EntityState Estado{ private get; set; }
+        public EntityState Estado { private get; set; }
 
         //Propiedades / Modelos / Validar datos
         public int IdTransaccion { get => idTransaccion; set => idTransaccion = value; }
@@ -146,6 +146,29 @@ namespace CapaNegocio.Models
         public int ActualizarEstadoTransaccion(int idTransaccion)
         {
             return transaccionRepository.ActualizarEstadoTransaccion(idTransaccion);
+        }
+
+        public List<TransaccionModel> MostrarProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var transaccion = transaccionRepository.ReadProductosVendidos(fechaInicio, fechaFin);
+            var listaTransaccion = new List<TransaccionModel>();
+
+            foreach (Transaccion item in transaccion)
+            {
+                listaTransaccion.Add(new TransaccionModel
+                {
+                    idTransaccion = item.IdTransaccion,
+                    numTransaccion = item.NumTransaccion,
+                    idProducto = item.IdProducto,
+                    nombreProducto = item.NombreProducto,
+                    precio = item.Precio,
+                    cantidad = item.Cantidad,
+                    descuento = item.Descuento,
+                    total = item.Total,
+                    fecha = item.Fecha
+                });
+            }
+            return listaTransaccion;
         }
     }
 }

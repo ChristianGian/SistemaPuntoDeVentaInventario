@@ -109,5 +109,32 @@ namespace CapaDatos.Repositories
 
             return ExecuteNonQuery("ActualizarTransaccionEstado");
         }
+
+        public List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@FechaInicio", fechaInicio));
+            parametros.Add(new SqlParameter("@FechaFin", fechaFin));
+
+            var tabla = ExecuteReaderParameters("ProductosVendidos");
+            var lista = new List<Transaccion>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Transaccion
+                {
+                    IdTransaccion = Convert.ToInt32(item[0]),
+                    NumTransaccion = item[1].ToString(),
+                    IdProducto = item[2].ToString(),
+                    NombreProducto = item[3].ToString(),
+                    Precio = Convert.ToDecimal(item[4]),
+                    Cantidad = Convert.ToInt16(item[5]),
+                    Descuento = Convert.ToDecimal(item[6]),
+                    Total = Convert.ToDecimal(item[7]),
+                    Fecha = Convert.ToDateTime(item[8])
+                });
+            }
+            return lista;
+        }
     }
 }

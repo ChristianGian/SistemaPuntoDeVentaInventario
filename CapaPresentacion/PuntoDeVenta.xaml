@@ -165,7 +165,7 @@
                             <Label Foreground="White">[F5] Cancelar Ventas</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnVentasDiarias" Click="btnVentasDiarias_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnVentasDiarias" Click="BtnVentasDiarias_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/VentasDiarias_32px.png" Width="30"/>
                             <Label Foreground="White">[F6] Ventas Diarias</Label>

@@ -1,0 +1,78 @@
+﻿<Window x:Class="CapaPresentacion.Modulos.ModuloProductosVendidos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.Modulos"
+        mc:Ignorable="d"
+        Title="Productos Vendidos" Height="500" Width="900"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Barra de título-->
+        <Grid Grid.Row="0" Background="#088F84">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="10 0 0 0"
+                       FontSize="15" Foreground="White">
+                Productos Vendidos
+            </TextBlock>
+            <Button Grid.Column="1" Name="btnCerrar"
+                        Click="BtnCerrar_Click"
+                        Style="{StaticResource BotonCerrar}">
+                <Image Source="ImagenesModulos/Cerrar18.png" Width="18"/>
+            </Button>
+        </Grid>
+
+        <!--Contenido-->
+        <Border BorderBrush="#088F84" BorderThickness="1" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Barra de búsqueda-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Filtrar por Fecha (De - A)"/>
+                        <DatePicker Name="dtpFechaInicio" Margin="10 0"/>
+                        <DatePicker Name="dtpFechaFin"/>
+                        <Button x:Name="btnBuscar" Content="Buscar" Style="{StaticResource BotonModulo}" Margin="10 0" Click="BtnBuscar_Click"/>
+                        <Button x:Name="btnHoy" Content="Ir a Hoy" Style="{StaticResource BotonModulo}" Click="BtnHoy_Click"/>
+                    </StackPanel>
+
+                    <Label Grid.Column="1" Content="S/. 0.00" Name="lblTotal"
+                           HorizontalContentAlignment="Right"
+                           FontSize="25"/>
+                </Grid>
+                <!--DataGrid Productos-->
+                <DataGrid Grid.Row="1" x:Name="dgdProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0 5 5" Style="{StaticResource GridPersonalizado}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding IdTransaccion}"/>
+                        <DataGridTextColumn Header="N° FACTURA" Binding="{Binding NumTransaccion}"/>
+                        <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                        <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
+                        <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
+                        <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                        <DataGridTextColumn Header="DESCUENTO" Binding="{Binding Descuento}"/>
+                        <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

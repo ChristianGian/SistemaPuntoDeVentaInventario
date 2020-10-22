@@ -235,9 +235,10 @@ namespace CapaPresentacion
 
         }
 
-        private void btnVentasDiarias_Click(object sender, RoutedEventArgs e)
+        private void BtnVentasDiarias_Click(object sender, RoutedEventArgs e)
         {
-
+            ModuloProductosVendidos productosVendidos = new ModuloProductosVendidos();
+            productosVendidos.ShowDialog();
         }
 
         private void btnCambiarPassword_Click(object sender, RoutedEventArgs e)

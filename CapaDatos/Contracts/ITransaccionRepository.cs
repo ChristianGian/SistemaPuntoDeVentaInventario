@@ -13,5 +13,6 @@ namespace CapaDatos.Contracts
         List<Transaccion> MostrarUltimasTransacciones(string numTransaccion);
         int ActualizarEstadoTransaccion(int idTransaccion);
         decimal ObtenerIgv();
+        List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin);
     }
 }

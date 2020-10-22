@@ -74,7 +74,7 @@ namespace CapaDatos.Repositories
             return ExecuteNonQuery("ActualizarProducto");
         }
 
-        //
+        //Métodos propios
         public int ActualizarProductoCantidad(string idProducto, int cantidadComprada)
         {
             parametros = new List<SqlParameter>();
