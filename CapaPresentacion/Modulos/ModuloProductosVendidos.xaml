@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.Modulos"
         mc:Ignorable="d"
-        Title="Productos Vendidos" Height="500" Width="900"
+        Title="Productos Vendidos" Height="500" Width="1000"
         WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         MouseDown="Window_MouseDown">
     <Grid>
@@ -53,6 +53,7 @@
                         <DatePicker Name="dtpFechaFin"/>
                         <Button x:Name="btnBuscar" Content="Buscar" Style="{StaticResource BotonModulo}" Margin="10 0" Click="BtnBuscar_Click"/>
                         <Button x:Name="btnHoy" Content="Ir a Hoy" Style="{StaticResource BotonModulo}" Click="BtnHoy_Click"/>
+                        <Button x:Name="btnImprimir" Content="Imprimir" Style="{StaticResource BotonModulo}" Margin="10 0" Click="BtnImprimir_Click"/>
                     </StackPanel>
 
                     <Label Grid.Column="1" Content="S/. 0.00" Name="lblTotal"

@@ -1,4 +1,5 @@
 ﻿using CapaNegocio.Models;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -93,6 +94,27 @@ namespace CapaPresentacion.Modulos
             dtpFechaInicio.SelectedDate = hoy;
             dtpFechaFin.SelectedDate = hoy;
 
+        }
+
+        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<ReportDataSource> datos = new List<ReportDataSource>();
+                ReportDataSource prodVendido = new ReportDataSource();
+
+                prodVendido.Name = "DS_ProductosVendidos";
+                prodVendido.Value = transaccion.MostrarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+                datos.Add(prodVendido);
+
+                Reportes.ReporteProductosVendidos productosVendidos = new Reportes.ReporteProductosVendidos("CapaPresentacion.Reportes.ReporteProductosVendidos.rdlc", datos);
+                productosVendidos.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Imprimir", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

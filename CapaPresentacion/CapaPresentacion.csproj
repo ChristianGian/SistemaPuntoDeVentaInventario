@@ -106,6 +106,9 @@
     <Compile Include="PuntoDeVenta.xaml.cs">
       <DependentUpon>PuntoDeVenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteProductosVendidos.xaml.cs">
+      <DependentUpon>ReporteProductosVendidos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteLiquidarPago.xaml.cs">
       <DependentUpon>ReporteLiquidarPago.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Reportes\ReporteProductosVendidos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Reportes\ReporteLiquidarPago.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,8 +218,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReporteLiquidarPago.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteProductosVendidos.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CapaNegocio.Models.MReportes.R_LiquidarPagoModel.datasource" />
+    <None Include="Properties\DataSources\CapaNegocio.Models.TransaccionModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -297,6 +306,11 @@
   <ItemGroup>
     <Resource Include="Imagenes\puntos-venta.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Imagenes\Cerrar18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\LogoSupermercadoGreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
