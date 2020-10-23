@@ -112,6 +112,9 @@
     <Compile Include="Reportes\ReporteLiquidarPago.xaml.cs">
       <DependentUpon>ReporteLiquidarPago.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ConfiguracionDelUsuario.xaml.cs">
+      <DependentUpon>ConfiguracionDelUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ListaDeCategorias.xaml.cs">
       <DependentUpon>ListaDeCategorias.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reportes\ReporteLiquidarPago.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ConfiguracionDelUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

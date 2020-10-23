@@ -87,7 +87,7 @@
                             <Label Foreground="White">Configuración del Sistema</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnConfUsuario" Click="btnConfUsuario_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnConfUsuario" Click="BtnConfUsuario_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/ConfiguracionUsuario_32px.png" Width="30"/>
                             <Label Foreground="White">Configuración del Usuario</Label>

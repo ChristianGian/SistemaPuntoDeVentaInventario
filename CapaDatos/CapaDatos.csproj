@@ -48,6 +48,7 @@
     <Compile Include="Contracts\IProductoRepository.cs" />
     <Compile Include="Contracts\IStockRepository.cs" />
     <Compile Include="Contracts\ITransaccionRepository.cs" />
+    <Compile Include="Contracts\IUsuarioRepository.cs" />
     <Compile Include="Entities\Categoria.cs" />
     <Compile Include="Entities\EReportes\R_LiquidarPago.cs" />
     <Compile Include="Entities\Igv.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Entities\Producto.cs" />
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\Transaccion.cs" />
+    <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
     <Compile Include="Repositories\MarcaRepository.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Repositories\RReportes\R_LiquidarPagoRepository.cs" />
     <Compile Include="Repositories\StockRepository.cs" />
     <Compile Include="Repositories\TransaccionRepository.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

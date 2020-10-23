@@ -77,9 +77,10 @@ namespace CapaPresentacion
 
         }
 
-        private void btnConfUsuario_Click(object sender, RoutedEventArgs e)
+        private void BtnConfUsuario_Click(object sender, RoutedEventArgs e)
         {
-
+            ActivarBoton(sender);
+            MostrarContenido(new ConfiguracionDelUsuario());
         }
 
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
