@@ -93,5 +93,11 @@ namespace CapaNegocio.Models
             }
             return mensaje;
         }
+
+        //Login
+        public bool Login(string username, string password)
+        {
+            return usuarioRepository.Login(username, password);
+        }
     }
 }

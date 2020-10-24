@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaComun.Cache;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -98,6 +99,46 @@ namespace CapaDatos.Repositories
                     }
                 }
             }
+        }
+
+        //Login
+        protected bool ExecuteLogin(string transactSql)
+        {
+            bool res = false;
+
+            using (var cn = ObtenerConexion())
+            {
+                cn.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = cn;
+                    cmd.CommandText = transactSql;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    foreach (SqlParameter item in parametros)
+                    {
+                        cmd.Parameters.Add(item);
+                    }
+
+                    var drd = cmd.ExecuteReader();
+
+                    //Guardamos los datos del usuario en Caché
+                    if (drd.HasRows)
+                    {
+                        while (drd.Read())
+                        {
+                            UserCache.Username = drd.GetString(drd.GetOrdinal("username"));
+                            UserCache.Password = drd.GetString(drd.GetOrdinal("password"));
+                            UserCache.Rol = drd.GetString(drd.GetOrdinal("role"));
+                            UserCache.Nombres = drd.GetString(drd.GetOrdinal("name"));
+                            UserCache.Apellidos = drd.GetString(drd.GetOrdinal("lastname"));
+                            UserCache.EstadoUsuario = drd.GetString(drd.GetOrdinal("Estado"));
+                        }
+                        res = true;
+                    }
+                }
+            }
+            return res;
         }
     }
 }

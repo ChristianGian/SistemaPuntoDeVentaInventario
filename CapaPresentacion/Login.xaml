@@ -44,10 +44,15 @@
                             <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
                             <PasswordBox x:Name="txtPassword" Margin="10 0" materialDesign:HintAssist.Hint="Contraseña" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#61B125" SelectionBrush="#61B125"/>
                         </StackPanel>
+                        <!--Mensaje de error-->
+                        <StackPanel Orientation="Horizontal" Name="stackMensajeError" Margin="10" Visibility="Collapsed">
+                            <Image Source="Imagenes/LoginError.png"/>
+                            <Label Name="lblMensajeError" Content="Mensaje de error" Foreground="White"/>
+                        </StackPanel>
                         <StackPanel Margin="10" HorizontalAlignment="Center">
                             <Button Width="117" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                          materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#61B125"
-                         Background="#6CC72A" Foreground="White" ToolTip="Iniciar sesión" x:Name="btnIniciarSesion" Click="btnIniciarSesion_Click" Content="Iniciar sesión">
+                         Background="#6CC72A" Foreground="White" ToolTip="Iniciar sesión" x:Name="btnIniciarSesion" Click="BtnIniciarSesion_Click" Content="Iniciar sesión">
                             </Button>
                         </StackPanel>
                     </StackPanel>

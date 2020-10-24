@@ -11,5 +11,6 @@ namespace CapaDatos.Contracts
     {
         //Métodos propios
         int Delete(string username);
+        bool Login(string username, string password);
     }
 }

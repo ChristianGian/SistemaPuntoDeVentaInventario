@@ -43,5 +43,15 @@ namespace CapaDatos.Repositories
         {
             throw new NotImplementedException();
         }
+
+        //Métodos propios
+        public bool Login(string username, string password)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Username", username));
+            parametros.Add(new SqlParameter("@Password", password));
+
+            return ExecuteLogin("Login");
+        }
     }
 }

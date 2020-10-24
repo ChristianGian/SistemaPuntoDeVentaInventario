@@ -269,6 +269,10 @@
     <Resource Include="Imagenes\Registros_32px.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaComun\CapaComun.csproj">
+      <Project>{68f4662c-e84a-4581-bf43-181bcda6ea41}</Project>
+      <Name>CapaComun</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
       <Project>{77fce01d-62f9-40f0-85ce-a3d213c92029}</Project>
       <Name>CapaNegocio</Name>
@@ -336,6 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\LoginImagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\LoginError.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
