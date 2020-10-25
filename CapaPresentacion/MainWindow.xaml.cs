@@ -1,4 +1,5 @@
-﻿using CapaPresentacion.UserControls;
+﻿using CapaComun.Cache;
+using CapaPresentacion.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,9 @@ namespace CapaPresentacion
         public MainWindow()
         {
             InitializeComponent();
+
+            lblUsuario.Content = UserCache.Nombres + " " + UserCache.Apellidos;
+            lblRol.Content = UserCache.Rol;
         }
 
         #region Botones de Sidemenu

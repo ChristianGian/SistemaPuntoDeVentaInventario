@@ -21,6 +21,7 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@Precio", entidad.Precio));
             parametros.Add(new SqlParameter("@Cantidad", entidad.Cantidad));
             parametros.Add(new SqlParameter("@Fecha", entidad.Fecha));
+            parametros.Add(new SqlParameter("@Cajero", entidad.Cajero));
 
             return ExecuteNonQuery("InsertarTransaccion");
         }

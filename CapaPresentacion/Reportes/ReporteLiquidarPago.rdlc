@@ -386,7 +386,7 @@
         <Top>0.35278cm</Top>
         <Left>0.2cm</Left>
         <Height>1.2cm</Height>
-        <Width>7.1025cm</Width>
+        <Width>7.10249cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -887,7 +887,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
+                  <Value>=Fields!Cajero.Value</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                   </Style>
@@ -1025,6 +1025,10 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="Cajero">
+          <DataField>Cajero</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Cantidad">
           <DataField>Cantidad</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>

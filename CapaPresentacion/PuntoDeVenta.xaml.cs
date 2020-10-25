@@ -1,4 +1,5 @@
-﻿using CapaNegocio.Models;
+﻿using CapaComun.Cache;
+using CapaNegocio.Models;
 using CapaNegocio.ValueObjects;
 using CapaPresentacion.Modulos;
 using System;
@@ -37,6 +38,7 @@ namespace CapaPresentacion
             producto.ObtenerTodo();
             lblFecha.Content = DateTime.Now.ToLongDateString();
             lblFechaDetalle.Content = DateTime.Now.ToLongDateString();
+            lblNombreCajero.Content = UserCache.Nombres + " | " + UserCache.Rol;
 
             //Hora y fecha - DispatcherTimer
             DispatcherTimer timer = new DispatcherTimer();

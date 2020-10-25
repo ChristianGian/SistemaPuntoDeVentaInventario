@@ -30,11 +30,11 @@
                     </Ellipse>
                     <Label FontSize="20" Foreground="White"
                            HorizontalAlignment="Center"
-                           Content="Nicholas Phillip">
+                           Name="lblUsuario" Content="Nicholas Phillip">
                     </Label>
                     <Label FontSize="15" FontWeight="SemiBold" Foreground="#C3C6FC" Margin="0 0 0 10"
                            HorizontalAlignment="Center"
-                           Content="Marketing Head">
+                           Name="lblRol" Content="Marketing Head">
                     </Label>
                 </StackPanel>
                 <!--Botones del menú-->

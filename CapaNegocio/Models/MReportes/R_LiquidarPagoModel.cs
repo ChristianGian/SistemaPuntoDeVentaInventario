@@ -20,6 +20,7 @@ namespace CapaNegocio.Models.MReportes
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
         public string Estado { get; set; }
+        public string Cajero { get; set; }
 
         private R_LiquidarPagoRepository liquidarPagoRepository = new R_LiquidarPagoRepository();
 
@@ -41,7 +42,8 @@ namespace CapaNegocio.Models.MReportes
                     Cantidad = item.Cantidad,
                     Descuento = item.Descuento,
                     Total = item.Total,
-                    Estado = item.Estado
+                    Estado = item.Estado,
+                    Cajero = item.Cajero
                 });
             }
             return lista;

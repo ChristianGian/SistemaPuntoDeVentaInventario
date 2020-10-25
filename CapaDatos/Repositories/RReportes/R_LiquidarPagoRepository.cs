@@ -32,7 +32,8 @@ namespace CapaDatos.Repositories.RReportes
                     Cantidad = Convert.ToInt32(item[5]),
                     Descuento = Convert.ToDecimal(item[6]),
                     Total = Convert.ToDecimal(item[7]),
-                    Estado = item[8].ToString()
+                    Estado = item[8].ToString(),
+                    Cajero = item[9].ToString()
                 });
             }
             return lista;

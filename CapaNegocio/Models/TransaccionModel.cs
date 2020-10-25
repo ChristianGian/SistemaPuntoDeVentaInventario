@@ -23,6 +23,7 @@ namespace CapaNegocio.Models
         private decimal descuento;
         private decimal total;
         private DateTime fecha;
+        private string cajero;
 
         private float igv;
 
@@ -47,6 +48,7 @@ namespace CapaNegocio.Models
         public decimal Total { get => total; set => total = value; }
         [Required]
         public DateTime Fecha { get => fecha; set => fecha = value; }
+        public string Cajero { get => cajero; set => cajero = value; }
         //IGV
         public float Igv { get => igv; private set => igv = value; }
 
@@ -76,6 +78,7 @@ namespace CapaNegocio.Models
                 transaccion.Cantidad = cantidad;
                 transaccion.Descuento = descuento;
                 transaccion.Fecha = fecha;
+                transaccion.Cajero = cajero;
 
                 switch (Estado)
                 {

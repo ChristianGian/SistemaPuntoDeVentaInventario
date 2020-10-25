@@ -17,5 +17,6 @@ namespace CapaDatos.Entities.EReportes
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
         public string Estado { get; set; }
+        public string Cajero { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CapaNegocio.Models;
+﻿using CapaComun.Cache;
+using CapaNegocio.Models;
 using CapaNegocio.ValueObjects;
 using CapaPresentacion.Helps;
 using System;
@@ -54,6 +55,7 @@ namespace CapaPresentacion.Modulos
                 transaccion.Precio = precio;
                 transaccion.Cantidad = Convert.ToInt32(txtCantidad.Text.Trim());
                 transaccion.Fecha = DateTime.Now;
+                transaccion.Cajero = UserCache.Nombres + " " + UserCache.Apellidos;
 
                 bool validar = new Helps.DataValidation(transaccion).Validar();
 
