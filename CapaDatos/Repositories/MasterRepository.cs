@@ -136,6 +136,35 @@ namespace CapaDatos.Repositories
                         }
                         res = true;
                     }
+                    drd.Dispose();
+                }
+            }
+            return res;
+        }
+
+        //Verificar si existen productos duplicados
+        protected bool ExecuteReaderVerificarProductos(string transactSql)
+        {
+            bool res = false;
+            using (var cn = ObtenerConexion())
+            {
+                cn.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = cn;
+                    cmd.CommandText = transactSql;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    foreach (SqlParameter item in parametros)
+                    {
+                        cmd.Parameters.Add(item);
+                    }
+
+                    var drd = cmd.ExecuteReader();
+
+                    if (drd.HasRows) res = true;
+
+                    drd.Dispose();
                 }
             }
             return res;

@@ -111,11 +111,32 @@ namespace CapaDatos.Repositories
             return ExecuteNonQuery("ActualizarTransaccionEstado");
         }
 
-        public List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        public int ActualizarCantidadTransaccion(int idTransaccion, string numTransaccion, string idProducto, int cantidad)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@IdTransaccion", idTransaccion));
+            parametros.Add(new SqlParameter("@NumTransaccion", numTransaccion));
+            parametros.Add(new SqlParameter("@IdProducto", idProducto));
+            parametros.Add(new SqlParameter("@Cantidad", cantidad));
+
+            return ExecuteNonQuery("ActualizarTransaccionCantidad");
+        }
+
+        public bool ComprobarProductosDuplicados(string numTransaccion, string idProducto)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@NumTransaccion", numTransaccion));
+            parametros.Add(new SqlParameter("@IdProducto", idProducto));
+
+            return ExecuteReaderVerificarProductos("TransaccionComprobarProductoDuplicado");
+        }
+
+        public List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username)
         {
             parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@FechaInicio", fechaInicio));
             parametros.Add(new SqlParameter("@FechaFin", fechaFin));
+            parametros.Add(new SqlParameter("@Username", username));
 
             var tabla = ExecuteReaderParameters("ProductosVendidos");
             var lista = new List<Transaccion>();
@@ -132,7 +153,8 @@ namespace CapaDatos.Repositories
                     Cantidad = Convert.ToInt16(item[5]),
                     Descuento = Convert.ToDecimal(item[6]),
                     Total = Convert.ToDecimal(item[7]),
-                    Fecha = Convert.ToDateTime(item[8])
+                    Fecha = Convert.ToDateTime(item[8]),
+                    Cajero = item[9].ToString()
                 });
             }
             return lista;

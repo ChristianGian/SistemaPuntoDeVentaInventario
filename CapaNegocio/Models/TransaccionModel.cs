@@ -151,9 +151,19 @@ namespace CapaNegocio.Models
             return transaccionRepository.ActualizarEstadoTransaccion(idTransaccion);
         }
 
-        public List<TransaccionModel> MostrarProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        public int ActualizarCantidadTransaccion(int idTransaccion, string numTransaccion, string idProducto, int cantidad)
         {
-            var transaccion = transaccionRepository.ReadProductosVendidos(fechaInicio, fechaFin);
+            return transaccionRepository.ActualizarCantidadTransaccion(idTransaccion, numTransaccion, idProducto, cantidad);
+        }
+
+        public bool ComprobarProductosDuplicados(string numTransaccion, string idProducto)
+        {
+            return transaccionRepository.ComprobarProductosDuplicados(numTransaccion, idProducto);
+        }
+
+        public List<TransaccionModel> MostrarProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username)
+        {
+            var transaccion = transaccionRepository.ReadProductosVendidos(fechaInicio, fechaFin, username);
             var listaTransaccion = new List<TransaccionModel>();
 
             foreach (Transaccion item in transaccion)
@@ -168,7 +178,8 @@ namespace CapaNegocio.Models
                     cantidad = item.Cantidad,
                     descuento = item.Descuento,
                     total = item.Total,
-                    fecha = item.Fecha
+                    fecha = item.Fecha,
+                    cajero = item.Cajero
                 });
             }
             return listaTransaccion;

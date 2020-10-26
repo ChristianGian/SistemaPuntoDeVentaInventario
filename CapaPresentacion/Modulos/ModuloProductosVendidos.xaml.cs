@@ -1,4 +1,5 @@
-﻿using CapaNegocio.Models;
+﻿using CapaComun.Cache;
+using CapaNegocio.Models;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,13 @@ namespace CapaPresentacion.Modulos
             dtpFechaInicio.SelectedDate = hoy;
             dtpFechaFin.SelectedDate = hoy;
 
-            ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+            dtpFechaInicio.IsEnabled = false;
+            dtpFechaFin.IsEnabled = false;
+            cmbCajero.Text = UserCache.Username;
+            cmbCajero.IsEnabled = false;
+
+            LlenarCmbCajero();
+            ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
 
         }
 
@@ -49,12 +56,12 @@ namespace CapaPresentacion.Modulos
             this.DragMove();
         }
 
-        private void ListarProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        private void ListarProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username)
         {
             try
             {
                 dgdProductosVendidos.ItemsSource = null;
-                var lista = transaccion.MostrarProductosVendidos(fechaInicio, fechaFin);
+                var lista = transaccion.MostrarProductosVendidos(fechaInicio, fechaFin, username);
                 dgdProductosVendidos.ItemsSource = lista;
 
                 decimal total = 0;
@@ -72,6 +79,15 @@ namespace CapaPresentacion.Modulos
             }
         }
 
+        private void LlenarCmbCajero()
+        {
+            UsuarioModel usuario = new UsuarioModel();
+
+            cmbCajero.ItemsSource = usuario.ObtenerCajeros();
+            cmbCajero.DisplayMemberPath = "Username";
+            cmbCajero.SelectedValuePath = "Username";
+        }
+
         private void EsRangoCorrecto()
         {
             if (Convert.ToDateTime(dtpFechaInicio.Text) > Convert.ToDateTime(dtpFechaFin.Text))
@@ -83,13 +99,13 @@ namespace CapaPresentacion.Modulos
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
-            ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+            ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
             EsRangoCorrecto();
         }
 
         private void BtnHoy_Click(object sender, RoutedEventArgs e)
         {
-            ListarProductosVendidos(hoy, hoy);
+            ListarProductosVendidos(hoy, hoy, cmbCajero.Text);
 
             dtpFechaInicio.SelectedDate = hoy;
             dtpFechaFin.SelectedDate = hoy;
@@ -104,7 +120,7 @@ namespace CapaPresentacion.Modulos
                 ReportDataSource prodVendido = new ReportDataSource();
 
                 prodVendido.Name = "DS_ProductosVendidos";
-                prodVendido.Value = transaccion.MostrarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+                prodVendido.Value = transaccion.MostrarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
                 datos.Add(prodVendido);
 
                 Reportes.ReporteProductosVendidos productosVendidos = new Reportes.ReporteProductosVendidos("CapaPresentacion.Reportes.ReporteProductosVendidos.rdlc", datos);

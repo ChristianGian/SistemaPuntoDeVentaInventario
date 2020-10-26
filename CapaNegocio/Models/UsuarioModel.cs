@@ -99,5 +99,26 @@ namespace CapaNegocio.Models
         {
             return usuarioRepository.Login(username, password);
         }
+
+        //Mostrar cajeros
+        public List<UsuarioModel> ObtenerCajeros()
+        {
+            var usuario = usuarioRepository.ReadCajero();
+            var listaCajeros = new List<UsuarioModel>();
+
+            foreach (Usuario item in usuario)
+            {
+                listaCajeros.Add(new UsuarioModel
+                {
+                    username = item.Username,
+                    password = item.Password,
+                    rol = item.Rol,
+                    nombres = item.Nombres,
+                    apellidos = item.Apellidos,
+                    estadoUsuario = item.EstadoUsuario
+                });
+            }
+            return listaCajeros;
+        }
     }
 }

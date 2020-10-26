@@ -159,6 +159,8 @@ namespace CapaPresentacion
 
         private void BtnNuevaTransaccion_Click(object sender, RoutedEventArgs e)
         {
+            if (dgdProductos.Items.Count > 0) return;
+
             ObtenerNrTransaccion();
 
             txtBuscarCodigoBarra.IsEnabled = true;

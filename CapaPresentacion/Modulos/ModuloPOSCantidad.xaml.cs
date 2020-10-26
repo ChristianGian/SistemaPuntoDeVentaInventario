@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,14 +56,27 @@ namespace CapaPresentacion.Modulos
                 transaccion.Precio = precio;
                 transaccion.Cantidad = Convert.ToInt32(txtCantidad.Text.Trim());
                 transaccion.Fecha = DateTime.Now;
-                transaccion.Cajero = UserCache.Nombres + " " + UserCache.Apellidos;
+                transaccion.Cajero = UserCache.Username;
 
                 bool validar = new Helps.DataValidation(transaccion).Validar();
 
-                if (validar)
+                //Comprabar si el producto ya se encuentra registrado
+                if (transaccion.ComprobarProductosDuplicados(transaccion.NumTransaccion, transaccion.IdProducto))
                 {
-                    string resultado = transaccion.GuardarCambios();
-                    MessageBox.Show(resultado, "Resultado de Transacción", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //Actualizar la cantidad del producto
+                    transaccion.Estado = EntityState.Actualizado;
+                    transaccion.ActualizarCantidadTransaccion(transaccion.IdTransaccion, transaccion.NumTransaccion, transaccion.IdProducto, transaccion.Cantidad);
+                    MessageBox.Show("Registro exitoso.", "Resultado de Transacción", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+                else
+                {
+                    //Ingresar el producto
+                    if (validar)
+                    {
+                        string resultado = transaccion.GuardarCambios();
+                        MessageBox.Show(resultado, "Resultado de Transacción", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
 
                 this.Close();

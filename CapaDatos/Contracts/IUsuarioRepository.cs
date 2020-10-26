@@ -10,6 +10,7 @@ namespace CapaDatos.Contracts
     public interface IUsuarioRepository : IGenericRepository<Usuario>
     {
         //Métodos propios
+        List<Usuario> ReadCajero();
         int Delete(string username);
         bool Login(string username, string password);
     }
