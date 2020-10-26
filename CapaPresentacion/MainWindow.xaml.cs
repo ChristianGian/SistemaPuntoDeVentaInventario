@@ -1,9 +1,11 @@
 ﻿using CapaComun.Cache;
+using CapaPresentacion.Modulos;
 using CapaPresentacion.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -76,6 +78,12 @@ namespace CapaPresentacion
 
         }
 
+        private void BtnHistorialVentas_Click(object sender, RoutedEventArgs e)
+        {
+            ModuloProductosVendidos productosVendidos = new ModuloProductosVendidos();
+            productosVendidos.ShowDialog();
+        }
+
         private void btnConfSistema_Click(object sender, RoutedEventArgs e)
         {
 
@@ -123,8 +131,7 @@ namespace CapaPresentacion
                 botonActual.Background = new SolidColorBrush(Color.FromRgb(36, 36, 36));
             }
         }
+
         #endregion
-
-
     }
 }

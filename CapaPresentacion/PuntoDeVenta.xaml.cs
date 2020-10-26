@@ -29,6 +29,7 @@ namespace CapaPresentacion
         //Campos
         private TransaccionModel transaccion = new TransaccionModel();
         private ProductoModel producto = new ProductoModel();
+        private DispatcherTimer timer;
 
         //Método constructor
         public PuntoDeVenta()
@@ -41,13 +42,11 @@ namespace CapaPresentacion
             lblNombreCajero.Content = UserCache.Nombres + " | " + UserCache.Rol;
 
             //Hora y fecha - DispatcherTimer
-            DispatcherTimer timer = new DispatcherTimer();
+            timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
-
         }
-
 
         #region Métodos de ayuda
         private void ObtenerNrTransaccion()
@@ -242,6 +241,12 @@ namespace CapaPresentacion
         private void BtnVentasDiarias_Click(object sender, RoutedEventArgs e)
         {
             ModuloProductosVendidos productosVendidos = new ModuloProductosVendidos();
+
+            productosVendidos.dtpFechaInicio.IsEnabled = false;
+            productosVendidos.dtpFechaFin.IsEnabled = false;
+            productosVendidos.cmbCajero.Text = UserCache.Username;
+            productosVendidos.cmbCajero.IsEnabled = false;
+
             productosVendidos.ShowDialog();
         }
 
@@ -250,9 +255,9 @@ namespace CapaPresentacion
 
         }
 
-        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
         #endregion
 
@@ -315,6 +320,26 @@ namespace CapaPresentacion
         private void TxtBuscarCodigoBarra_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
 
         #endregion
-   
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (dgdProductos.Items.Count > 0)
+            {
+                MessageBox.Show("No se puede cerrar la sesión. Por favor, cancele la transacción", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                e.Cancel = true;
+                timer.Stop();
+                return;
+            }
+
+            if (MessageBox.Show("¿Desea cerrar sesión?", "Salir", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                timer.Stop();
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            } 
+        }
     }
 }

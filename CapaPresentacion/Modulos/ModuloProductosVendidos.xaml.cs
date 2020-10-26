@@ -35,14 +35,8 @@ namespace CapaPresentacion.Modulos
             dtpFechaInicio.SelectedDate = hoy;
             dtpFechaFin.SelectedDate = hoy;
 
-            dtpFechaInicio.IsEnabled = false;
-            dtpFechaFin.IsEnabled = false;
-            cmbCajero.Text = UserCache.Username;
-            cmbCajero.IsEnabled = false;
-
             LlenarCmbCajero();
-            ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
-
+            cmbCajero.SelectedIndex = 0;
         }
 
         #region Métodos de ayuda
@@ -83,7 +77,14 @@ namespace CapaPresentacion.Modulos
         {
             UsuarioModel usuario = new UsuarioModel();
 
-            cmbCajero.ItemsSource = usuario.ObtenerCajeros();
+            var lista = usuario.ObtenerCajeros();
+            lista.Insert(0, new UsuarioModel
+            {
+                Username = "Todos"
+            });
+
+            cmbCajero.ItemsSource = lista;
+            
             cmbCajero.DisplayMemberPath = "Username";
             cmbCajero.SelectedValuePath = "Username";
         }
@@ -99,13 +100,29 @@ namespace CapaPresentacion.Modulos
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
-            ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
+            if (cmbCajero.Text == "Todos")
+            {
+                ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), "");
+
+            }
+            else
+            {
+                ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
+            }
             EsRangoCorrecto();
         }
 
         private void BtnHoy_Click(object sender, RoutedEventArgs e)
         {
-            ListarProductosVendidos(hoy, hoy, cmbCajero.Text);
+            if (cmbCajero.Text == "Todos")
+            {
+                ListarProductosVendidos(hoy, hoy, "");
+
+            }
+            else
+            {
+                ListarProductosVendidos(hoy, hoy, cmbCajero.Text);
+            }
 
             dtpFechaInicio.SelectedDate = hoy;
             dtpFechaFin.SelectedDate = hoy;
@@ -120,7 +137,10 @@ namespace CapaPresentacion.Modulos
                 ReportDataSource prodVendido = new ReportDataSource();
 
                 prodVendido.Name = "DS_ProductosVendidos";
-                prodVendido.Value = transaccion.MostrarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
+                if (cmbCajero.Text == "Todos")
+                    prodVendido.Value = transaccion.MostrarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), "");
+                else
+                    prodVendido.Value = transaccion.MostrarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
                 datos.Add(prodVendido);
 
                 Reportes.ReporteProductosVendidos productosVendidos = new Reportes.ReporteProductosVendidos("CapaPresentacion.Reportes.ReporteProductosVendidos.rdlc", datos);

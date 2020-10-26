@@ -179,7 +179,7 @@ namespace CapaNegocio.Models
                     descuento = item.Descuento,
                     total = item.Total,
                     fecha = item.Fecha,
-                    cajero = item.Cajero
+                    cajero = username == "" ? "Todos" : item.Cajero
                 });
             }
             return listaTransaccion;

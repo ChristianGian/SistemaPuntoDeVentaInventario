@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="Punto de Venta" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="Punto de Venta" Height="650" Width="1200" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -177,7 +177,7 @@
                             <Label Foreground="White">[F7] Cambiar Contraseña</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCerrar" Click="btnCerrar_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCerrar" Click="BtnCerrar_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/CerrarSesion_32px.png" Width="30"/>
                             <Label Foreground="White">[F10] Close</Label>

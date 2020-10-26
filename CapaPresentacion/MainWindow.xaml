@@ -81,6 +81,12 @@
                             <Label Foreground="White">Registros</Label>
                         </StackPanel>
                     </Button>
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnHistorialVentas" Click="BtnHistorialVentas_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Imagenes/HistorialVentas_32px.png" Width="30"/>
+                            <Label Foreground="White">Historial de Ventas</Label>
+                        </StackPanel>
+                    </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnConfSistema" Click="btnConfSistema_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/ConfiguracionSistema_32px.png" Width="30"/>
