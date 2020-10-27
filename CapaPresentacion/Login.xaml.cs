@@ -67,11 +67,22 @@ namespace CapaPresentacion
                     {
                         if (UserCache.EstadoUsuario == "A")
                         {
-                            MainWindow principal = new MainWindow();
                             this.Hide();
-                            principal.Show();
 
-                            principal.Closed += CerrarSesion;
+                            if (UserCache.Rol == Rol.Administrador)
+                            {
+                                MainWindow principal = new MainWindow();
+                                principal.Show();
+
+                                principal.Closed += CerrarSesion;
+                            }
+                            else if (UserCache.Rol == Rol.Cajero)
+                            {
+                                PuntoDeVenta puntoDeVenta = new PuntoDeVenta();
+                                puntoDeVenta.Show();
+
+                                puntoDeVenta.Closed += CerrarSesion;
+                            }
                         }
                         else
                         {
