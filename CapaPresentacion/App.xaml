@@ -74,6 +74,31 @@
             </Style.Triggers>
         </Style>
 
+        <!--Estilo Botones general-->
+        <Style x:Key="BotonGeneral" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Foreground" Value="White"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5D5D5D"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#838383"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <!--Estilo Botones de módulos (Buscar)-->
         <Style x:Key="BotonBuscar" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#242424"/>

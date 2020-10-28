@@ -84,6 +84,12 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\ModuloCancelarOrden.xaml.cs">
+      <DependentUpon>ModuloCancelarOrden.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ModuloCancelarOrdenDetalle.xaml.cs">
+      <DependentUpon>ModuloCancelarOrdenDetalle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\ModuloCategoria.xaml.cs">
       <DependentUpon>ModuloCategoria.xaml</DependentUpon>
     </Compile>
@@ -152,6 +158,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modulos\ModuloCancelarOrden.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloCancelarOrdenDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modulos\ModuloCategoria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -346,6 +360,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\HistorialVentas_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modulos\ImagenesModulos\CancelarOrden_48px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

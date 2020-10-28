@@ -1,0 +1,54 @@
+﻿<Window x:Class="CapaPresentacion.Modulos.ModuloCancelarOrden"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.Modulos"
+        mc:Ignorable="d"
+        Title="Cancelar Orden" Height="150" Width="500"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Barra de título-->
+        <Grid Grid.Row="0" Background="#088F84">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="10 0 0 0"
+                       FontSize="15" Foreground="White">
+                Cancelar Orden
+            </TextBlock>
+            <Button Grid.Column="1" Name="btnCerrar"
+                        Click="BtnCerrar_Click"
+                        Style="{StaticResource BotonCerrar}">
+                <Image Source="ImagenesModulos/Cerrar18.png" Width="18"/>
+            </Button>
+        </Grid>
+
+        <!--Contenido-->
+        <Border BorderBrush="#088F84" BorderThickness="1" Grid.Row="1">
+            <StackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                    <Label Content="Nombre de usuario:" Width="130"/>
+                    <TextBox x:Name="txtUsername" Width="270" Padding="2"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
+                    <Label Content="Contraseña:" Width="130"/>
+                    <PasswordBox x:Name="txtPassword" Width="270" Padding="2"/>
+                </StackPanel>
+                <Canvas>
+                    <Button x:Name="btnCancelarOrden" Content="Cancelar Orden"
+                            Style="{StaticResource BotonGeneral}" Height="26" Width="270"
+                            Canvas.Left="179" Click="BtnCancelarOrden_Click"/>
+                </Canvas>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

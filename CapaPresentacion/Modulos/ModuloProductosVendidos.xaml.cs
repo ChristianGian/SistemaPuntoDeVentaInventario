@@ -152,5 +152,19 @@ namespace CapaPresentacion.Modulos
             }
             
         }
+
+        private void BtnCancelarOrden_Click(object sender, RoutedEventArgs e)
+        {
+            ModuloCancelarOrdenDetalle cancelarOrdenDetalle = new ModuloCancelarOrdenDetalle();
+            cancelarOrdenDetalle.DataContext = dgdProductosVendidos.SelectedItem as TransaccionModel;
+            cancelarOrdenDetalle.ShowDialog();
+
+            //Actualizamos la lista
+            if (cmbCajero.Text == "Todos")
+
+                ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), "");
+            else
+                ListarProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text), cmbCajero.Text);
+        }
     }
 }

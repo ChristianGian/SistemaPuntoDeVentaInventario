@@ -13,5 +13,6 @@ namespace CapaDatos.Contracts
         List<Usuario> ReadCajero();
         int Delete(string username);
         bool Login(string username, string password);
+        List<Usuario> LoginPermisos(string username, string password);
     }
 }

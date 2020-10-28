@@ -100,6 +100,21 @@ namespace CapaNegocio.Models
             return usuarioRepository.Login(username, password);
         }
 
+        public List<UsuarioModel> LoginPermisos(string username, string password)
+        {
+            var usuario = usuarioRepository.LoginPermisos(username, password);
+            var listaUsuario = new List<UsuarioModel>();
+
+            foreach (Usuario item in usuario)
+            {
+                listaUsuario.Add(new UsuarioModel
+                {
+                    username = item.Username
+                });
+            }
+            return listaUsuario;
+        }
+
         //Mostrar cajeros
         public List<UsuarioModel> ObtenerCajeros()
         {
