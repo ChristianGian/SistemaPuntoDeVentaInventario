@@ -33,17 +33,17 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <!--Filtros-->
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
-                        <Label Content="Filtar por:" VerticalAlignment="Center"/>
+                        <Label Content="Filtrar por:" VerticalAlignment="Center"/>
                         <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
                         <DatePicker Name="dtpFechaFin" Width="200" Height="26" VerticalAlignment="Center"/>
                         <Button x:Name="btnCargarDatos" Content="Cargar Datos" Margin="10 0"
                                 Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
                                 Click="BtnCargarDatos_Click"/>
                     </StackPanel>
-                    
+
                     <!--Datagrid Marcas-->
                     <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                         <DataGrid.Columns>
@@ -53,7 +53,51 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-                
+
+            </TabItem>
+
+            <!--TAB 2 Productos vendidos-->
+            <TabItem Header="Productos vendidos">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="390*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Filtros-->
+                    <Grid Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Filtrar por:"/>
+                            <DatePicker Name="dtpFechaInicioTab2" Width="200" Margin="10 0"/>
+                            <DatePicker Name="dtpFechaFinTab2" Width="200"/>
+                            <Button x:Name="btnCargarDatosTab2" Content="Cargar Datos" Style="{StaticResource BotonGeneral}" Width="100" Margin="10 0" Click="BtnCargarDatosTab2_Click"/>
+                        </StackPanel>
+
+                        <Label Grid.Column="1" Content="S/. 0.00" Name="lblTotal"
+                           HorizontalContentAlignment="Right"
+                           FontSize="25"/>
+                    </Grid>
+                    <!--DataGrid Productos-->
+                    <DataGrid Grid.Row="1" x:Name="dgdProductosVendidosAgrupados" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
+                            <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
+                            <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                            <DataGridTextColumn Header="DESCUENTO" Binding="{Binding Descuento}"/>
+                            <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

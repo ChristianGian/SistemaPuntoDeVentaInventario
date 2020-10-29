@@ -32,6 +32,9 @@ namespace CapaPresentacion.UserControls
 
             dtpFechaInicio.SelectedDate = hoy;
             dtpFechaFin.SelectedDate = hoy;
+
+            dtpFechaInicioTab2.SelectedDate = hoy;
+            dtpFechaFinTab2.SelectedDate = hoy;
         }
 
         #region Métodosde ayuda
@@ -48,6 +51,23 @@ namespace CapaPresentacion.UserControls
             }
         }
 
+        private void ListarProductosVendidosAgrupados(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                dgdProductosVendidosAgrupados.ItemsSource = null;
+                var lista = transaccion.MostrarProductosVendidosAgrupados(fechaInicio, fechaFin);
+                dgdProductosVendidosAgrupados.ItemsSource = lista;
+
+                lblTotal.Content = $"{lista.Sum(l => l.Total):C}";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Listar productos vendidos agrupados", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void EsRangoCorrecto()
         {
             if (Convert.ToDateTime(dtpFechaInicio.Text) > Convert.ToDateTime(dtpFechaFin.Text))
@@ -57,9 +77,17 @@ namespace CapaPresentacion.UserControls
         }
         #endregion
 
+        //TAB 1: Top 10 más vendidos
         private void BtnCargarDatos_Click(object sender, RoutedEventArgs e)
         {
             ListarRegProductoseVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+            EsRangoCorrecto();
+        }
+
+        //TAB 2: Prodcutos vendidos (Agrupados)
+        private void BtnCargarDatosTab2_Click(object sender, RoutedEventArgs e)
+        {
+            ListarProductosVendidosAgrupados(Convert.ToDateTime(dtpFechaInicioTab2.Text), Convert.ToDateTime(dtpFechaFinTab2.Text));
             EsRangoCorrecto();
         }
     }

@@ -5,6 +5,7 @@ using CapaNegocio.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -206,6 +207,25 @@ namespace CapaNegocio.Models
             return from lt in listaTransaccion
                    orderby lt.cantidad descending
                    select lt;
+        }
+
+        public List<TransaccionModel> MostrarProductosVendidosAgrupados(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var transaccion = transaccionRepository.ReadProductosVendidosAgrupados(fechaInicio, fechaFin);
+            var listaTransaccion = new List<TransaccionModel>();
+
+            foreach (Transaccion item in transaccion)
+            {
+                listaTransaccion.Add(new TransaccionModel
+                {
+                    idProducto = item.IdProducto,
+                    nombreProducto = item.NombreProducto,
+                    precio = item.Precio,
+                    cantidad = item.Cantidad,
+                    total = item.Total
+                });
+            }
+            return listaTransaccion;
         }
     }
 }

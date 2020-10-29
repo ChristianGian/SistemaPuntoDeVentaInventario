@@ -182,5 +182,29 @@ namespace CapaDatos.Repositories
             }
             return lista;
         }
+
+        public List<Transaccion> ReadProductosVendidosAgrupados(DateTime fechaInicio, DateTime fechaFin)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@FechaInicio", fechaInicio));
+            parametros.Add(new SqlParameter("@FechaFin", fechaFin));
+
+            var tabla = ExecuteReaderParameters("ProductosVendidosAgrupados");
+            var lista = new List<Transaccion>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Transaccion
+                {
+                    IdProducto = item[0].ToString(),
+                    NombreProducto = item[1].ToString(),
+                    Precio = Convert.ToInt32(item[2]),
+                    Cantidad = Convert.ToInt32(item[3]),
+                    Descuento = Convert.ToDecimal(item[4]),
+                    Total = Convert.ToDecimal(item[5])
+                });
+            }
+            return lista;
+        }
     }
 }
