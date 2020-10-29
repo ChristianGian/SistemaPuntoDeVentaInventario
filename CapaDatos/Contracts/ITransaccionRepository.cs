@@ -16,5 +16,6 @@ namespace CapaDatos.Contracts
         bool ComprobarProductosDuplicados(string numTransaccion, string idProducto);
         decimal ObtenerIgv();
         List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username);
+        List<Transaccion> RegistroProductosVendidos(DateTime fechaInicio, DateTime fechaFin);
     }
 }

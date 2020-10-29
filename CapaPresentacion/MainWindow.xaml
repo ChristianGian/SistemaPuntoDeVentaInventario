@@ -75,7 +75,7 @@
                             <Label Foreground="White">Gestionar Marca</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnRegistros" Click="btnRegistros_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnRegistros" Click="BtnRegistros_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/Registros_32px.png" Width="30"/>
                             <Label Foreground="White">Registros</Label>

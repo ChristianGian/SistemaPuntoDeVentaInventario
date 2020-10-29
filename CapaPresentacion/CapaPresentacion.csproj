@@ -141,6 +141,9 @@
     <Compile Include="UserControls\ListaDeProductos.xaml.cs">
       <DependentUpon>ListaDeProductos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Registros.xaml.cs">
+      <DependentUpon>Registros.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validaciones.cs" />
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -231,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ListaDeProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Registros.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

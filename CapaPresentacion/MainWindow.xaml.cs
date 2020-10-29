@@ -73,9 +73,10 @@ namespace CapaPresentacion
             MostrarContenido(new ListaDeMarcas());
         }
 
-        private void btnRegistros_Click(object sender, RoutedEventArgs e)
+        private void BtnRegistros_Click(object sender, RoutedEventArgs e)
         {
-
+            ActivarBoton(sender);
+            MostrarContenido(new Registros());
         }
 
         private void BtnHistorialVentas_Click(object sender, RoutedEventArgs e)

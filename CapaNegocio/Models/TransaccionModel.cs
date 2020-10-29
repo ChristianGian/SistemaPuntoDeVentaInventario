@@ -23,6 +23,7 @@ namespace CapaNegocio.Models
         private decimal descuento;
         private decimal total;
         private DateTime fecha;
+        private string estadoTransaccion;
         private string cajero;
 
         private float igv;
@@ -48,6 +49,7 @@ namespace CapaNegocio.Models
         public decimal Total { get => total; set => total = value; }
         [Required]
         public DateTime Fecha { get => fecha; set => fecha = value; }
+        public string EstadoTransaccion { get => estadoTransaccion; private set => estadoTransaccion = value; }
         public string Cajero { get => cajero; set => cajero = value; }
         //IGV
         public float Igv { get => igv; private set => igv = value; }
@@ -183,6 +185,27 @@ namespace CapaNegocio.Models
                 });
             }
             return listaTransaccion;
+        }
+
+        public IEnumerable<TransaccionModel> RegistroProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var transaccion = transaccionRepository.RegistroProductosVendidos(fechaInicio, fechaFin);
+            var listaTransaccion = new List<TransaccionModel>();
+
+            foreach (Transaccion item in transaccion)
+            {
+                listaTransaccion.Add(new TransaccionModel
+                {
+                    idProducto = item.IdProducto,
+                    nombreProducto = item.NombreProducto,
+                    cantidad = item.Cantidad,
+                    fecha = item.Fecha,
+                    estadoTransaccion = item.EstadoTransaccion,
+                });
+            }
+            return from lt in listaTransaccion
+                   orderby lt.cantidad descending
+                   select lt;
         }
     }
 }
