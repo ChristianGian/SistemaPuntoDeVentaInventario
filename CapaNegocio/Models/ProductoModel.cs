@@ -164,5 +164,27 @@ namespace CapaNegocio.Models
             }
             return listaProductos;
         }
+
+        public List<ProductoModel> MostrarListaDeInvetario()
+        {
+            var producto = productoRepository.ReadListaDeInventarios();
+            listaProductos = new List<ProductoModel>();
+
+            foreach (Producto item in producto)
+            {
+                listaProductos.Add(new ProductoModel
+                {
+                    idProducto = item.IdProducto,
+                    codigoBarras = item.CodigoBarras,
+                    descripcion = item.Descripcion,
+                    nombreMarca = item.NombreMarca,
+                    nombreCategoria = item.NombreCategoria,
+                    precio = item.Precio,
+                    reorden = item.Reorden,
+                    cantidad = item.Cantidad
+                });
+            }
+            return listaProductos;
+        }
     }
 }

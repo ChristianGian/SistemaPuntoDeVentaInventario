@@ -13,5 +13,6 @@ namespace CapaDatos.Contracts
         int Delete(string idPK);
         int ActualizarProductoCantidad(string idProducto, int cantidadComprada);
         List<Producto> ReadProductosCriticos();
+        List<Producto> ReadListaDeInventarios();
     }
 }

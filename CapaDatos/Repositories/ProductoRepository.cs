@@ -108,5 +108,27 @@ namespace CapaDatos.Repositories
             }
             return lista;
         }
+
+        public List<Producto> ReadListaDeInventarios()
+        {
+            var tabla = ExecuteReader("MostrarListaDeInventario");
+            var lista = new List<Producto>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Producto
+                {
+                    IdProducto = item[0].ToString(),
+                    CodigoBarras = item[1].ToString(),
+                    Descripcion = item[2].ToString(),
+                    NombreMarca = item[3].ToString(),
+                    NombreCategoria = item[4].ToString(),
+                    Precio = Convert.ToDecimal(item[5]),
+                    Reorden = Convert.ToInt32(item[6]),
+                    Cantidad = Convert.ToInt32(item[7])
+                });
+            }
+            return lista;
+        }
     }
 }

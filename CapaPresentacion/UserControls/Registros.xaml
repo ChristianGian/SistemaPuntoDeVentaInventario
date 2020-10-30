@@ -29,13 +29,18 @@
             <!--TAB 1 - Más vendidos-->
             <TabItem Header="Top 10 más vendidos">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="83*"/>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="337*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40" Grid.ColumnSpan="3">
                         <Label Content="Filtrar por:" VerticalAlignment="Center"/>
                         <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
                         <DatePicker Name="dtpFechaFin" Width="200" Height="26" VerticalAlignment="Center"/>
@@ -45,7 +50,7 @@
                     </StackPanel>
 
                     <!--Datagrid Marcas-->
-                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="3">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                             <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
@@ -53,7 +58,6 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-
             </TabItem>
 
             <!--TAB 2 Productos vendidos-->
@@ -116,6 +120,37 @@
                         <DataGridTextColumn Header="STOCK EN MANO" Binding="{Binding Cantidad}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+            </TabItem>
+
+            <!--TAB 4: Lista de inventario-->
+            <TabItem Header="Lista de Inventario">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Imprimir-->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40" HorizontalAlignment="Right">
+                        <Button x:Name="btnImprimir" Content="Vista previa de impresión" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
+                                Click="BtnImprimir_Click"/>
+                    </StackPanel>
+
+                    <!--Datagrid Lista de inventarios-->
+                    <DataGrid Grid.Row="1" x:Name="dgdListaDeInventarios" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                            <DataGridTextColumn Header="COD. DE BARRAS" Binding="{Binding CodigoBarras}"/>
+                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding Descripcion}" Width="*"/>
+                            <DataGridTextColumn Header="MARCA" Binding="{Binding NombreMarca}"/>
+                            <DataGridTextColumn Header="CATEGORÍA" Binding="{Binding NombreCategoria}"/>
+                            <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
+                            <DataGridTextColumn Header="REORDEN" Binding="{Binding Reorden}"/>
+                            <DataGridTextColumn Header="STOCK EN MANO" Binding="{Binding Cantidad}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

@@ -123,6 +123,9 @@
     <Compile Include="PuntoDeVenta.xaml.cs">
       <DependentUpon>PuntoDeVenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteListaDeInventario.xaml.cs">
+      <DependentUpon>ReporteListaDeInventario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteProductosVendidos.xaml.cs">
       <DependentUpon>ReporteProductosVendidos.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Reportes\ReporteListaDeInventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Reportes\ReporteProductosVendidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,9 +268,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReporteLiquidarPago.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteListaDeInventario.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteProductosVendidos.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CapaNegocio.Models.MReportes.R_LiquidarPagoModel.datasource" />
+    <None Include="Properties\DataSources\CapaNegocio.Models.ProductoModel.datasource" />
     <None Include="Properties\DataSources\CapaNegocio.Models.TransaccionModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

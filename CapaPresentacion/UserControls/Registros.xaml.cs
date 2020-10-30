@@ -1,4 +1,5 @@
 ﻿using CapaNegocio.Models;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace CapaPresentacion.UserControls
     {
         //Campos
         private TransaccionModel transaccion = new TransaccionModel();
+        private ProductoModel producto = new ProductoModel();
         private DateTime hoy = DateTime.Now;
 
         //Método constructor
@@ -37,6 +39,7 @@ namespace CapaPresentacion.UserControls
             dtpFechaFinTab2.SelectedDate = hoy;
 
             ListarProductosCriticos();
+            ListaDeInventario();
         }
 
         #region Métodosde ayuda
@@ -98,14 +101,48 @@ namespace CapaPresentacion.UserControls
         {
             try
             {
-                ProductoModel producto = new ProductoModel();
-
                 dgdProductosCriticos.ItemsSource = null;
                 dgdProductosCriticos.ItemsSource = producto.MostrarProductosCriticos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Listar productos críticos", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        //TAB 3: Prodcutos críticos
+        private void ListaDeInventario()
+        {
+            try
+            {
+                ProductoModel producto = new ProductoModel();
+
+                dgdListaDeInventarios.ItemsSource = null;
+                dgdListaDeInventarios.ItemsSource = producto.MostrarListaDeInvetario();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lista de inventario", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<ReportDataSource> datos = new List<ReportDataSource>();
+                ReportDataSource inventario = new ReportDataSource();
+
+                inventario.Name = "DS_ListaDeInventario";
+                inventario.Value = producto.MostrarListaDeInvetario();
+                datos.Add(inventario);
+
+                Reportes.ReporteListaDeInventario listaDeInventario = new Reportes.ReporteListaDeInventario("CapaPresentacion.Reportes.ReporteListaDeInventario.rdlc", datos);
+                listaDeInventario.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Imprimir", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
