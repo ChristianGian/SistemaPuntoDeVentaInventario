@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.Modulos"
         mc:Ignorable="d"
-        Title="Módulo de Producto" Height="305" Width="500"
+        Title="Módulo de Producto" Height="340" Width="500"
         WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         MouseDown="Window_MouseDown">
     <Grid>
@@ -57,7 +57,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 10">
                     <Label Content="Precio:" Width="110"/>
-                    <TextBox x:Name="txtPrecio" Width="300" Padding="2" Text="{Binding Precio}" PreviewTextInput="txtPrecio_PreviewTextInput"/>
+                    <TextBox x:Name="txtPrecio" Width="300" Padding="2" Text="{Binding Precio}" PreviewTextInput="TxtPrecio_PreviewTextInput"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 10">
+                    <Label Content="Reorden:" Width="110"/>
+                    <TextBox x:Name="txtReorden" Width="300" Padding="2" Text="{Binding Reorden}" PreviewTextInput="TxtReorden_PreviewTextInput"/>
                 </StackPanel>
                 <Canvas>
                     <Button x:Name="btnGuardar" Content="Guardar" Style="{StaticResource BotonModulo}" Canvas.Left="80" Click="BtnGuardar_Click"/>

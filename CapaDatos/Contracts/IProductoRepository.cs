@@ -12,5 +12,6 @@ namespace CapaDatos.Contracts
         //Métodos propios
         int Delete(string idPK);
         int ActualizarProductoCantidad(string idProducto, int cantidadComprada);
+        List<Producto> ReadProductosCriticos();
     }
 }

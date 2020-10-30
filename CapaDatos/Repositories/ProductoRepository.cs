@@ -21,6 +21,7 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@MarcaId", entidad.MarcaId));
             parametros.Add(new SqlParameter("@CategoriaId", entidad.CategoriaId));
             parametros.Add(new SqlParameter("@Precio", entidad.Precio));
+            parametros.Add(new SqlParameter("@Reorden", entidad.Reorden));
 
             return ExecuteNonQuery("CrearProducto");
         }
@@ -55,7 +56,8 @@ namespace CapaDatos.Repositories
                     CategoriaId = Convert.ToInt32(item[5]),
                     NombreCategoria = item[6].ToString(),
                     Precio = Convert.ToDecimal(item[7]),
-                    Cantidad = Convert.ToInt32(item[8])
+                    Cantidad = Convert.ToInt32(item[8]),
+                    Reorden = Convert.ToInt32(item[9])
                 });
             }
             return lista;
@@ -70,6 +72,7 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@MarcaId", entidad.MarcaId));
             parametros.Add(new SqlParameter("@CategoriaId", entidad.CategoriaId));
             parametros.Add(new SqlParameter("@Precio", entidad.Precio));
+            parametros.Add(new SqlParameter("@Reorden", entidad.Reorden));
 
             return ExecuteNonQuery("ActualizarProducto");
         }
@@ -82,6 +85,28 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@CantidadComprada", cantidadComprada));
 
             return ExecuteNonQuery("PA_ACT_CANTIDAD_PRODUCTO");
+        }
+
+        public List<Producto> ReadProductosCriticos()
+        {
+            var tabla = ExecuteReader("MostrarProductosCriticos");
+            var lista = new List<Producto>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Producto
+                {
+                    IdProducto = item[0].ToString(),
+                    CodigoBarras = item[1].ToString(),
+                    Descripcion = item[2].ToString(),
+                    NombreMarca = item[3].ToString(),
+                    NombreCategoria = item[4].ToString(),
+                    Precio = Convert.ToDecimal(item[5]),
+                    Reorden = Convert.ToInt32(item[6]),
+                    Cantidad = Convert.ToInt32(item[7])
+                });
+            }
+            return lista;
         }
     }
 }

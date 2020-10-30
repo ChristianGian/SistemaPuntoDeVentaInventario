@@ -23,6 +23,7 @@ namespace CapaNegocio.Models
         private string nombreCategoria;
         private decimal precio;
         private int cantidad;
+        private int reorden;
 
         private IProductoRepository productoRepository;
 
@@ -50,6 +51,7 @@ namespace CapaNegocio.Models
         [RegularExpression(@"^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$", ErrorMessage = "El campo costo debe ser mayor que cero.")]
         public decimal Precio { get => precio; set => precio = value; }
         public int Cantidad { get => cantidad; set => cantidad = value; }
+        public int Reorden { get => reorden; set => reorden = value; }
 
         public ProductoModel()
         {
@@ -74,6 +76,7 @@ namespace CapaNegocio.Models
                 producto.MarcaId = marcaId;
                 producto.CategoriaId = categoriaId;
                 producto.Precio = precio;
+                producto.Reorden = reorden;
 
                 switch (Estado)
                 {
@@ -117,7 +120,8 @@ namespace CapaNegocio.Models
                     categoriaId = item.CategoriaId,
                     nombreCategoria = item.NombreCategoria,
                     precio = item.Precio,
-                    cantidad = item.Cantidad
+                    cantidad = item.Cantidad,
+                    reorden = item.Reorden
                 });
             }
             return listaProductos;
@@ -137,6 +141,28 @@ namespace CapaNegocio.Models
         public int ActualizarProductoCantidad(string idProducto, int cantidadComprada)
         {
             return productoRepository.ActualizarProductoCantidad(idProducto, cantidadComprada);
+        }
+
+        public List<ProductoModel> MostrarProductosCriticos()
+        {
+            var producto = productoRepository.ReadProductosCriticos();
+            listaProductos = new List<ProductoModel>();
+
+            foreach (Producto item in producto)
+            {
+                listaProductos.Add(new ProductoModel
+                {
+                    idProducto = item.IdProducto,
+                    codigoBarras = item.CodigoBarras,
+                    descripcion = item.Descripcion,
+                    nombreMarca = item.NombreMarca,
+                    nombreCategoria = item.NombreCategoria,
+                    precio = item.Precio,
+                    reorden = item.Reorden,
+                    cantidad = item.Cantidad
+                });
+            }
+            return listaProductos;
         }
     }
 }

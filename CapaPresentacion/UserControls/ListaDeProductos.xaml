@@ -48,6 +48,7 @@
                 <DataGridTextColumn Header="CATEGORÍA" Binding="{Binding NombreCategoria}"/>
                 <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
                 <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                <DataGridTextColumn Header="REORDEN" Binding="{Binding Reorden}"/>
                 <DataGridTemplateColumn Header="EDITAR">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -93,12 +93,9 @@ namespace CapaPresentacion.Modulos
         #endregion
 
         #region Validando TextBox
-        private void txtPrecio_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Validaciones.NumeroDecimal(sender, e);
-        }
+        private void TxtPrecio_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.NumeroDecimal(sender, e);
+
+        private void TxtReorden_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
         #endregion
-
-
     }
 }

@@ -35,6 +35,8 @@ namespace CapaPresentacion.UserControls
 
             dtpFechaInicioTab2.SelectedDate = hoy;
             dtpFechaFinTab2.SelectedDate = hoy;
+
+            ListarProductosCriticos();
         }
 
         #region Métodosde ayuda
@@ -89,6 +91,22 @@ namespace CapaPresentacion.UserControls
         {
             ListarProductosVendidosAgrupados(Convert.ToDateTime(dtpFechaInicioTab2.Text), Convert.ToDateTime(dtpFechaFinTab2.Text));
             EsRangoCorrecto();
+        }
+
+        //TAB 3: Prodcutos críticos
+        private void ListarProductosCriticos()
+        {
+            try
+            {
+                ProductoModel producto = new ProductoModel();
+
+                dgdProductosCriticos.ItemsSource = null;
+                dgdProductosCriticos.ItemsSource = producto.MostrarProductosCriticos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Listar productos críticos", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

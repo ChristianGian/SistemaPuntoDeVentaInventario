@@ -60,8 +60,9 @@
             <TabItem Header="Productos vendidos">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="47*"/>
-                        <ColumnDefinition Width="390*"/>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="217*"/>
+                        <ColumnDefinition Width="563*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
@@ -69,7 +70,7 @@
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <Grid Grid.ColumnSpan="2">
+                    <Grid Grid.ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="200"/>
@@ -87,7 +88,7 @@
                            FontSize="25"/>
                     </Grid>
                     <!--DataGrid Productos-->
-                    <DataGrid Grid.Row="1" x:Name="dgdProductosVendidosAgrupados" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
+                    <DataGrid Grid.Row="1" x:Name="dgdProductosVendidosAgrupados" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="3">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                             <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
@@ -98,6 +99,23 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
+            </TabItem>
+
+            <!--TAB 3: Productos críticos-->
+            <TabItem Header="Productos Críticos">
+                <!--DataGrid Productos críticos-->
+                <DataGrid Grid.Row="1" x:Name="dgdProductosCriticos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                        <DataGridTextColumn Header="COD. DE BARRAS" Binding="{Binding CodigoBarras}"/>
+                        <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding Descripcion}" Width="*"/>
+                        <DataGridTextColumn Header="MARCA" Binding="{Binding NombreMarca}"/>
+                        <DataGridTextColumn Header="CATEGORÍA" Binding="{Binding NombreCategoria}"/>
+                        <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
+                        <DataGridTextColumn Header="REORDEN" Binding="{Binding Reorden}"/>
+                        <DataGridTextColumn Header="STOCK EN MANO" Binding="{Binding Cantidad}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
         </TabControl>
     </Grid>

@@ -17,5 +17,6 @@ namespace CapaDatos.Entities
         public string NombreCategoria { get; set; }
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
+        public int Reorden { get; set; }
     }
 }
