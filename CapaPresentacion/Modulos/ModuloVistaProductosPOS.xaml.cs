@@ -83,7 +83,7 @@ namespace CapaPresentacion.Modulos
 
                     ModuloPOSCantidad moduloPOSCantidad = new ModuloPOSCantidad();
 
-                    moduloPOSCantidad.DetalleProducto(producto.IdProducto, producto.Precio, numTransaccion);
+                    moduloPOSCantidad.DetalleProducto(producto.IdProducto, producto.Precio, numTransaccion, producto.Cantidad);
                     moduloPOSCantidad.ShowDialog();
 
             }

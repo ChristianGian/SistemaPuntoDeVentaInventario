@@ -31,6 +31,7 @@ namespace CapaPresentacion.Modulos
         private string idProducto;
         private decimal precio;
         private string numTransaccion;
+        private int cantidad;
 
         public ModuloPOSCantidad()
         {
@@ -60,11 +61,27 @@ namespace CapaPresentacion.Modulos
 
                 bool validar = new Helps.DataValidation(transaccion).Validar();
 
-                //Comprabar si el producto ya se encuentra registrado
-                if (transaccion.ComprobarProductosDuplicados(transaccion.NumTransaccion, transaccion.IdProducto))
+                //Comprobar si la cantidad pedida esta disponible en actualmente
+                if (cantidad < transaccion.Cantidad)
+                {
+                    MessageBox.Show($"Incapaz de proceder, la cantidad en stock actual es: {cantidad}", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                //Comprobar si el producto ya se encuentra registrado
+                var productoDuplicado = transaccion.ComprobarProductosDuplicados(transaccion.NumTransaccion, transaccion.IdProducto);
+                if (productoDuplicado.Count > 0)
                 {
                     //Actualizar la cantidad del producto
                     transaccion.Estado = EntityState.Actualizado;
+
+                    //Comprobar si la cantidad pedida esta disponible en actualmente
+                    if (cantidad < transaccion.Cantidad + productoDuplicado[0].Cantidad)
+                    {
+                        MessageBox.Show($"Incapaz de proceder, la cantidad en stock actual es: {cantidad}", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
                     transaccion.ActualizarCantidadTransaccion(transaccion.IdTransaccion, transaccion.NumTransaccion, transaccion.IdProducto, transaccion.Cantidad);
                     MessageBox.Show("Registro exitoso.", "Resultado de Transacción", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -83,11 +100,12 @@ namespace CapaPresentacion.Modulos
             }
         }
 
-        public void DetalleProducto(string idProducto, decimal precio, string numTransaccion)
+        public void DetalleProducto(string idProducto, decimal precio, string numTransaccion, int cantidad)
         {
             this.idProducto = idProducto;
             this.precio = precio;
             this.numTransaccion = numTransaccion;
+            this.cantidad = cantidad;
         }
     }
 }

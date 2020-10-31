@@ -13,7 +13,7 @@ namespace CapaDatos.Contracts
         List<Transaccion> MostrarUltimasTransacciones(string numTransaccion);
         int ActualizarEstadoTransaccion(int idTransaccion);
         int ActualizarCantidadTransaccion(int idTransaccion, string numTransaccion, string idProducto, int cantidad);
-        bool ComprobarProductosDuplicados(string numTransaccion, string idProducto);
+        List<Transaccion> ComprobarProductosDuplicados(string numTransaccion, string idProducto);
         decimal ObtenerIgv();
         List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username);
         List<Transaccion> RegistroProductosVendidos(DateTime fechaInicio, DateTime fechaFin);

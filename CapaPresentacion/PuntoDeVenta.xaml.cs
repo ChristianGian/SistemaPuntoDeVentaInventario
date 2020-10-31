@@ -271,7 +271,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    dgdProductos.ItemsSource = null;
+                    //dgdProductos.ItemsSource = null;
                     var lista = producto.BuscarProductoPorCodigoBarra(txtBuscarCodigoBarra.Text.Trim());
                     //dgdProductos.ItemsSource = lista;
 
@@ -279,7 +279,7 @@ namespace CapaPresentacion
                     {
                         ModuloPOSCantidad moduloPOSCantidad = new ModuloPOSCantidad();
 
-                        moduloPOSCantidad.DetalleProducto(lista[0].IdProducto, lista[0].Precio, lblNumTransaccion.Content.ToString());
+                        moduloPOSCantidad.DetalleProducto(lista[0].IdProducto, lista[0].Precio, lblNumTransaccion.Content.ToString(), lista[0].Cantidad);
                         moduloPOSCantidad.ShowDialog();
 
                         MostrarUltimasTransacciones(lblNumTransaccion.Content.ToString());

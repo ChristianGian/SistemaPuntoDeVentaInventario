@@ -122,13 +122,23 @@ namespace CapaDatos.Repositories
             return ExecuteNonQuery("ActualizarTransaccionCantidad");
         }
 
-        public bool ComprobarProductosDuplicados(string numTransaccion, string idProducto)
+        public List<Transaccion> ComprobarProductosDuplicados(string numTransaccion, string idProducto)
         {
             parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@NumTransaccion", numTransaccion));
             parametros.Add(new SqlParameter("@IdProducto", idProducto));
 
-            return ExecuteReaderVerificarProductos("TransaccionComprobarProductoDuplicado");
+            var tabla = ExecuteReaderParameters("TransaccionComprobarProductoDuplicado");
+            var lista = new List<Transaccion>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Transaccion
+                {
+                    Cantidad = Convert.ToInt16(item[4])
+                });
+            }
+            return lista;
         }
 
         public List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username)

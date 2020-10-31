@@ -159,9 +159,19 @@ namespace CapaNegocio.Models
             return transaccionRepository.ActualizarCantidadTransaccion(idTransaccion, numTransaccion, idProducto, cantidad);
         }
 
-        public bool ComprobarProductosDuplicados(string numTransaccion, string idProducto)
+        public List<TransaccionModel> ComprobarProductosDuplicados(string numTransaccion, string idProducto)
         {
-            return transaccionRepository.ComprobarProductosDuplicados(numTransaccion, idProducto);
+            var transaccion = transaccionRepository.ComprobarProductosDuplicados(numTransaccion, idProducto);
+            var listaTransaccion = new List<TransaccionModel>();
+
+            foreach (Transaccion item in transaccion)
+            {
+                listaTransaccion.Add(new TransaccionModel
+                {
+                    cantidad = item.Cantidad
+                });
+            }
+            return listaTransaccion;
         }
 
         public List<TransaccionModel> MostrarProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username)

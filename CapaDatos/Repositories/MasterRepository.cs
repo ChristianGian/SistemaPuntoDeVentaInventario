@@ -142,32 +142,32 @@ namespace CapaDatos.Repositories
             return res;
         }
 
-        //Verificar si existen productos duplicados
-        protected bool ExecuteReaderVerificarProductos(string transactSql)
-        {
-            bool res = false;
-            using (var cn = ObtenerConexion())
-            {
-                cn.Open();
-                using (var cmd = new SqlCommand())
-                {
-                    cmd.Connection = cn;
-                    cmd.CommandText = transactSql;
-                    cmd.CommandType = CommandType.StoredProcedure;
+        ////Verificar si existen productos duplicados
+        //protected bool ExecuteReaderVerificarProductos(string transactSql)
+        //{
+        //    bool res = false;
+        //    using (var cn = ObtenerConexion())
+        //    {
+        //        cn.Open();
+        //        using (var cmd = new SqlCommand())
+        //        {
+        //            cmd.Connection = cn;
+        //            cmd.CommandText = transactSql;
+        //            cmd.CommandType = CommandType.StoredProcedure;
 
-                    foreach (SqlParameter item in parametros)
-                    {
-                        cmd.Parameters.Add(item);
-                    }
+        //            foreach (SqlParameter item in parametros)
+        //            {
+        //                cmd.Parameters.Add(item);
+        //            }
 
-                    var drd = cmd.ExecuteReader();
+        //            var drd = cmd.ExecuteReader();
 
-                    if (drd.HasRows) res = true;
+        //            if (drd.HasRows) res = true;
 
-                    drd.Dispose();
-                }
-            }
-            return res;
-        }
+        //            drd.Dispose();
+        //        }
+        //    }
+        //    return res;
+        //}
     }
 }
