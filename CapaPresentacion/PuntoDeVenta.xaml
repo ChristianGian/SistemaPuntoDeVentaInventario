@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="Punto de Venta" Height="650" Width="1200" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Punto de Venta" Height="650" Width="1200"
+        WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>

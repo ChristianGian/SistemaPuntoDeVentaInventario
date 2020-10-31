@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Módulo de Descuento" Height="195" Width="500"
         WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>

@@ -321,6 +321,7 @@ namespace CapaPresentacion
 
         #endregion
 
+        #region Eventos
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (dgdProductos.Items.Count > 0)
@@ -341,5 +342,22 @@ namespace CapaPresentacion
                 e.Cancel = true;
             } 
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F1)
+                BtnNuevaTransaccion_Click(sender, e);
+            else if (e.Key == Key.F2)
+                BtnBuscarProducto_Click(sender, e);
+            else if (e.Key == Key.F3)
+            {
+                if (dgdProductos.Items.Count > 0) BtnAgregarDescuento_Click(sender, e);
+            }
+            else if (e.Key == Key.F4)
+            {
+                if (dgdProductos.Items.Count > 0) BtnLiquidarPago_Click(sender, e);
+            }
+        }
+        #endregion
     }
 }

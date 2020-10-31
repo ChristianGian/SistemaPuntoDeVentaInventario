@@ -36,6 +36,7 @@ namespace CapaPresentacion.Modulos
             ListarProductos();
         }
 
+        #region Métodos de ayuda
         private void ListarProductos()
         {
             try
@@ -48,6 +49,24 @@ namespace CapaPresentacion.Modulos
                 MessageBox.Show(ex.Message, "Listar productos", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
+
+        #region Eventos
+        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
+        }
+        #endregion
 
         private void TxtBuscar_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -60,16 +79,6 @@ namespace CapaPresentacion.Modulos
             {
                 MessageBox.Show(ex.Message, "Buscar productos", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)

@@ -45,7 +45,7 @@ namespace CapaPresentacion.Modulos
             txtPagoCon.Focus();
         }
 
-        #region Métodos de ayuda
+        #region Eventos
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -54,6 +54,12 @@ namespace CapaPresentacion.Modulos
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
+            else if (e.Key == Key.Enter) BtnEnter_Click(sender, e);
         }
         #endregion
 

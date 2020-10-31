@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:CapaPresentacion.Reportes"
         xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         mc:Ignorable="d"
-        Title="ReporteLiquidarPago" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ReporteLiquidarPago" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <WindowsFormsHost>
             <rv:ReportViewer x:Name="Contenedor"/>
