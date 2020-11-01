@@ -9,6 +9,7 @@ namespace CapaDatos.Entities
     public class Transaccion
     {
         public int IdTransaccion { get; set; }
+        public string CodigoBarras { get; set; }
         public string NumTransaccion { get; set; }
         public string IdProducto { get; set; }
         public string NombreProducto { get; set; }

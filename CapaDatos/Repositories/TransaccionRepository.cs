@@ -80,12 +80,13 @@ namespace CapaDatos.Repositories
                 lista.Add(new Transaccion
                 {
                     IdTransaccion = Convert.ToInt32(item[0]),
-                    IdProducto = item[1].ToString(),
-                    NombreProducto = item[2].ToString(),
-                    Precio = Convert.ToDecimal(item[3]),
-                    Cantidad = Convert.ToInt16(item[4]),
-                    Descuento = Convert.ToDecimal(item[5]),
-                    Total = Convert.ToDecimal(item[6])
+                    CodigoBarras = item[1].ToString(),
+                    IdProducto = item[2].ToString(),
+                    NombreProducto = item[3].ToString(),
+                    Precio = Convert.ToDecimal(item[4]),
+                    Cantidad = Convert.ToInt16(item[5]),
+                    Descuento = Convert.ToDecimal(item[6]),
+                    Total = Convert.ToDecimal(item[7])
                 });
             }
             return lista;

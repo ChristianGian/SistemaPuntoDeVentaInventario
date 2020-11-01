@@ -202,7 +202,7 @@ namespace CapaPresentacion
                 MessageBox.Show("Por favor seleccione una fila", "Agregar descuento", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            
+
         }
 
         private void BtnLiquidarPago_Click(object sender, RoutedEventArgs e)
@@ -267,20 +267,31 @@ namespace CapaPresentacion
             {
                 if (txtBuscarCodigoBarra.Text == "")
                 {
-                    return ;
+                    return;
                 }
                 else
                 {
+                    string idProducto;
+                    decimal precio;
+                    string numTransaccion;
+                    int stockProducto;
+
                     //dgdProductos.ItemsSource = null;
                     var lista = producto.BuscarProductoPorCodigoBarra(txtBuscarCodigoBarra.Text.Trim());
                     //dgdProductos.ItemsSource = lista;
 
                     if (lista.Count > 0)
                     {
-                        ModuloPOSCantidad moduloPOSCantidad = new ModuloPOSCantidad();
+                        //ModuloPOSCantidad moduloPOSCantidad = new ModuloPOSCantidad();
 
-                        moduloPOSCantidad.DetalleProducto(lista[0].IdProducto, lista[0].Precio, lblNumTransaccion.Content.ToString(), lista[0].Cantidad);
-                        moduloPOSCantidad.ShowDialog();
+                        //moduloPOSCantidad.DetalleProducto(lista[0].IdProducto, lista[0].Precio, lblNumTransaccion.Content.ToString(), lista[0].Cantidad);
+                        //moduloPOSCantidad.ShowDialog();
+                        idProducto = lista[0].IdProducto;
+                        stockProducto = lista[0].Cantidad;
+                        precio = lista[0].Precio;
+                        numTransaccion = lblNumTransaccion.Content.ToString();
+
+                        AgregarAlCarrito(idProducto, precio, stockProducto, 1);
 
                         MostrarUltimasTransacciones(lblNumTransaccion.Content.ToString());
 
@@ -292,6 +303,55 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Productos en el carrito", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void AgregarAlCarrito(string idProducto, decimal precio, int stockProducto, int cantidad)
+        {
+            transaccion.Estado = EntityState.Agregado;
+            transaccion.NumTransaccion = lblNumTransaccion.Content.ToString();
+            transaccion.IdProducto = idProducto;
+            transaccion.Precio = precio;
+            transaccion.Cantidad = 1;
+            transaccion.Fecha = DateTime.Now;
+            transaccion.Cajero = UserCache.Username;
+
+            bool validar = new Helps.DataValidation(transaccion).Validar();
+            transaccion.Cantidad = cantidad;
+
+            //Comprobar si la cantidad pedida esta disponible en actualmente
+            if (stockProducto < transaccion.Cantidad)
+            {
+                MessageBox.Show($"Incapaz de proceder, la cantidad en stock actual es: {stockProducto}", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            //Comprobar si el producto ya se encuentra registrado
+            var productoDuplicado = transaccion.ComprobarProductosDuplicados(transaccion.NumTransaccion, transaccion.IdProducto);
+            if (productoDuplicado.Count > 0)
+            {
+                //Actualizar la cantidad del producto
+                transaccion.Estado = EntityState.Actualizado;
+
+                //Comprobar si la cantidad pedida esta disponible en actualmente
+                if (stockProducto < transaccion.Cantidad + productoDuplicado[0].Cantidad)
+                {
+                    MessageBox.Show($"Incapaz de proceder, la cantidad en stock actual es: {stockProducto}", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                transaccion.ActualizarCantidadTransaccion(transaccion.IdTransaccion, transaccion.NumTransaccion, transaccion.IdProducto, transaccion.Cantidad);
+                //MessageBox.Show("Registro exitoso.", "Resultado de Transacción", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            else
+            {
+                //Ingresar el producto
+                if (validar)
+                {
+                    string resultado = transaccion.GuardarCambios();
+                    //MessageBox.Show(resultado, "Resultado de Transacción", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 
@@ -359,5 +419,26 @@ namespace CapaPresentacion
             }
         }
         #endregion
+
+        private void BtnAgregarCant_Click(object sender, RoutedEventArgs e)
+        {
+            var p = dgdProductos.SelectedItem as TransaccionModel;
+            var lista = producto.BuscarProductoPorCodigoBarra(p.CodigoBarras);
+
+            AgregarAlCarrito(p.IdProducto, p.Precio, lista[0].Cantidad, 1);
+            MostrarUltimasTransacciones(lblNumTransaccion.Content.ToString());
+        }
+
+        private void BtnQuitarCant_Click(object sender, RoutedEventArgs e)
+        {
+            var p = dgdProductos.SelectedItem as TransaccionModel;
+            var lista = producto.BuscarProductoPorCodigoBarra(p.CodigoBarras);
+
+            if (p.Cantidad > 1)
+            {
+                AgregarAlCarrito(p.IdProducto, p.Precio, lista[0].Cantidad, -1);
+                MostrarUltimasTransacciones(lblNumTransaccion.Content.ToString());
+            }
+        }
     }
 }

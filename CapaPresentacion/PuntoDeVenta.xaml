@@ -78,7 +78,25 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnEliminar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEliminar_Click">
+                                <Button x:Name="btnAgregarCant" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnAgregarCant_Click" ToolTip="Agregar producto">
+                                    <Image Source="Imagenes/Agregar_24px.png"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnQuitarCant" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnQuitarCant_Click" ToolTip="Quitar producto">
+                                    <Image Source="Imagenes/Quitar_26px.png"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnEliminar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEliminar_Click" ToolTip="Eliminar producto del carrito de compras">
                                     <Image Source="Imagenes/Eliminar_30px.png"/>
                                 </Button>
                             </DataTemplate>

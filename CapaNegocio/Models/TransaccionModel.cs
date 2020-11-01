@@ -16,6 +16,7 @@ namespace CapaNegocio.Models
     {
         //Campos
         private int idTransaccion;
+        private string codigoBarras;
         private string numTransaccion;
         private string idProducto;
         private string nombreProducto;
@@ -54,6 +55,7 @@ namespace CapaNegocio.Models
         public string Cajero { get => cajero; set => cajero = value; }
         //IGV
         public float Igv { get => igv; private set => igv = value; }
+        public string CodigoBarras { get => codigoBarras; private set => codigoBarras = value; }
 
         //Método constructor
         public TransaccionModel()
@@ -133,6 +135,7 @@ namespace CapaNegocio.Models
                 listaTransaccion.Add(new TransaccionModel
                 {
                     idTransaccion = item.IdTransaccion,
+                    codigoBarras = item.CodigoBarras,
                     idProducto = item.IdProducto,
                     nombreProducto = item.NombreProducto,
                     precio = item.Precio,
