@@ -217,5 +217,13 @@ namespace CapaDatos.Repositories
             }
             return lista;
         }
+
+        public int EliminarProductosDeCarrito(string numTransaccion)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@NumTransaccion", numTransaccion));
+
+            return ExecuteNonQuery("EliminarTransaccionesActuales");
+        }
     }
 }

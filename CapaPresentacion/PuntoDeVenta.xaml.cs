@@ -106,11 +106,13 @@ namespace CapaPresentacion
                 {
                     btnAgregarDescuento.IsEnabled = true;
                     btnLiquidarPago.IsEnabled = true;
+                    btnLimpiarCarrito.IsEnabled = true;
                 }
                 else
                 {
                     btnLiquidarPago.IsEnabled = false;
                     btnAgregarDescuento.IsEnabled = false;
+                    btnLimpiarCarrito.IsEnabled = false;
                 }
             }
             catch (Exception ex)
@@ -233,9 +235,25 @@ namespace CapaPresentacion
             if (liquidarPago.enter) Limpiar();
         }
 
-        private void btnCancelarVentas_Click(object sender, RoutedEventArgs e)
+        private void BtnLimpiarCarrito_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (MessageBox.Show("¿Eliminar todos los productos del carrito de compras?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    int respuesta = transaccion.EliminarProductosDelCarrito(lblNumTransaccion.Content.ToString());
+                    if (respuesta > 0)
+                    {
+                        MostrarUltimasTransacciones(lblNumTransaccion.Content.ToString());
+                        btnAgregarDescuento.IsEnabled = false;
+                        btnLiquidarPago.IsEnabled = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error inesperado", MessageBoxButton.OK, MessageBoxImage.Error);
+            }            
         }
 
         private void BtnVentasDiarias_Click(object sender, RoutedEventArgs e)
@@ -417,6 +435,10 @@ namespace CapaPresentacion
             else if (e.Key == Key.F4)
             {
                 if (dgdProductos.Items.Count > 0) BtnLiquidarPago_Click(sender, e);
+            }
+            else if(e.Key == Key.F5)
+            {
+                if (dgdProductos.Items.Count > 0) BtnLimpiarCarrito_Click(sender, e);
             }
             else if (e.Key == Key.F7)
                 BtnCambiarPassword_Click(sender, e);

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -239,6 +240,11 @@ namespace CapaNegocio.Models
                 });
             }
             return listaTransaccion;
+        }
+
+        public int EliminarProductosDelCarrito(string numTransaccion)
+        {
+            return transaccionRepository.EliminarProductosDeCarrito(numTransaccion);
         }
     }
 }

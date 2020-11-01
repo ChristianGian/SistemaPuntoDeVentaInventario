@@ -178,10 +178,10 @@
                             <Label Foreground="White">[F4] Liquidar Pago</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCancelarVentas" Click="btnCancelarVentas_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnLimpiarCarrito" IsEnabled="False" Click="BtnLimpiarCarrito_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Imagenes/CancelarVentas_32px.png" Width="30"/>
-                            <Label Foreground="White">[F5] Cancelar Ventas</Label>
+                            <Image Source="Imagenes/LimpiarCarrito_32px.png" Width="30"/>
+                            <Label Foreground="White">[F5] Limpiar Carrito</Label>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnVentasDiarias" Click="BtnVentasDiarias_Click">

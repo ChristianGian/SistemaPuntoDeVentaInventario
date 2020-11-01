@@ -18,5 +18,6 @@ namespace CapaDatos.Contracts
         List<Transaccion> ReadProductosVendidos(DateTime fechaInicio, DateTime fechaFin, string username);
         List<Transaccion> RegistroProductosVendidos(DateTime fechaInicio, DateTime fechaFin);
         List<Transaccion> ReadProductosVendidosAgrupados(DateTime fechaInicio, DateTime fechaFin);
+        int EliminarProductosDeCarrito(string numTransaccion);
     }
 }
