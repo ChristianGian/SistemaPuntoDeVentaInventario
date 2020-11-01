@@ -93,5 +93,14 @@ namespace CapaDatos.Repositories
             }
             return lista;
         }
+
+        public int CambiarPassword(string username, string password)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Username", username));
+            parametros.Add(new SqlParameter("@Password", password));
+
+            return ExecuteNonQuery("CambiarPassword");
+        }
     }
 }

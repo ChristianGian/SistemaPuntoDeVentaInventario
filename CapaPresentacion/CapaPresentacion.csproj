@@ -102,6 +102,9 @@
     <Compile Include="Modulos\ModuloMarca.xaml.cs">
       <DependentUpon>ModuloMarca.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\ModuloPOSCambiarPassword.xaml.cs">
+      <DependentUpon>ModuloPOSCambiarPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\ModuloPOSCantidad.xaml.cs">
       <DependentUpon>ModuloPOSCantidad.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modulos\ModuloMarca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloPOSCambiarPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -250,9 +250,10 @@ namespace CapaPresentacion
             productosVendidos.ShowDialog();
         }
 
-        private void btnCambiarPassword_Click(object sender, RoutedEventArgs e)
+        private void BtnCambiarPassword_Click(object sender, RoutedEventArgs e)
         {
-
+            ModuloPOSCambiarPassword cambiarPassword = new ModuloPOSCambiarPassword();
+            cambiarPassword.ShowDialog();
         }
 
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
@@ -417,6 +418,8 @@ namespace CapaPresentacion
             {
                 if (dgdProductos.Items.Count > 0) BtnLiquidarPago_Click(sender, e);
             }
+            else if (e.Key == Key.F7)
+                BtnCambiarPassword_Click(sender, e);
         }
         #endregion
 

@@ -190,7 +190,7 @@
                             <Label Foreground="White">[F6] Ventas Diarias</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCambiarPassword" Click="btnCambiarPassword_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCambiarPassword" Click="BtnCambiarPassword_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/CambiarPassword_32px.png" Width="30"/>
                             <Label Foreground="White">[F7] Cambiar Contraseña</Label>

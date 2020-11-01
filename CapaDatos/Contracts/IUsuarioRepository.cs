@@ -14,5 +14,6 @@ namespace CapaDatos.Contracts
         int Delete(string username);
         bool Login(string username, string password);
         List<Usuario> LoginPermisos(string username, string password);
+        int CambiarPassword(string username, string password);
     }
 }

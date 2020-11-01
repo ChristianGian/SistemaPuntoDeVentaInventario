@@ -135,5 +135,10 @@ namespace CapaNegocio.Models
             }
             return listaCajeros;
         }
+
+        public int CambiarPassword(string username, string password)
+        {
+            return usuarioRepository.CambiarPassword(username, password);
+        }
     }
 }
