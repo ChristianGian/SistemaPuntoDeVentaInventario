@@ -57,9 +57,10 @@ namespace CapaPresentacion.Modulos
             txtCodigo.Clear();
             txtCodigoBarras.Clear();
             txtDescripcion.Clear();
-            cmbMarca.SelectedIndex = -1;
+            cmbMarca.SelectedIndex = -1;    
             cmbCategoria.SelectedIndex = -1;
             txtPrecio.Clear();
+            txtReorden.Clear();
         }
         #endregion
 

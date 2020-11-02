@@ -8,9 +8,9 @@
         Title="Cantidad" Height="80" Width="225"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="txtCantidad"
+        <TextBox x:Name="txtCantidad" Text="1"
                  FontSize="25"
-                 HorizontalContentAlignment="Center"
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                  PreviewTextInput="TxtCantidad_PreviewTextInput"/>
     </Grid>
 </Window>

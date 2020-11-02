@@ -436,12 +436,16 @@ namespace CapaPresentacion
             {
                 if (dgdProductos.Items.Count > 0) BtnLiquidarPago_Click(sender, e);
             }
-            else if(e.Key == Key.F5)
+            else if (e.Key == Key.F5)
             {
                 if (dgdProductos.Items.Count > 0) BtnLimpiarCarrito_Click(sender, e);
             }
+            else if (e.Key == Key.F6)
+                BtnVentasDiarias_Click(sender, e);
             else if (e.Key == Key.F7)
                 BtnCambiarPassword_Click(sender, e);
+            else if (e.Key == Key.F10)
+                BtnCerrar_Click(sender, e);
         }
         #endregion
 

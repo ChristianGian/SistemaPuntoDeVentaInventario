@@ -38,6 +38,7 @@ namespace CapaPresentacion.Modulos
             InitializeComponent();
 
             txtCantidad.Focus();
+            txtCantidad.SelectAll();
         }
 
         private void TxtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)

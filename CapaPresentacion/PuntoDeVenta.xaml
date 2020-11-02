@@ -199,7 +199,7 @@
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCerrar" Click="BtnCerrar_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/CerrarSesion_32px.png" Width="30"/>
-                            <Label Foreground="White">[F10] Close</Label>
+                            <Label Foreground="White">[F10] Cerrar Sesión</Label>
                         </StackPanel>
                     </Button>
                 </StackPanel>
