@@ -60,5 +60,33 @@ namespace CapaDatos.Repositories
         {
             throw new NotImplementedException();
         }
+
+        //Métodos propios
+        public List<Stock> BuscarStockPorFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@FechaInicio", fechaInicio));
+            parametros.Add(new SqlParameter("@FechaFin", fechaFin));
+
+            var tabla = ExecuteReaderParameters("BuscarStockPorFecha");
+            var lista = new List<Stock>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Stock
+                {
+                    IdStock = Convert.ToInt32(item[0]),
+                    NumReferencia = item[1].ToString(),
+                    IdProducto = item[2].ToString(),
+                    NombreProducto = item[3].ToString(),
+                    Cantidad = Convert.ToInt32(item[4]),
+                    FechaHora = Convert.ToDateTime(item[5]),
+                    IngresadoPor = item[6].ToString(),
+                    EstadoProducto = item[7].ToString(),
+                    //IdVendedor = Convert.ToInt32(item[8])
+                });
+            }
+            return lista;
+        }
     }
 }

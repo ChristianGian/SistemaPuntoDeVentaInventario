@@ -51,6 +51,7 @@
     <Compile Include="Models\OrdenCanceladaModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\StockModel.cs" />
+    <Compile Include="Models\TiendaModel.cs" />
     <Compile Include="Models\TransaccionModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

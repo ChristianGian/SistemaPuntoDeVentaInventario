@@ -11,8 +11,10 @@ namespace CapaDatos.Entities
         public int IdTransaccion { get; set; }
         public string NumTransaccion { get; set; }
         public string IdProducto { get; set; }
+        public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
+        public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
         public string AnuladoPor { get; set; }
         public string CanceladoPor { get; set; }

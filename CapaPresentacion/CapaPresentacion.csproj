@@ -93,6 +93,9 @@
     <Compile Include="Modulos\ModuloCategoria.xaml.cs">
       <DependentUpon>ModuloCategoria.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\ModuloConfiguracionDelSistema.xaml.cs">
+      <DependentUpon>ModuloConfiguracionDelSistema.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\ModuloDescuento.xaml.cs">
       <DependentUpon>ModuloDescuento.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modulos\ModuloCategoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modulos\ModuloConfiguracionDelSistema.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

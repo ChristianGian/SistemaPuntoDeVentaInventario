@@ -17,8 +17,10 @@ namespace CapaNegocio.Models
         private int idTransaccion;
         private string numTransaccion;
         private string idProducto;
+        private string descripcion;
         private decimal precio;
         private int cantidad;
+        private decimal total;
         private DateTime fecha;
         private string anuladoPor;
         private string canceladoPor;
@@ -34,10 +36,12 @@ namespace CapaNegocio.Models
         public string NumTransaccion { get => numTransaccion; set => numTransaccion = value; }
         [Required]
         public string IdProducto { get => idProducto; set => idProducto = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
         [Required]
         public decimal Precio { get => precio; set => precio = value; }
         [Required]
         public int Cantidad { get => cantidad; set => cantidad = value; }
+        public decimal Total { get => total; set => total = value; }
         [Required]
         public DateTime Fecha { get => fecha; set => fecha = value; }
         [Required]
@@ -100,6 +104,31 @@ namespace CapaNegocio.Models
                 mensaje = ex.Message;
             }
             return mensaje;
+        }
+
+        public List<OrdenCanceladaModel> ObtenerTodo(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var productoCancelado = ordenCanceladaRepository.Read(fechaInicio, fechaFin);
+            var listaordenesCanceladas = new List<OrdenCanceladaModel>();
+
+            foreach (OrdenCancelada item in productoCancelado)
+            {
+                listaordenesCanceladas.Add(new OrdenCanceladaModel
+                {
+                    numTransaccion = item.NumTransaccion,
+                    idProducto = item.IdProducto,
+                    descripcion = item.Descripcion,
+                    precio = item.Precio,
+                    cantidad = item.Cantidad,
+                    total = item.Total,
+                    fecha = item.Fecha,
+                    anuladoPor = item.AnuladoPor,
+                    canceladoPor = item.CanceladoPor,
+                    razon = item.Razon,
+                    accion = item.Accion
+                });
+            }
+            return listaordenesCanceladas;
         }
     }
 }

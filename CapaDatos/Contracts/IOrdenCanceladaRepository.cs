@@ -9,6 +9,7 @@ namespace CapaDatos.Contracts
 {
     public interface IOrdenCanceladaRepository
     {
+        List<OrdenCancelada> Read(DateTime fechaIncio, DateTime fechaFin);
         int InsertarOrdenCancelada(OrdenCancelada entidad);
     }
 }

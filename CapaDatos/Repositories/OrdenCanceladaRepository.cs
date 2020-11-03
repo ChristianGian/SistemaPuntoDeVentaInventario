@@ -2,6 +2,7 @@
 using CapaDatos.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,35 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@Accion", entidad.Accion));
 
             return ExecuteNonQuery("InsertarOrdenCancelada");
+        }
+
+        public List<OrdenCancelada> Read(DateTime fechaInicio, DateTime fechaFin)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@FechaInicio", fechaInicio));
+            parametros.Add(new SqlParameter("@FechaFin", fechaFin));
+
+            var tabla = ExecuteReaderParameters("MostrarOrdenCancelada");
+            var lista = new List<OrdenCancelada>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new OrdenCancelada
+                {
+                    NumTransaccion = item[0].ToString(),
+                    IdProducto = item[1].ToString(),
+                    Descripcion = item[2].ToString(),
+                    Precio = Convert.ToDecimal(item[3]),
+                    Cantidad = Convert.ToInt32(item[4]),
+                    Total = Convert.ToDecimal(item[5]),
+                    Fecha = Convert.ToDateTime(item[6]),
+                    AnuladoPor = item[7].ToString(),
+                    CanceladoPor = item[8].ToString(),
+                    Razon = item[9].ToString(),
+                    Accion = item[10].ToString()
+                });
+            }
+            return lista;
         }
     }
 }

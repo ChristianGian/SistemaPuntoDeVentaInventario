@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.Contracts
 {
-    public interface IStockRepository : IGenericRepository<Stock>
+    public interface ITiendaRepository : IGenericRepository<Tienda>
     {
-        //Métodos propios
-        List<Stock> BuscarStockPorFecha(DateTime fechaInicio, DateTime fechaFin);
+        //Método propios
     }
 }

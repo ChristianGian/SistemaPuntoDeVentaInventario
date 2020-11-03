@@ -25,6 +25,8 @@ namespace CapaPresentacion.UserControls
         //Campos
         private TransaccionModel transaccion = new TransaccionModel();
         private ProductoModel producto = new ProductoModel();
+        private OrdenCanceladaModel ordenCancelada = new OrdenCanceladaModel();
+        private StockModel stock = new StockModel(); 
         private DateTime hoy = DateTime.Now;
 
         //Método constructor
@@ -37,6 +39,12 @@ namespace CapaPresentacion.UserControls
 
             dtpFechaInicioTab2.SelectedDate = hoy;
             dtpFechaFinTab2.SelectedDate = hoy;
+
+            dtpFechaInicioTab5.SelectedDate = hoy;
+            dtpFechaFinTab5.SelectedDate = hoy;
+
+            dtpFechaInicioTab6.SelectedDate = hoy;
+            dtpFechaFinTab6.SelectedDate = hoy;
 
             ListarProductosCriticos();
             ListaDeInventario();
@@ -70,6 +78,33 @@ namespace CapaPresentacion.UserControls
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Listar productos vendidos agrupados", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ListarOrdenesCanceladas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                dgdProductosCriticos.ItemsSource = null;
+                dgdOrdenesCanceladas.ItemsSource = ordenCancelada.ObtenerTodo(fechaInicio, fechaFin);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Listar órdenes canceladas", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ListarStock(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                dgdStockEnHistoria.ItemsSource = null;
+                dgdStockEnHistoria.ItemsSource = stock.BuscarStockPorFecha(fechaInicio, fechaFin);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Listar stock en historia", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -110,7 +145,7 @@ namespace CapaPresentacion.UserControls
             }
         }
 
-        //TAB 3: Prodcutos críticos
+        //TAB 4: Lista de inventario
         private void ListaDeInventario()
         {
             try
@@ -144,6 +179,24 @@ namespace CapaPresentacion.UserControls
             {
                 MessageBox.Show(ex.Message, "Imprimir", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        //TAB 5: Productos cancelados
+        private void BtnCargarDatosTab5_Click(object sender, RoutedEventArgs e)
+        {
+            ListarOrdenesCanceladas(Convert.ToDateTime(dtpFechaInicioTab5.Text), Convert.ToDateTime(dtpFechaFinTab5.Text));
+            EsRangoCorrecto();
+        }
+
+        private void BtnCargarDatosTab6_Click(object sender, RoutedEventArgs e)
+        {
+            ListarStock(Convert.ToDateTime(dtpFechaInicioTab6.Text), Convert.ToDateTime(dtpFechaFinTab6.Text));
+            EsRangoCorrecto();
+        }
+
+        private void btnImprimirTab6_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -85,9 +85,10 @@ namespace CapaPresentacion
             productosVendidos.ShowDialog();
         }
 
-        private void btnConfSistema_Click(object sender, RoutedEventArgs e)
+        private void BtnConfSistema_Click(object sender, RoutedEventArgs e)
         {
-
+            ModuloConfiguracionDelSistema configuracionDelSistema = new ModuloConfiguracionDelSistema();
+            configuracionDelSistema.ShowDialog();
         }
 
         private void BtnConfUsuario_Click(object sender, RoutedEventArgs e)
@@ -96,9 +97,9 @@ namespace CapaPresentacion
             MostrarContenido(new ConfiguracionDelUsuario());
         }
 
-        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        private void BtnCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
         #endregion
 
@@ -132,7 +133,20 @@ namespace CapaPresentacion
                 botonActual.Background = new SolidColorBrush(Color.FromRgb(36, 36, 36));
             }
         }
+        #endregion
 
+        #region Eventos
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea cerrar sesión?", "Salir", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
         #endregion
     }
 }

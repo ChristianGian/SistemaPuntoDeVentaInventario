@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="670" Width="1200"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" Closing="Window_Closing">
     <DockPanel>
         <!--Sidemenu-->
         <StackPanel DockPanel.Dock="Left" Width="270" Background="#242424">
@@ -87,7 +88,7 @@
                             <Label Foreground="White">Historial de Ventas</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnConfSistema" Click="btnConfSistema_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnConfSistema" Click="BtnConfSistema_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/ConfiguracionSistema_32px.png" Width="30"/>
                             <Label Foreground="White">Configuración del Sistema</Label>
@@ -99,7 +100,7 @@
                             <Label Foreground="White">Configuración del Usuario</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCerrarSesion" Click="btnCerrarSesion_Click">
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnCerrarSesion" Click="BtnCerrarSesion_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/CerrarSesion_32px.png" Width="30"/>
                             <Label Foreground="White">Cerrar Sesión</Label>

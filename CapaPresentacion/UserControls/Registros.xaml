@@ -29,18 +29,13 @@
             <!--TAB 1 - Más vendidos-->
             <TabItem Header="Top 10 más vendidos">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="83*"/>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="337*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40" Grid.ColumnSpan="3">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
                         <Label Content="Filtrar por:" VerticalAlignment="Center"/>
                         <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
                         <DatePicker Name="dtpFechaFin" Width="200" Height="26" VerticalAlignment="Center"/>
@@ -50,7 +45,7 @@
                     </StackPanel>
 
                     <!--Datagrid Marcas-->
-                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="3">
+                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                             <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
@@ -63,18 +58,13 @@
             <!--TAB 2 Productos vendidos-->
             <TabItem Header="Productos vendidos">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="94*"/>
-                        <ColumnDefinition Width="217*"/>
-                        <ColumnDefinition Width="563*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <Grid Grid.ColumnSpan="3">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="200"/>
@@ -92,7 +82,7 @@
                            FontSize="25"/>
                     </Grid>
                     <!--DataGrid Productos-->
-                    <DataGrid Grid.Row="1" x:Name="dgdProductosVendidosAgrupados" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="3">
+                    <DataGrid Grid.Row="1" x:Name="dgdProductosVendidosAgrupados" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                             <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
@@ -106,9 +96,9 @@
             </TabItem>
 
             <!--TAB 3: Productos críticos-->
-            <TabItem Header="Productos Críticos">
+            <TabItem Header="Productos críticos">
                 <!--DataGrid Productos críticos-->
-                <DataGrid Grid.Row="1" x:Name="dgdProductosCriticos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
+                <DataGrid Grid.Row="1" x:Name="dgdProductosCriticos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                         <DataGridTextColumn Header="COD. DE BARRAS" Binding="{Binding CodigoBarras}"/>
@@ -123,7 +113,7 @@
             </TabItem>
 
             <!--TAB 4: Lista de inventario-->
-            <TabItem Header="Lista de Inventario">
+            <TabItem Header="Lista de inventario">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -138,7 +128,7 @@
                     </StackPanel>
 
                     <!--Datagrid Lista de inventarios-->
-                    <DataGrid Grid.Row="1" x:Name="dgdListaDeInventarios" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
+                    <DataGrid Grid.Row="1" x:Name="dgdListaDeInventarios" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                             <DataGridTextColumn Header="COD. DE BARRAS" Binding="{Binding CodigoBarras}"/>
@@ -148,6 +138,88 @@
                             <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
                             <DataGridTextColumn Header="REORDEN" Binding="{Binding Reorden}"/>
                             <DataGridTextColumn Header="STOCK EN MANO" Binding="{Binding Cantidad}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--Ordenes canceladas-->
+            <TabItem Header="Órdenes canceladas">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Filtros-->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
+                        <Label Content="Filtrar por:" VerticalAlignment="Center"/>
+                        <DatePicker Name="dtpFechaInicioTab5" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
+                        <DatePicker Name="dtpFechaFinTab5" Width="200" Height="26" VerticalAlignment="Center"/>
+                        <Button x:Name="btnCargarDatosTab5" Content="Cargar Datos" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
+                                Click="BtnCargarDatosTab5_Click"/>
+                    </StackPanel>
+
+                    <!--Datagrid Órdenes canceladas-->
+                    <DataGrid Grid.Row="1" x:Name="dgdOrdenesCanceladas" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="N° TRANSACCIÓN" Binding="{Binding NumTransaccion}"/>
+                            <DataGridTextColumn Header="COD. PRODUCTO" Binding="{Binding IdProducto}"/>
+                            <DataGridTextColumn Header="PRECIO" Binding="{Binding Precio}"/>
+                            <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                            <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
+                            <DataGridTextColumn Header="FECHA" Binding="{Binding Fecha, StringFormat=d}"/>
+                            <DataGridTextColumn Header="ANULADO POR" Binding="{Binding AnuladoPor}"/>
+                            <DataGridTextColumn Header="CANCELADO POR" Binding="{Binding CanceladoPor}"/>
+                            <DataGridTextColumn Header="RAZÓN" Binding="{Binding Razon}" Width="*"/>
+                            <DataGridTextColumn Header="ACCIÓN" Binding="{Binding Accion}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--Stock en historia-->
+            <TabItem Header="Stock en historia">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Filtros-->
+                    <Grid Grid.Row="0" Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <Label Content="Filtrar por:" VerticalAlignment="Center"/>
+                            <DatePicker Name="dtpFechaInicioTab6" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
+                            <DatePicker Name="dtpFechaFinTab6" Width="200" Height="26" VerticalAlignment="Center"/>
+                            <Button x:Name="btnCargarDatosTab6" Content="Cargar Datos" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
+                                Click="BtnCargarDatosTab6_Click"/>
+                        </StackPanel>
+                        
+                        <!--Imprimir-->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Height="40" HorizontalAlignment="Right">
+                            <Button x:Name="btnImprimirTab6" Content="Vista previa de impresión" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
+                                Click="btnImprimirTab6_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Datagrid Stock en historia-->
+                    <DataGrid Grid.Row="1" x:Name="dgdStockEnHistoria" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="REF#" Binding="{Binding NumReferencia}"/>
+                            <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
+                            <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                            <DataGridTextColumn Header="FECHA DE INGRESO" Binding="{Binding FechaHora}"/>
+                            <DataGridTextColumn Header="INGRESADO POR" Binding="{Binding IngresadoPor}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

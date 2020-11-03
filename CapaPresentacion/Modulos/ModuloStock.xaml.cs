@@ -1,4 +1,5 @@
-﻿using CapaNegocio.Models;
+﻿using CapaComun.Cache;
+using CapaNegocio.Models;
 using CapaNegocio.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace CapaPresentacion.Modulos
             ListarHistorialStock();
 
             dtpFechaHora.SelectedDate = DateTime.Now;
+            txtIngresadoPor.Text = UserCache.Nombres + " " + UserCache.Apellidos;
         }
 
         #region Métodos de ayuda
