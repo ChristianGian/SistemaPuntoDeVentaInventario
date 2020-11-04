@@ -35,15 +35,24 @@
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
-                        <Label Content="Filtrar por:" VerticalAlignment="Center"/>
-                        <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
-                        <DatePicker Name="dtpFechaFin" Width="200" Height="26" VerticalAlignment="Center"/>
-                        <Button x:Name="btnCargarDatos" Content="Cargar Datos" Margin="10 0"
+                    <Grid Grid.Row="0" Height="40">
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
+                            <Label Content="Filtrar por:" VerticalAlignment="Center"/>
+                            <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
+                            <DatePicker Name="dtpFechaFin" Width="200" Height="26" VerticalAlignment="Center"/>
+                            <Button x:Name="btnCargarDatos" Content="Cargar Datos" Margin="10 0"
                                 Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
                                 Click="BtnCargarDatos_Click"/>
-                    </StackPanel>
-
+                        </StackPanel>
+                        
+                        <!--Imprimir-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="btnImprimirTab1" Content="Vista previa de impresión" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
+                                Click="BtnImprimirTab1_Click"/>
+                        </StackPanel>
+                    </Grid>
+                    
                     <!--Datagrid Marcas-->
                     <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                         <DataGrid.Columns>
@@ -190,11 +199,10 @@
                     <!--Filtros-->
                     <Grid Grid.Row="0" Height="40">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="45*"/>
+                            <ColumnDefinition Width="392*"/>
                         </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
                             <Label Content="Filtrar por:" VerticalAlignment="Center"/>
                             <DatePicker Name="dtpFechaInicioTab6" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
                             <DatePicker Name="dtpFechaFinTab6" Width="200" Height="26" VerticalAlignment="Center"/>
@@ -202,9 +210,9 @@
                                 Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
                                 Click="BtnCargarDatosTab6_Click"/>
                         </StackPanel>
-                        
+
                         <!--Imprimir-->
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Height="40" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Right" Grid.Column="1">
                             <Button x:Name="btnImprimirTab6" Content="Vista previa de impresión" Margin="10 0"
                                 Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
                                 Click="btnImprimirTab6_Click"/>
@@ -212,7 +220,7 @@
                     </Grid>
 
                     <!--Datagrid Stock en historia-->
-                    <DataGrid Grid.Row="1" x:Name="dgdStockEnHistoria" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                    <DataGrid Grid.Row="1" x:Name="dgdStockEnHistoria" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="REF#" Binding="{Binding NumReferencia}"/>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>

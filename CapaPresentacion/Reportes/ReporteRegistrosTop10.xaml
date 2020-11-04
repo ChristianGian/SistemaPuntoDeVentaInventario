@@ -1,0 +1,44 @@
+﻿<Window x:Class="CapaPresentacion.Reportes.ReporteRegistrosTop10"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        xmlns:local="clr-namespace:CapaPresentacion.Reportes"
+        mc:Ignorable="d"
+        Title="Top Productos Vendidos" Height="500" Width="1000"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Barra de título-->
+        <Grid Grid.Row="0" Background="#088F84">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="10 0 0 0"
+                       FontSize="15" Foreground="White">
+                Top 10 Productos más Vendidos
+            </TextBlock>
+            <Button Grid.Column="1" Name="btnCerrar" ToolTip="Cerrar"
+                        Click="BtnCerrar_Click"
+                        Style="{StaticResource BotonCerrar}">
+                <Image Source="/Imagenes/Cerrar18.png" Width="18"/>
+            </Button>
+        </Grid>
+
+        <!--Contenido-->
+        <Border BorderBrush="#088F84" BorderThickness="1" Grid.Row="1">
+            <WindowsFormsHost>
+                <rv:ReportViewer x:Name="Contenedor"/>
+            </WindowsFormsHost>
+
+        </Border>
+    </Grid>
+</Window>

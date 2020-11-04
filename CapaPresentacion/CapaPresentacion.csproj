@@ -132,6 +132,9 @@
     <Compile Include="Reportes\ReporteListaDeInventario.xaml.cs">
       <DependentUpon>ReporteListaDeInventario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteRegistrosTop10.xaml.cs">
+      <DependentUpon>ReporteRegistrosTop10.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteProductosVendidos.xaml.cs">
       <DependentUpon>ReporteProductosVendidos.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Reportes\ReporteRegistrosTop10.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Reportes\ReporteProductosVendidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -283,6 +290,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReporteLiquidarPago.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteListaDeInventario.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteRegistrosTop10.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteProductosVendidos.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CapaNegocio.Models.MReportes.R_LiquidarPagoModel.datasource" />

@@ -124,6 +124,26 @@ namespace CapaPresentacion.UserControls
             EsRangoCorrecto();
         }
 
+        private void BtnImprimirTab1_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<ReportDataSource> datos = new List<ReportDataSource>();
+                ReportDataSource topVendidos = new ReportDataSource();
+
+                topVendidos.Name = "DS_TopVendidos";
+                topVendidos.Value = transaccion.RegistroProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+                datos.Add(topVendidos);
+
+                Reportes.ReporteRegistrosTop10 listaTopVendidos = new Reportes.ReporteRegistrosTop10("CapaPresentacion.Reportes.ReporteRegistrosTop10.rdlc", datos);
+                listaTopVendidos.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Imprimir", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         //TAB 2: Prodcutos vendidos (Agrupados)
         private void BtnCargarDatosTab2_Click(object sender, RoutedEventArgs e)
         {
