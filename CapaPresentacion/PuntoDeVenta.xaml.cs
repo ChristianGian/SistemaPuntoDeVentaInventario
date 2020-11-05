@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml;
+using Tulpep.NotificationWindow;
 
 namespace CapaPresentacion
 {
@@ -46,6 +47,8 @@ namespace CapaPresentacion
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            NotificacionProductosCriticos();
         }
 
         #region Métodos de ayuda
@@ -153,6 +156,26 @@ namespace CapaPresentacion
             lblMuestraTotal.Content = "0";
 
             ObtenerNrTransaccion();
+        }
+
+        public void NotificacionProductosCriticos()
+        {
+            ProductoModel producto = new ProductoModel();
+
+            string mensaje = "";
+            var listaProCriticos = producto.MostrarProductosCriticos();
+            string n = listaProCriticos.Count.ToString();
+
+            for (int i = 0; i < listaProCriticos.Count; i++)
+            {
+                mensaje += $"{i + 1}. {listaProCriticos[i].Descripcion}.\n";
+            }
+
+            PopupNotifier notificar = new PopupNotifier();
+            notificar.Image = Properties.Resources.AdvertenciaNotificacion_96px;
+            notificar.TitleText = $"{n} Producto(s) crítico(s)";
+            notificar.ContentText = mensaje;
+            notificar.Popup();
         }
         #endregion
 

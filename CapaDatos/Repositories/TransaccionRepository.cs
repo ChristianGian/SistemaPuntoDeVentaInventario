@@ -209,7 +209,7 @@ namespace CapaDatos.Repositories
                 {
                     IdProducto = item[0].ToString(),
                     NombreProducto = item[1].ToString(),
-                    Precio = Convert.ToInt32(item[2]),
+                    Precio = Convert.ToDecimal(item[2]),
                     Cantidad = Convert.ToInt32(item[3]),
                     Descuento = Convert.ToDecimal(item[4]),
                     Total = Convert.ToDecimal(item[5])

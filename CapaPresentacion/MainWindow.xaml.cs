@@ -1,10 +1,12 @@
 ﻿using CapaComun.Cache;
+using CapaNegocio.Models;
 using CapaPresentacion.Modulos;
 using CapaPresentacion.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tulpep.NotificationWindow;
 
 namespace CapaPresentacion
 {
@@ -35,6 +38,8 @@ namespace CapaPresentacion
 
             lblUsuario.Content = UserCache.Nombres + " " + UserCache.Apellidos;
             lblRol.Content = UserCache.Rol;
+
+            NotificacionProductosCriticos();
         }
 
         #region Botones de Sidemenu
@@ -132,6 +137,26 @@ namespace CapaPresentacion
             {
                 botonActual.Background = new SolidColorBrush(Color.FromRgb(36, 36, 36));
             }
+        }
+
+        public void NotificacionProductosCriticos()
+        {
+            ProductoModel producto = new ProductoModel();
+
+            string mensaje = "";
+            var listaProCriticos = producto.MostrarProductosCriticos();
+            string n = listaProCriticos.Count.ToString();
+
+            for (int i = 0; i < listaProCriticos.Count; i++)
+            {
+                mensaje += $"{i + 1}. {listaProCriticos[i].Descripcion}.\n";
+            }
+
+            PopupNotifier notificar = new PopupNotifier();
+            notificar.Image = Properties.Resources.AdvertenciaNotificacion_96px;
+            notificar.TitleText = $"{n} Producto(s) crítico(s)";
+            notificar.ContentText = mensaje;
+            notificar.Popup();
         }
         #endregion
 

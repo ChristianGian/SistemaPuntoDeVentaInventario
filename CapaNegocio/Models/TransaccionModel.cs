@@ -236,6 +236,7 @@ namespace CapaNegocio.Models
                     nombreProducto = item.NombreProducto,
                     precio = item.Precio,
                     cantidad = item.Cantidad,
+                    descuento = item.Descuento,
                     total = item.Total
                 });
             }
