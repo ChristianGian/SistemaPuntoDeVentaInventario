@@ -43,9 +43,10 @@ namespace CapaPresentacion
         }
 
         #region Botones de Sidemenu
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
+        private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         {
-
+            ActivarBoton(sender);
+            MostrarContenido(new Dashboard());
         }
 
         private void BtnGesVentas_Click(object sender, RoutedEventArgs e)
