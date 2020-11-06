@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CapaPresentacion.UserControls"
+             xmlns:local="clr-namespace:CapaPresentacion.UserControls" xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="560" d:DesignWidth="900" Background="White">
     <Grid Margin="10">
@@ -112,6 +112,28 @@
                     </StackPanel>
                 </Grid>
             </Border>
+        </Grid>
+        
+        <!--Gráfico chart-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Name="txbTituloChart" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="20">
+                Ventas por Mes
+            </TextBlock>
+            <WindowsFormsHost Grid.Row="1" x:Name="host" Height="300">
+                <winformchart:Chart x:Name="MiWinformChart" Dock="Fill">
+                    <winformchart:Chart.Series>
+                        <winformchart:Series Name="series" ChartType="Doughnut"/>
+                    </winformchart:Chart.Series>
+                    <winformchart:Chart.ChartAreas>
+                        <winformchart:ChartArea/>
+                    </winformchart:Chart.ChartAreas>
+                </winformchart:Chart>
+            </WindowsFormsHost>
         </Grid>
     </Grid>
 </UserControl>

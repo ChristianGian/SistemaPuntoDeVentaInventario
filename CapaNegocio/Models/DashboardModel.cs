@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaNegocio
+namespace CapaNegocio.Models
 {
     public class DashboardModel
     {
@@ -35,6 +35,11 @@ namespace CapaNegocio
         public int ObtenerProductosCriticos()
         {
             return dashboardRepository.ObtenerProductosCriticos();
+        }
+
+        public Dictionary<string, decimal> ObtenerVentasPorAnio()
+        {
+            return dashboardRepository.TotalVentasPorAnio();
         }
     }
 }

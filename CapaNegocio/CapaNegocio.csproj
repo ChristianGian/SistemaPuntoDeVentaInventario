@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DashboardModel.cs" />
     <Compile Include="Models\CategoriaModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\MarcaModel.cs" />
     <Compile Include="Models\MReportes\R_LiquidarPagoModel.cs" />
     <Compile Include="Models\OrdenCanceladaModel.cs" />

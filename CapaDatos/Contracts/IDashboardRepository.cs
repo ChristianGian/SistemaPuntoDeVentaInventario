@@ -8,9 +8,13 @@ namespace CapaDatos.Contracts
 {
     public interface IDashboardRepository
     {
+        //Tarjetas
         decimal ObtenerVentasDiarias();
         int ObtenerLineaDeProductos();
         int ObtenerStockDisponible();
         int ObtenerProductosCriticos();
+
+        //Gráficos
+        Dictionary<string, decimal> TotalVentasPorAnio();
     }
 }

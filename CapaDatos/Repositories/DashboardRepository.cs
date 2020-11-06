@@ -10,6 +10,7 @@ namespace CapaDatos.Repositories
 {
     public class DashboardRepository : MasterRepository, IDashboardRepository
     {
+        //Tarjetas
         public int ObtenerLineaDeProductos()
         {
             var tabla = ExecuteReader("CantidadDeLineaDeProductos");
@@ -56,6 +57,20 @@ namespace CapaDatos.Repositories
                 n = Convert.ToDecimal(item[0]);
             }
             return n;
+        }
+
+        //Gráficos
+        public Dictionary<string, decimal> TotalVentasPorAnio()
+        {
+            var tabla = ExecuteReader("TotalVentasPorAnio");
+            var ventas = new Dictionary<string, decimal>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                ventas.Add(item[0].ToString(), Convert.ToDecimal(item[1]));
+            }
+
+            return ventas;
         }
     }
 }
