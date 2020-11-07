@@ -46,16 +46,22 @@
                             <Label Foreground="White">Dashboard</Label>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnGesVentas" Click="BtnGesVentas_Click">
+                    <!--<Button Style="{StaticResource BotonSideMenu}" x:Name="btnGesVentas" Click="BtnGesVentas_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/GestionarVentas.png" Width="30"/>
                             <Label Foreground="White">Gestionar Ventas</Label>
                         </StackPanel>
-                    </Button>
+                    </Button>-->
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnGesProducto" Click="BtnGesProducto_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/GestionarProducto_32px.png" Width="30"/>
-                            <Label Foreground="White">Gestionar Producto</Label>
+                            <Label Foreground="White">Producto</Label>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnVendedor" Click="BtnVendedor_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Imagenes/Vendedor_32px.png" Width="30"/>
+                            <Label Foreground="White">Vendedor</Label>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnStock" Click="BtnStock_Click">
@@ -67,13 +73,13 @@
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnGesCategoria" Click="BtnGesCategoria_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/GestionarCategoria_32px.png" Width="30"/>
-                            <Label Foreground="White">Gestionar Categoría</Label>
+                            <Label Foreground="White">Categoría</Label>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnGesMarca" Click="BtnGesMarca_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/GestionarMarca_32px.png" Width="30"/>
-                            <Label Foreground="White">Gestionar Marca</Label>
+                            <Label Foreground="White">Marca</Label>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnRegistros" Click="BtnRegistros_Click">

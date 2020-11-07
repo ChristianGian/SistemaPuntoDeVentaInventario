@@ -49,16 +49,22 @@ namespace CapaPresentacion
             MostrarContenido(new Dashboard());
         }
 
-        private void BtnGesVentas_Click(object sender, RoutedEventArgs e)
-        {
-            PuntoDeVenta puntoDeVenta = new PuntoDeVenta();
-            puntoDeVenta.ShowDialog();
-        }
+        //private void BtnGesVentas_Click(object sender, RoutedEventArgs e)
+        //{
+        //    PuntoDeVenta puntoDeVenta = new PuntoDeVenta();
+        //    puntoDeVenta.ShowDialog();
+        //}
 
         private void BtnGesProducto_Click(object sender, RoutedEventArgs e)
         {
             ActivarBoton(sender);
             MostrarContenido(new ListaDeProductos());
+        }
+
+        private void BtnVendedor_Click(object sender, RoutedEventArgs e)
+        {
+            ModuloVendedor vendedor = new ModuloVendedor();
+            vendedor.ShowDialog();
         }
 
         private void BtnStock_Click(object sender, RoutedEventArgs e)
