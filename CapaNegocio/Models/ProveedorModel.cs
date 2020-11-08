@@ -13,25 +13,25 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio.Models
 {
-    public class VendedorModel
+    public class ProveedorModel
     {
         //Campos
-        private int idVendedor;
-        private string nombreVendedor;
+        private int idProveedor;
+        private string nombreProveedor;
         private string direccion;
         private string personaDeContacto;
         private string telefono;
         private string email;
         private string fax;
 
-        private IVendedorRepository vendedorRepository;
+        private IProveedorRepository proveedorRepository;
 
         public EntityState Estado{ get; set; }
 
         //Propiedades / Modelos / Validar datos
-        public int IdVendedor { get => idVendedor; set => idVendedor = value; }
+        public int IdProveedor { get => idProveedor; set => idProveedor = value; }
         [Required(ErrorMessage = "El campo vendedor es obligatorio.")]
-        public string NombreVendedor { get => nombreVendedor; set => nombreVendedor = value; }
+        public string NombreProveedor { get => nombreProveedor; set => nombreProveedor = value; }
         [Required(ErrorMessage = "El campo dirección es obligatorio.")]
         public string Direccion { get => direccion; set => direccion = value; }
         public string PersonaDeContacto { get => personaDeContacto; set => personaDeContacto = value; }
@@ -46,9 +46,9 @@ namespace CapaNegocio.Models
         public string Fax { get => fax; set => fax = value; }
 
         //Método constructor
-        public VendedorModel()
+        public ProveedorModel()
         {
-            vendedorRepository = new VendedorRepository();
+            proveedorRepository = new ProveedorRepository();
         }
 
         //Métodos
@@ -62,29 +62,29 @@ namespace CapaNegocio.Models
 
             try
             {
-                var vendedor = new Vendedor();
-                vendedor.IdVendedor = idVendedor;
-                vendedor.NombreVendedor = nombreVendedor;
-                vendedor.Direccion = direccion;
-                if (personaDeContacto != null) vendedor.PersonaDeContacto = personaDeContacto;
-                else vendedor.PersonaDeContacto = "-";
-                vendedor.Telefono = telefono;
-                vendedor.Email = email;
-                if (fax != null) vendedor.Fax = fax;
-                else vendedor.Fax = "N/A";
+                var proveedor = new Proveedor();
+                proveedor.IdProveedor = idProveedor;
+                proveedor.NombreProveedor = nombreProveedor;
+                proveedor.Direccion = direccion;
+                if (personaDeContacto != "") proveedor.PersonaDeContacto = personaDeContacto;
+                else proveedor.PersonaDeContacto = "-";
+                proveedor.Telefono = telefono;
+                proveedor.Email = email;
+                if (fax != "") proveedor.Fax = fax;
+                else proveedor.Fax = "N/A";
 
                 switch (Estado)
                 {
                     case EntityState.Agregado:
-                        vendedorRepository.Create(vendedor);
+                        proveedorRepository.Create(proveedor);
                         mensaje = "Registro exitoso.";
                         break;
                     case EntityState.Eliminado:
-                        vendedorRepository.Delete(IdVendedor);
+                        proveedorRepository.Delete(IdProveedor);
                         mensaje = "Eliminado exitoso.";
                         break;
                     case EntityState.Actualizado:
-                        vendedorRepository.Update(vendedor);
+                        proveedorRepository.Update(proveedor);
                         mensaje = "Actualizado exitoso.";
                         break;
                     default:
@@ -98,17 +98,17 @@ namespace CapaNegocio.Models
             return mensaje;
         }
 
-        public List<VendedorModel> ObtenerTodo()
+        public List<ProveedorModel> ObtenerTodo()
         {
-            var vendedor = vendedorRepository.Read();
-            var listaVendedor = new List<VendedorModel>();
+            var proveedor = proveedorRepository.Read();
+            var listaProveedor = new List<ProveedorModel>();
 
-            foreach (Vendedor item in vendedor)
+            foreach (Proveedor item in proveedor)
             {
-                listaVendedor.Add(new VendedorModel
+                listaProveedor.Add(new ProveedorModel
                 {
-                    idVendedor = item.IdVendedor,
-                    nombreVendedor = item.NombreVendedor,
+                    idProveedor = item.IdProveedor,
+                    nombreProveedor = item.NombreProveedor,
                     direccion = item.Direccion,
                     personaDeContacto = item.PersonaDeContacto,
                     telefono = item.Telefono,
@@ -116,7 +116,7 @@ namespace CapaNegocio.Models
                     fax = item.Fax
                 });
             }
-            return listaVendedor;
+            return listaProveedor;
         }
     }
 }

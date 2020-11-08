@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.Entities
 {
-    public class Vendedor
+    public class Proveedor
     {
-        public int IdVendedor { get; set; }
-        public string NombreVendedor { get; set; }
+        public int IdProveedor { get; set; }
+        public string NombreProveedor { get; set; }
         public string Direccion { get; set; }
         public string PersonaDeContacto { get; set; }
         public string Telefono { get; set; }

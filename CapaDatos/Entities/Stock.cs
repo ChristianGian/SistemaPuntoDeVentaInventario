@@ -17,6 +17,7 @@ namespace CapaDatos.Entities
         public string IngresadoPor { get; set; }
         public string EstadoProducto { get; set; }
         public int IdVendedor { get; set; }
+        public string NombreVendedor { get; set; }
 
 
     }

@@ -36,8 +36,8 @@
         <Border BorderBrush="#088F84" BorderThickness="1" Grid.Row="1">
             <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
-                    <Label Content="Vendedor:" Width="110"/>
-                    <TextBox x:Name="txtVendedor" Width="300" Padding="2" Text="{Binding NombreVendedor}"/>
+                    <Label Content="Proveedor:" Width="110"/>
+                    <TextBox x:Name="txtVendedor" Width="300" Padding="2" Text="{Binding NombreProveedor}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
                     <Label Content="Dirección:" Width="110"/>

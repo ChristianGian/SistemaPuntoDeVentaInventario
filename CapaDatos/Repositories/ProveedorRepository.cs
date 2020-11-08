@@ -10,40 +10,40 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.Repositories
 {
-    public class VendedorRepository : MasterRepository, IVendedorRepository
+    public class ProveedorRepository : MasterRepository, IProveedorRepository
     {
-        public int Create(Vendedor entidad)
+        public int Create(Proveedor entidad)
         {
             parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("@NombreVendedor", entidad.NombreVendedor));
+            parametros.Add(new SqlParameter("@NombreProveedor", entidad.NombreProveedor));
             parametros.Add(new SqlParameter("@Direccion", entidad.Direccion));
             parametros.Add(new SqlParameter("@PersDeContacto", entidad.PersonaDeContacto));
             parametros.Add(new SqlParameter("@Telefono", entidad.Telefono));
             parametros.Add(new SqlParameter("@Email", entidad.Email));
             parametros.Add(new SqlParameter("@Fax", entidad.Fax));
 
-            return ExecuteNonQuery("CrearVendedor");
+            return ExecuteNonQuery("CrearProveedor");
         }
 
         public int Delete(int idPK)
         {
             parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("@IdVendedor", idPK));
+            parametros.Add(new SqlParameter("@IdProveedor", idPK));
 
-            return ExecuteNonQuery("EliminarVendedor");
+            return ExecuteNonQuery("EliminarProveeedor");
         }
 
-        public List<Vendedor> Read()
+        public List<Proveedor> Read()
         {
-            var tabla = ExecuteReader("MostrarVendedor");
-            var lista = new List<Vendedor>();
+            var tabla = ExecuteReader("MostrarProveeedor");
+            var lista = new List<Proveedor>();
 
             foreach (DataRow item in tabla.Rows)
             {
-                lista.Add(new Vendedor
+                lista.Add(new Proveedor
                 {
-                    IdVendedor = Convert.ToInt32(item[0]),
-                    NombreVendedor = item[1].ToString(),
+                    IdProveedor = Convert.ToInt32(item[0]),
+                    NombreProveedor = item[1].ToString(),
                     Direccion = item[2].ToString(),
                     PersonaDeContacto = item[3].ToString(),
                     Telefono = item[4].ToString(),
@@ -54,18 +54,18 @@ namespace CapaDatos.Repositories
             return lista;
         }
 
-        public int Update(Vendedor entidad)
+        public int Update(Proveedor entidad)
         {
             parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("@IdVendedor", entidad.IdVendedor));
-            parametros.Add(new SqlParameter("@NombreVendedor", entidad.NombreVendedor));
+            parametros.Add(new SqlParameter("@IdProveedor", entidad.IdProveedor));
+            parametros.Add(new SqlParameter("@NombreProveedor", entidad.NombreProveedor));
             parametros.Add(new SqlParameter("@Direccion", entidad.Direccion));
             parametros.Add(new SqlParameter("@PersDeContacto", entidad.PersonaDeContacto));
             parametros.Add(new SqlParameter("@Telefono", entidad.Telefono));
             parametros.Add(new SqlParameter("@Email", entidad.Email));
             parametros.Add(new SqlParameter("@Fax", entidad.Fax));
 
-            return ExecuteNonQuery("ActualizarVendedor");
+            return ExecuteNonQuery("ActualizarProveeedor");
         }
     }
 }

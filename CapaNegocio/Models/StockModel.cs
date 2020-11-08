@@ -22,6 +22,8 @@ namespace CapaNegocio.Models
         private DateTime fechaHora;
         private string ingresadoPor;
         private string estadoProducto;
+        private int idVendedor;
+        private string nombreVendedor;
 
         private IStockRepository stockRepository;
         public EntityState Estado{ private get; set; }
@@ -44,6 +46,10 @@ namespace CapaNegocio.Models
         [Required(ErrorMessage = "El campo \"Ingresado por\" es obligatorio.")]
         public string IngresadoPor { get => ingresadoPor; set => ingresadoPor = value; }
         public string EstadoProducto { get => estadoProducto; set => estadoProducto = value; }
+        [Required(ErrorMessage = "Por favor seleccione un vendedor.")]
+        [RegularExpression("^[1-9][0-9]*$", ErrorMessage = "Por favor seleccione un vendedor.")]
+        public int IdVendedor { get => idVendedor; set => idVendedor = value; }
+        public string NombreVendedor { get => nombreVendedor; set => nombreVendedor = value; }
 
         //Método constructor
         public StockModel()
@@ -70,6 +76,7 @@ namespace CapaNegocio.Models
                 stock.FechaHora = fechaHora;
                 stock.IngresadoPor = ingresadoPor;
                 stock.EstadoProducto = estadoProducto;
+                stock.IdVendedor = idVendedor;
 
                 switch (Estado)
                 {
@@ -112,7 +119,8 @@ namespace CapaNegocio.Models
                     cantidad = item.Cantidad,
                     fechaHora = item.FechaHora,
                     ingresadoPor = item.IngresadoPor,
-                    estadoProducto = item.EstadoProducto
+                    estadoProducto = item.EstadoProducto,
+                    nombreVendedor = item.NombreVendedor
                 });
             }
             return listaStock;

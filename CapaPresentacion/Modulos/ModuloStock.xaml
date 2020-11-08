@@ -41,9 +41,10 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="105"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
@@ -51,26 +52,37 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Content="N° de referencia" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-                        <TextBox x:Name="txtNumReferencia" Padding="2" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Height="25" PreviewTextInput="TxtNumReferencia_PreviewTextInput"/>
+                        <TextBox x:Name="txtNumReferencia" Padding="2" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Height="25" IsReadOnly="True"/>
+                        <Button x:Name="btnGenerarNumRef" ToolTip="Generar N° de referencia" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
+                                    Width="40" Margin="5 0 0 0" Style="{StaticResource BotonBuscar}"
+                                    Click="BtnGenerarNumRef_Click">
+                            <Image Source="ImagenesModulos/GenerarNumRef_32px.png" Width="18"/>
+                        </Button>
 
-                        <Label Content="Ingresado por" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
-                        <TextBox x:Name="txtIngresadoPor" Padding="2" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Height="25" IsReadOnly="True"/>
+                        <Label Content="Proveedor" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <ComboBox Name="cmbProveedor" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Height="25" SelectionChanged="CmbProveedor_SelectionChanged"/>
+                        
+                        <Label Content="Ingresado por" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 5"/>
+                        <TextBox x:Name="txtIngresadoPor" Padding="2" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="25" IsReadOnly="True"/>
 
-                        <Label Content="Fecha de ingreso" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-                        <DatePicker Name="dtpFechaHora" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="25" IsEnabled="False"/>
+                        <Label Content="Pers. Contact." Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBox x:Name="txtPersonaContacto" Padding="2" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Height="25" Margin="0 5 0 5" IsReadOnly="True"/>
 
-                        <Label Content="Producto" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
-                        <TextBox x:Name="txtProducto" IsReadOnly="True" Padding="2" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Height="25"/>
-                        <Button x:Name="btnProducto" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
+                        <Label Content="Producto" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtProducto" IsReadOnly="True" Padding="2" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="25"/>
+                        <Button x:Name="btnProducto" ToolTip="Buscar producto" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"
                                     Width="40" Margin="5 0 0 0" Style="{StaticResource BotonBuscar}"
                                     Click="BtnAgregarProducto_Click">
                             <Image Source="ImagenesModulos/BuscarBlaco_32px.png" Width="18"/>
                         </Button>
 
-                        <Label Content="Cantidad" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-                        <TextBox x:Name="txtCantidad"  Padding="2" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="25" PreviewTextInput="TxtCantidad_PreviewTextInput"/>
+                        <Label Content="Dirección" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBox x:Name="txtDireccion"  Padding="2" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="25" IsReadOnly="True"/>
 
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4" Grid.RowSpan="3">
+                        <Label Content="Cantidad" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtCantidad"  Padding="2" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Height="25" Margin="0 5 0 0" PreviewTextInput="TxtCantidad_PreviewTextInput"/>
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4">
                             <Button x:Name="btnAgregarALista" Content="Agregar" Style="{StaticResource BotonModulo}" Margin="0 20 0 0" Click="BtnAgregarALista_Click"/>
                             <Button x:Name="btnCancelar" Content="Limpiar" Style="{StaticResource BotonModulo}" Margin="20 10 20 20" Click="BtnCancelar_Click"/>
                         </StackPanel>
@@ -81,12 +93,13 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="REF#" Binding="{Binding NumReferencia}"/>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
-                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}"/>
+                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
                             <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
-                            <DataGridTextColumn Header="INGRESADO POR" Binding="{Binding IngresadoPor}"/>
                             <DataGridTextColumn Header="FECHA DE INGRESO" Binding="{Binding FechaHora}"/>
-
-                            <DataGridTextColumn Header="ESTADO" Binding="{Binding EstadoProducto}"/>
+                            <DataGridTextColumn Header="INGRESADO POR" Binding="{Binding IngresadoPor}"/>
+                            <DataGridTextColumn Header="PROVEEDOR" Binding="{Binding NombreProveeedor}"/>
+                            <!--<DataGridTextColumn Header="ESTADO" Binding="{Binding EstadoProducto}"/>-->
+                            
                             <DataGridTemplateColumn Header="QUITAR">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

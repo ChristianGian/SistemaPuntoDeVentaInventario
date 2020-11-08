@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos.Contracts
 {
-    public interface IVendedorRepository : IGenericRepository<Vendedor>
+    public interface IProveedorRepository : IGenericRepository<Proveedor>
     {
         //Métodos propios
     }

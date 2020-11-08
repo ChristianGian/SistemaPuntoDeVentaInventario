@@ -24,7 +24,7 @@ namespace CapaPresentacion.UserControls
     public partial class ListaDeVendedores : UserControl
     {
         //Campos
-        private VendedorModel vendedor = new VendedorModel();
+        private ProveedorModel vendedor = new ProveedorModel();
 
         //Método constructor
         public ListaDeVendedores()
@@ -52,7 +52,7 @@ namespace CapaPresentacion.UserControls
         private void BtnAgregarVendedor_Click(object sender, RoutedEventArgs e)
         {
             ModuloVendedor moduloVendedor = new ModuloVendedor();
-            var vendedor = new VendedorModel();
+            var vendedor = new ProveedorModel();
 
             vendedor.Estado = EntityState.Agregado;
             moduloVendedor.DataContext = vendedor;
@@ -68,7 +68,7 @@ namespace CapaPresentacion.UserControls
         {
             ModuloVendedor moduloVendedor = new ModuloVendedor();
 
-            vendedor = dgdVendedores.SelectedItem as VendedorModel;
+            vendedor = dgdVendedores.SelectedItem as ProveedorModel;
 
             if (vendedor != null)
             {
@@ -88,7 +88,7 @@ namespace CapaPresentacion.UserControls
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            vendedor = dgdVendedores.SelectedItem as VendedorModel;
+            vendedor = dgdVendedores.SelectedItem as ProveedorModel;
 
             if (vendedor != null)
             {

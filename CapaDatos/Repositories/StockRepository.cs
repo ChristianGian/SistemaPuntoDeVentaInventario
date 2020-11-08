@@ -21,6 +21,7 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@FechaHora", entidad.FechaHora));
             parametros.Add(new SqlParameter("@IngresadoPor", entidad.IngresadoPor));
             parametros.Add(new SqlParameter("@EstadoProducto", entidad.EstadoProducto));
+            parametros.Add(new SqlParameter("@IdVendedor", entidad.IdVendedor));
 
             return ExecuteNonQuery("CrearStock");
         }
@@ -50,7 +51,7 @@ namespace CapaDatos.Repositories
                     FechaHora = Convert.ToDateTime(item[5]),
                     IngresadoPor = item[6].ToString(),
                     EstadoProducto = item[7].ToString(),
-                    //IdVendedor = Convert.ToInt32(item[8])
+                    NombreVendedor = item[8].ToString()
                 });
             }
             return lista;

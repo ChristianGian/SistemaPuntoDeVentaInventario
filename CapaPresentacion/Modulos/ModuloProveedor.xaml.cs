@@ -22,14 +22,14 @@ namespace CapaPresentacion.Modulos
     public partial class ModuloVendedor : Window
     {
         //Campos
-        private VendedorModel vendedor = new VendedorModel();
+        private ProveedorModel proveedor = new ProveedorModel();
 
         //Método constructor
         public ModuloVendedor()
         {
             InitializeComponent();
 
-            DataContext = vendedor;
+            DataContext = proveedor;
         }
 
         #region Eventos
@@ -60,14 +60,14 @@ namespace CapaPresentacion.Modulos
         {
             try
             {
-                vendedor = DataContext as VendedorModel;
+                proveedor = DataContext as ProveedorModel;
 
-                bool validar = new Helps.DataValidation(vendedor).Validar();
+                bool validar = new Helps.DataValidation(proveedor).Validar();
 
                 if (validar && ValidarEmail())
                 {
-                    string resultado = vendedor.GuardarCambios();
-                    MessageBox.Show(resultado, "Vendedor", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string resultado = proveedor.GuardarCambios();
+                    MessageBox.Show(resultado, "Proveedor", MessageBoxButton.OK, MessageBoxImage.Information);
                     //Limpiar();
                     //txtVendedor.Focus();
                     this.Close();

@@ -27,19 +27,35 @@ namespace CapaPresentacion.Modulos
         //Campos
         private StockModel stock = new StockModel();
         private ProductoModel producto = new ProductoModel();
+        private ProveedorModel vendedor = new ProveedorModel();
+
+        List<ProveedorModel> listaVendedor;
 
         //Método constructor
         public ModuloStock()
         {
             InitializeComponent();
 
-            ListarHistorialStock();
-
-            dtpFechaHora.SelectedDate = DateTime.Now;
+            //Tab Entrada de stock
+            CargarComboBox();
             txtIngresadoPor.Text = UserCache.Nombres + " " + UserCache.Apellidos;
+
+            //Tab Historial
+            ListarHistorialStock();
         }
 
         #region Métodos de ayuda
+        //Tab Entrada de Stock
+        private void CargarComboBox()
+        {
+            listaVendedor = vendedor.ObtenerTodo();
+
+            cmbProveedor.ItemsSource = listaVendedor;
+            cmbProveedor.DisplayMemberPath = "NombreVendedor";
+            cmbProveedor.SelectedValuePath = "IdVendedor";
+        }
+
+        //Tab Historial
         private void ListarHistorialStock()
         {
             try
@@ -52,9 +68,9 @@ namespace CapaPresentacion.Modulos
                 MessageBox.Show(ex.Message, "Listar Stock", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         #endregion
 
+        #region TAB 1: Entrada de Stock
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -79,6 +95,11 @@ namespace CapaPresentacion.Modulos
                 }
 
                 MessageBox.Show("Stock registrado", "Stock", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                txtNumReferencia.Clear();
+                cmbProveedor.SelectedIndex = -1;
+                txtPersonaContacto.Clear();
+                txtDireccion.Clear();
 
             }
             catch (Exception ex)
@@ -125,6 +146,14 @@ namespace CapaPresentacion.Modulos
             }
         }
 
+        private void BtnGenerarNumRef_Click(object sender, RoutedEventArgs e)
+        {
+            Random rd = new Random();
+            txtNumReferencia.Clear();
+
+            txtNumReferencia.Text += rd.Next();
+        }
+
         private void BtnAgregarProducto_Click(object sender, RoutedEventArgs e)
         {
             ModuloVistaProductos vistaProductos = new ModuloVistaProductos();
@@ -137,8 +166,6 @@ namespace CapaPresentacion.Modulos
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            txtNumReferencia.Clear();
-            txtIngresadoPor.Clear();
             txtProducto.Clear();
             txtCantidad.Clear();
         }
@@ -154,6 +181,8 @@ namespace CapaPresentacion.Modulos
             stock.FechaHora = DateTime.Now;
             stock.IngresadoPor = txtIngresadoPor.Text.Trim();
             stock.EstadoProducto = "Pendiente";
+            stock.IdVendedor = Convert.ToInt32(cmbProveedor.SelectedValue);
+            stock.NombreVendedor = cmbProveedor.Text;
 
             bool validar = new Helps.DataValidation(stock).Validar();
 
@@ -166,6 +195,24 @@ namespace CapaPresentacion.Modulos
             }
         }
 
+        private void CmbProveedor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int indice = Convert.ToInt32(cmbProveedor.SelectedIndex);
+
+            if (indice != -1)
+            {
+                txtPersonaContacto.Text = listaVendedor[indice].PersonaDeContacto;
+                txtDireccion.Text = listaVendedor[indice].Direccion;
+            }
+        }
+
+        #region Validaciones de Textbox
+        private void TxtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
+        #endregion
+
+        #endregion
+
+        #region TAB 2: Historial
         private void BtnCargarRegistros_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -186,16 +233,6 @@ namespace CapaPresentacion.Modulos
             dtpFechaInicio.SelectedDate = null;
             dtpFechaFin.SelectedDate = null;
         }
-
-        #region Validaciones de Textbox
-        private void TxtNumReferencia_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
-
-        private void TxtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
-
-
-
         #endregion
-
-        
     }
 }
