@@ -63,8 +63,8 @@ namespace CapaPresentacion
 
         private void BtnVendedor_Click(object sender, RoutedEventArgs e)
         {
-            ModuloVendedor vendedor = new ModuloVendedor();
-            vendedor.ShowDialog();
+            ActivarBoton(sender);
+            MostrarContenido(new ListaDeVendedores());
         }
 
         private void BtnStock_Click(object sender, RoutedEventArgs e)

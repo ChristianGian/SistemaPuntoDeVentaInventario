@@ -2,10 +2,12 @@
 using CapaDatos.Entities;
 using CapaDatos.Repositories;
 using CapaNegocio.ValueObjects;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,10 +36,13 @@ namespace CapaNegocio.Models
         public string Direccion { get => direccion; set => direccion = value; }
         public string PersonaDeContacto { get => personaDeContacto; set => personaDeContacto = value; }
         [Required(ErrorMessage = "El campo teléfono es obligatorio.")]
+        [StringLength(maximumLength:9, MinimumLength = 9, ErrorMessage = "Ingrese un teléfono válido")]
         public string Telefono { get => telefono; set => telefono = value; }
         [Required(ErrorMessage = "El campo email es obligatorio")]
         //[RegularExpression("\\w + ([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*", ErrorMessage = "Por favor ingrese un email válido.")]
         public string Email { get => email; set => email = value; }
+        [StringLength(maximumLength:50, ErrorMessage = "Solo se permiten 50 caracteres como máximo en el fax")]
+        //[RegularExpression(@"^(\+?\d{1,}(\s?|\-?)\d*(\s?|\-?)\(?\d{2,}\)?(\s?|\-?)\d{3,}\s?\d{3,})$", ErrorMessage = "Ingrese un fax válido")]
         public string Fax { get => fax; set => fax = value; }
 
         //Método constructor
@@ -61,10 +66,12 @@ namespace CapaNegocio.Models
                 vendedor.IdVendedor = idVendedor;
                 vendedor.NombreVendedor = nombreVendedor;
                 vendedor.Direccion = direccion;
-                vendedor.PersonaDeContacto = personaDeContacto;
+                if (personaDeContacto != null) vendedor.PersonaDeContacto = personaDeContacto;
+                else vendedor.PersonaDeContacto = "-";
                 vendedor.Telefono = telefono;
                 vendedor.Email = email;
-                vendedor.Fax = fax;
+                if (fax != null) vendedor.Fax = fax;
+                else vendedor.Fax = "N/A";
 
                 switch (Estado)
                 {

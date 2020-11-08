@@ -31,7 +31,18 @@ namespace CapaPresentacion
         public static void NumeroDecimal(object sender, TextCompositionEventArgs e)
         {
             int caracter = Convert.ToInt32(Convert.ToChar(e.Text));
-            if ((caracter >= 48 && caracter <= 57) || (caracter == 8) || caracter == 46)
+            if ((caracter >= 48 && caracter <= 57) || (caracter == 8) || (caracter == 46))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        public static void NumeroFax(object sender, TextCompositionEventArgs e)
+        {
+            int caracter = Convert.ToInt32(Convert.ToChar(e.Text));
+            if ((caracter >= 48 && caracter <= 57)
+                || (caracter >= 40 && caracter <= 46) || (caracter == 91) || (caracter == 93)
+                || (caracter == 35) || (caracter == 32))
                 e.Handled = false;
             else
                 e.Handled = true;

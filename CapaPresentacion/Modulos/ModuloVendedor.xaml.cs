@@ -30,8 +30,6 @@ namespace CapaPresentacion.Modulos
             InitializeComponent();
 
             DataContext = vendedor;
-
-            btnActualizar.IsEnabled = false;
         }
 
         #region Eventos
@@ -68,11 +66,11 @@ namespace CapaPresentacion.Modulos
 
                 if (validar && ValidarEmail())
                 {
-                    vendedor.Estado = EntityState.Agregado;
                     string resultado = vendedor.GuardarCambios();
                     MessageBox.Show(resultado, "Vendedor", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                    txtVendedor.Focus();
+                    //Limpiar();
+                    //txtVendedor.Focus();
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -84,7 +82,7 @@ namespace CapaPresentacion.Modulos
         #region Validaciones
         private void TxtTelefono_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
 
-        private void TxtFax_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.SoloNumeros(sender, e);
+        private void TxtFax_PreviewTextInput(object sender, TextCompositionEventArgs e) => Validaciones.NumeroFax(sender, e);
 
         private bool ValidarEmail()
         {

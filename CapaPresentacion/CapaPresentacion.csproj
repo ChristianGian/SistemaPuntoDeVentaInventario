@@ -163,6 +163,9 @@
     <Compile Include="UserControls\ListaDeProductos.xaml.cs">
       <DependentUpon>ListaDeProductos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ListaDeVendedores.xaml.cs">
+      <DependentUpon>ListaDeVendedores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Registros.xaml.cs">
       <DependentUpon>Registros.xaml</DependentUpon>
     </Compile>
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ListaDeProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListaDeVendedores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
