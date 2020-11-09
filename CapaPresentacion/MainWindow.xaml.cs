@@ -70,7 +70,13 @@ namespace CapaPresentacion
         private void BtnStock_Click(object sender, RoutedEventArgs e)
         {
             ActivarBoton(sender);
-            MostrarContenido(new Modulos.ModuloStock());
+            MostrarContenido(new ModuloStock());
+        }
+
+        private void BtnAjusteDeStock_Click(object sender, RoutedEventArgs e)
+        {
+            ActivarBoton(sender);
+            MostrarContenido(new AjusteDeStock());
         }
 
         private void BtnGesCategoria_Click(object sender, RoutedEventArgs e)

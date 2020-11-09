@@ -48,6 +48,7 @@
     <Compile Include="Contracts\IMarcaRepository.cs" />
     <Compile Include="Contracts\IOrdenCanceladaRepository.cs" />
     <Compile Include="Contracts\IProductoRepository.cs" />
+    <Compile Include="Contracts\IStockAjusteRepository.cs" />
     <Compile Include="Contracts\IStockRepository.cs" />
     <Compile Include="Contracts\ITiendaRepository.cs" />
     <Compile Include="Contracts\ITransaccionRepository.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Entities\OrdenCancelada.cs" />
     <Compile Include="Entities\Producto.cs" />
     <Compile Include="Entities\Stock.cs" />
+    <Compile Include="Entities\StockAjuste.cs" />
     <Compile Include="Entities\Tienda.cs" />
     <Compile Include="Entities\Transaccion.cs" />
     <Compile Include="Entities\Usuario.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Repositories\ProductoRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RReportes\R_LiquidarPagoRepository.cs" />
+    <Compile Include="Repositories\StockAjusteRepository.cs" />
     <Compile Include="Repositories\StockRepository.cs" />
     <Compile Include="Repositories\TiendaRepository.cs" />
     <Compile Include="Repositories\TransaccionRepository.cs" />

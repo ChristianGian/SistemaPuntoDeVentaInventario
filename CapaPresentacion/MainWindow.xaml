@@ -70,6 +70,12 @@
                             <Label Foreground="White">Stock</Label>
                         </StackPanel>
                     </Button>
+                    <Button Style="{StaticResource BotonSideMenu}" x:Name="btnAjusteDeStock" Click="BtnAjusteDeStock_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Imagenes/AjustesDeStock_32px.png" Width="30"/>
+                            <Label Foreground="White">Ajuste de Stock</Label>
+                        </StackPanel>
+                    </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnGesCategoria" Click="BtnGesCategoria_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/GestionarCategoria_32px.png" Width="30"/>
