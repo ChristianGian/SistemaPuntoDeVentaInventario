@@ -39,6 +39,9 @@ namespace CapaPresentacion
             lblUsuario.Content = UserCache.Nombres + " " + UserCache.Apellidos;
             lblRol.Content = UserCache.Rol;
 
+            //Mostramos el Dashboard
+            MostrarContenido(new Dashboard());
+
             NotificacionProductosCriticos();
         }
 

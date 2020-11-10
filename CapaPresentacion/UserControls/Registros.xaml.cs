@@ -55,8 +55,25 @@ namespace CapaPresentacion.UserControls
         {
             try
             {
+                var lista = transaccion.RegistroProductosVendidos(fechaInicio, fechaFin);
                 dgdRegProductosVendidos.ItemsSource = null;
-                dgdRegProductosVendidos.ItemsSource = transaccion.RegistroProductosVendidos(fechaInicio, fechaFin);
+
+                if (cmbOrdenarPor.Text == "Ordenar por cantidad")
+                {
+                    dgdRegProductosVendidos.ItemsSource = from p in lista
+                                                          orderby p.Cantidad descending
+                                                          select p;
+                }
+                else if (cmbOrdenarPor.Text == "Ordenar por monto total")
+                {
+                    dgdRegProductosVendidos.ItemsSource = from p in lista
+                                                          orderby p.Total descending
+                                                          select p;
+                }
+                else
+                {
+                    MessageBox.Show("Por favor seleccione una opción para ordenar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -132,7 +149,27 @@ namespace CapaPresentacion.UserControls
                 ReportDataSource topVendidos = new ReportDataSource();
 
                 topVendidos.Name = "DS_TopVendidos";
-                topVendidos.Value = transaccion.RegistroProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+
+                var lista = transaccion.RegistroProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+
+                if (cmbOrdenarPor.Text == "Ordenar por cantidad")
+                {
+                    topVendidos.Value = from p in lista
+                                        orderby p.Cantidad descending
+                                        select p;
+                }
+                else if (cmbOrdenarPor.Text == "Ordenar por monto total")
+                {
+                    topVendidos.Value = from p in lista
+                                        orderby p.Total descending
+                                        select p;
+                }
+                else
+                {
+                    MessageBox.Show("Por favor seleccione una opción para ordenar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 datos.Add(topVendidos);
 
                 Reportes.ReporteRegistrosTop10 listaTopVendidos = new Reportes.ReporteRegistrosTop10("CapaPresentacion.Reportes.ReporteRegistrosTop10.rdlc", datos);

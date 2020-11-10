@@ -188,7 +188,8 @@ namespace CapaDatos.Repositories
                     NombreProducto = item[1].ToString(),
                     Cantidad = Convert.ToInt32(item[2]),
                     Fecha = Convert.ToDateTime(item[3]),
-                    EstadoTransaccion = item[4].ToString()
+                    EstadoTransaccion = item[4].ToString(),
+                    Total = Convert.ToDecimal(item[5])
                 });
             }
             return lista;

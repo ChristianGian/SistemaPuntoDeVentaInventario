@@ -29,36 +29,45 @@
             <!--TAB 1 - Más vendidos-->
             <TabItem Header="Top 10 más vendidos">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="316*"/>
+                        <ColumnDefinition Width="121*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <Grid Grid.Row="0" Height="40">
+                    <Grid Grid.Row="0" Height="40" Grid.ColumnSpan="2">
                         <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
                             <Label Content="Filtrar por:" VerticalAlignment="Center"/>
                             <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
                             <DatePicker Name="dtpFechaFin" Width="200" Height="26" VerticalAlignment="Center"/>
-                            <Button x:Name="btnCargarDatos" Content="Cargar Datos" Margin="10 0"
+                            <ComboBox Name="cmbOrdenarPor" Width="150" Height="26" Margin="10 0">
+                                <ComboBoxItem>Ordenar por cantidad</ComboBoxItem>
+                                <ComboBoxItem>Ordenar por monto total</ComboBoxItem>
+                            </ComboBox>
+                            <Button x:Name="btnCargarDatos" Content="Cargar Datos"
                                 Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
                                 Click="BtnCargarDatos_Click"/>
                         </StackPanel>
-                        
+
                         <!--Imprimir-->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button x:Name="btnImprimirTab1" Content="Vista previa de impresión" Margin="10 0"
-                                Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
+                            <Button x:Name="btnImprimirTab1" Content="Imprimir" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="100" Height="26" 
                                 Click="BtnImprimirTab1_Click"/>
                         </StackPanel>
                     </Grid>
-                    
+
                     <!--Datagrid Marcas-->
-                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
                             <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
                             <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                            <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -202,7 +202,7 @@ namespace CapaNegocio.Models
             return listaTransaccion;
         }
 
-        public IEnumerable<TransaccionModel> RegistroProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
+        public List<TransaccionModel> RegistroProductosVendidos(DateTime fechaInicio, DateTime fechaFin)
         {
             var transaccion = transaccionRepository.RegistroProductosVendidos(fechaInicio, fechaFin);
             var listaTransaccion = new List<TransaccionModel>();
@@ -216,11 +216,10 @@ namespace CapaNegocio.Models
                     cantidad = item.Cantidad,
                     fecha = item.Fecha,
                     estadoTransaccion = item.EstadoTransaccion,
+                    total = item.Total
                 });
             }
-            return from lt in listaTransaccion
-                   orderby lt.cantidad descending
-                   select lt;
+            return listaTransaccion;
         }
 
         public List<TransaccionModel> MostrarProductosVendidosAgrupados(DateTime fechaInicio, DateTime fechaFin)
