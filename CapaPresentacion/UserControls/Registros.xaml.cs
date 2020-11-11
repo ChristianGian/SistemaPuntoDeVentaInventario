@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -81,6 +82,42 @@ namespace CapaPresentacion.UserControls
             }
         }
 
+        private void CargarGraficoTopVentas()
+        {
+            var lista = transaccion.RegistroProductosVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+            Chart chart = this.FindName("MiWinformChart") as Chart;
+
+            if (cmbOrdenarPor.Text == "Ordenar por cantidad")
+            {
+                chart.DataSource = from p in lista
+                                   orderby p.Cantidad descending
+                                   select p;
+
+                chart.Series["series"].XValueMember = "IdProducto";
+                chart.Series["series"].YValueMembers = "Cantidad";
+            }
+            else if (cmbOrdenarPor.Text == "Ordenar por monto total")
+            {
+                chart.DataSource = from p in lista
+                                   orderby p.Total descending
+                                   select p;
+
+                chart.Series["series"].XValueMember = "IdProducto";
+                chart.Series["series"].YValueMembers = "Total";
+            }
+            else
+            {
+                return;
+            }
+
+            //Detalles
+            chart.Series[0].IsValueShownAsLabel = true;
+            chart.Palette = ChartColorPalette.Pastel;
+            //chart.Titles.Add($"Ventas por meses ({DateTime.Now.Year})");
+            //txbTituloChart.Text = $"Ventas por Meses de {DateTime.Now.Year} en Soles";
+            chart.Legends.Add("");
+        }
+
         private void ListarProductosVendidosAgrupados(DateTime fechaInicio, DateTime fechaFin)
         {
             try
@@ -138,6 +175,7 @@ namespace CapaPresentacion.UserControls
         private void BtnCargarDatos_Click(object sender, RoutedEventArgs e)
         {
             ListarRegProductoseVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+            CargarGraficoTopVentas();
             EsRangoCorrecto();
         }
 

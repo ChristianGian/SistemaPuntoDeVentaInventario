@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CapaPresentacion.UserControls"
+             xmlns:local="clr-namespace:CapaPresentacion.UserControls" xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
              mc:Ignorable="d" 
              d:DesignHeight="560" d:DesignWidth="900" Background="White">
     <Grid Margin="10 0 10 10">
@@ -29,17 +29,13 @@
             <!--TAB 1 - Más vendidos-->
             <TabItem Header="Top 10 más vendidos">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="316*"/>
-                        <ColumnDefinition Width="121*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <Grid Grid.Row="0" Height="40" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="0" Height="40">
                         <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
                             <Label Content="Filtrar por:" VerticalAlignment="Center"/>
                             <DatePicker Name="dtpFechaInicio" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
@@ -61,15 +57,32 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Datagrid Marcas-->
-                    <DataGrid Grid.Row="1" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
-                            <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
-                            <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
-                            <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <!--Datagrid Productos vendidos y Gráfico-->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <DataGrid Grid.Row="0" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
+                                <DataGridTextColumn Header="DESCRIPCIÓN" Binding="{Binding NombreProducto}" Width="*"/>
+                                <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
+                                <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <WindowsFormsHost Grid.Row="1" x:Name="host" Height="300">
+                            <winformchart:Chart x:Name="MiWinformChart" Dock="Fill">
+                                <winformchart:Chart.Series>
+                                    <winformchart:Series Name="series" ChartType="Doughnut"/>
+                                </winformchart:Chart.Series>
+                                <winformchart:Chart.ChartAreas>
+                                    <winformchart:ChartArea/>
+                                </winformchart:Chart.ChartAreas>
+                            </winformchart:Chart>
+                        </WindowsFormsHost>
+                    </Grid>
                 </Grid>
             </TabItem>
 
