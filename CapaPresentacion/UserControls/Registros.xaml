@@ -63,7 +63,7 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <DataGrid Grid.Row="0" x:Name="dgdRegProductosVendidos" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>
@@ -72,7 +72,7 @@
                                 <DataGridTextColumn Header="TOTAL" Binding="{Binding Total}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <WindowsFormsHost Grid.Row="1" x:Name="host" Height="300">
+                        <WindowsFormsHost Grid.Row="1" x:Name="host">
                             <winformchart:Chart x:Name="MiWinformChart" Dock="Fill">
                                 <winformchart:Chart.Series>
                                     <winformchart:Series Name="series" ChartType="Doughnut"/>
@@ -97,18 +97,20 @@
                     <!--Filtros-->
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="104*"/>
+                            <ColumnDefinition Width="160"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,7">
                             <Label Content="Filtrar por:"/>
                             <DatePicker Name="dtpFechaInicioTab2" Width="200" Margin="10 0"/>
                             <DatePicker Name="dtpFechaFinTab2" Width="200"/>
                             <Button x:Name="btnCargarDatosTab2" Content="Cargar Datos" Style="{StaticResource BotonGeneral}" Width="100" Margin="10 0" Click="BtnCargarDatosTab2_Click"/>
+                            <Button x:Name="btnVerGraficoTab2" Content="Ver Gráfico" Style="{StaticResource BotonGeneral}" Width="100" Click="BtnVerGraficoTab2_Click"/>
                         </StackPanel>
 
-                        <Label Grid.Column="1" Content="S/. 0.00" Name="lblTotal"
+                        <Label Grid.Column="2" Content="S/. 0.00" Name="lblTotal"
                            HorizontalContentAlignment="Right"
                            FontSize="25"/>
                     </Grid>

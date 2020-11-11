@@ -60,6 +60,7 @@ namespace CapaPresentacion.UserControls
             chart.DataSource = ventas;
             chart.Series["series"].XValueMember = "Key";
             chart.Series["series"].YValueMembers = "Value";
+            chart.Series["series"].LabelFormat = "{C}";
 
             //Detalles
             chart.Series[0].IsValueShownAsLabel = true;

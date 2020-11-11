@@ -1,4 +1,5 @@
 ﻿using CapaNegocio.Models;
+using CapaPresentacion.Modulos;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -104,6 +105,7 @@ namespace CapaPresentacion.UserControls
 
                 chart.Series["series"].XValueMember = "IdProducto";
                 chart.Series["series"].YValueMembers = "Total";
+                chart.Series["series"].LabelFormat = "{C}";
             }
             else
             {
@@ -224,6 +226,13 @@ namespace CapaPresentacion.UserControls
         {
             ListarProductosVendidosAgrupados(Convert.ToDateTime(dtpFechaInicioTab2.Text), Convert.ToDateTime(dtpFechaFinTab2.Text));
             EsRangoCorrecto();
+        }
+
+        private void BtnVerGraficoTab2_Click(object sender, RoutedEventArgs e)
+        {
+            GraficoRegProductosVendidos productosVendidos = new GraficoRegProductosVendidos(Convert.ToDateTime(dtpFechaInicioTab2.Text), Convert.ToDateTime(dtpFechaFinTab2.Text));
+            productosVendidos.txbTitulo.Text += $" [{dtpFechaInicioTab2.SelectedDate:dd/MM/yyyy} - {dtpFechaFinTab2.SelectedDate:dd/MM/yyyy}]";
+            productosVendidos.ShowDialog();
         }
 
         //TAB 3: Prodcutos críticos
