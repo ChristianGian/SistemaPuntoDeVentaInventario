@@ -61,7 +61,7 @@
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnVendedor" Click="BtnVendedor_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Imagenes/Vendedor_32px.png" Width="30"/>
-                            <Label Foreground="White">Vendedor</Label>
+                            <Label Foreground="White">Proveedor</Label>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource BotonSideMenu}" x:Name="btnStock" Click="BtnStock_Click">

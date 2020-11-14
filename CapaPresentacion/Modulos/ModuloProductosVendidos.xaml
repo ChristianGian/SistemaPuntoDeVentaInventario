@@ -53,8 +53,8 @@
                         <DatePicker Name="dtpFechaFin"/>
                         <ComboBox Name="cmbCajero" Width="145" Margin="10 0"/>
                         <Button x:Name="btnBuscar" Content="Buscar" Style="{StaticResource BotonModulo}" Click="BtnBuscar_Click"/>
-                        <Button x:Name="btnHoy" Content="Ir a Hoy" Style="{StaticResource BotonModulo}" Margin="10 0" Click="BtnHoy_Click"/>
-                        <Button x:Name="btnImprimir" Content="Imprimir" Style="{StaticResource BotonModulo}" Click="BtnImprimir_Click"/>
+                        <Button x:Name="btnHoy" Content="Ir a Hoy" Style="{StaticResource BotonModulo}" Margin="10 0 0 0" Click="BtnHoy_Click"/>
+                        <Button x:Name="btnImprimir" Content="Imprimir" Style="{StaticResource BotonModulo}" Margin="10 0 0 0" Click="BtnImprimir_Click"/>
                     </StackPanel>
 
                     <Label Grid.Column="1" Content="S/. 0.00" Name="lblTotal"

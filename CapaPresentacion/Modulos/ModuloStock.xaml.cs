@@ -27,9 +27,12 @@ namespace CapaPresentacion.Modulos
         //Campos
         private StockModel stock = new StockModel();
         private ProductoModel producto = new ProductoModel();
-        private ProveedorModel vendedor = new ProveedorModel();
+        private ProveedorModel proveedor = new ProveedorModel();
 
-        List<ProveedorModel> listaVendedor;
+        private DateTime hoy = DateTime.Now;
+        List<StockModel> listaStock = new List<StockModel>();
+
+        List<ProveedorModel> listaProveedor;
 
         //Método constructor
         public ModuloStock()
@@ -41,31 +44,54 @@ namespace CapaPresentacion.Modulos
             txtIngresadoPor.Text = UserCache.Nombres + " " + UserCache.Apellidos;
 
             //Tab Historial
-            ListarHistorialStock();
+            dtpFechaInicio.SelectedDate = hoy;
+            dtpFechaFin.SelectedDate = hoy;
         }
 
         #region Métodos de ayuda
         //Tab Entrada de Stock
-        private void CargarComboBox()
-        {
-            listaVendedor = vendedor.ObtenerTodo();
-
-            cmbProveedor.ItemsSource = listaVendedor;
-            cmbProveedor.DisplayMemberPath = "NombreVendedor";
-            cmbProveedor.SelectedValuePath = "IdVendedor";
-        }
-
-        //Tab Historial
-        private void ListarHistorialStock()
+        private void ListarStockActual(string numReferencia)
         {
             try
             {
-                dgdHistorialStock.ItemsSource = null;
-                dgdHistorialStock.ItemsSource = stock.ObtenerTodo();
+                dgdStock.ItemsSource = null;
+                listaStock = stock.ObtenerStockActual(numReferencia);
+                dgdStock.ItemsSource = listaStock;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Listar Stock", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CargarComboBox()
+        {
+            listaProveedor = proveedor.ObtenerTodo();
+
+            cmbProveedor.ItemsSource = listaProveedor;
+            cmbProveedor.DisplayMemberPath = "NombreProveedor";
+            cmbProveedor.SelectedValuePath = "IdProveedor";
+        }
+
+        //Tab Historial
+        private void ListarHistorialStock(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                dgdHistorialStock.ItemsSource = null;
+                dgdHistorialStock.ItemsSource = stock.BuscarStockPorFecha(fechaInicio, fechaFin);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Listar Stock", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void EsRangoCorrecto()
+        {
+            if (Convert.ToDateTime(dtpFechaInicio.Text) > Convert.ToDateTime(dtpFechaFin.Text))
+            {
+                MessageBox.Show("Asegúrese de ingresar un rango de fechas válida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
         #endregion
@@ -75,23 +101,12 @@ namespace CapaPresentacion.Modulos
         {
             try
             {
-                var listaStock = new List<StockModel>();
-
-                for (int i = 0; i < dgdStock.Items.Count; i++)
+                for (int i = 0; i < listaStock.Count; i++)
                 {
-                    stock.Estado = EntityState.Agregado;
-                    stock = dgdStock.Items[i] as StockModel;
+                    var miStock = listaStock[0] as StockModel;
+                    miStock.Estado = EntityState.Actualizado;
 
-                    stock.EstadoProducto = "Hecho";
-                    stock.GuardarCambios();
-
-                    int num = dgdStock.Items.Count;
-                    for (int j = 0; j < num; j++)
-                    {
-                        dgdStock.Items.RemoveAt(i);
-                    }
-
-                    ListarHistorialStock();
+                    miStock.GuardarCambios();
                 }
 
                 MessageBox.Show("Stock registrado", "Stock", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -101,6 +116,7 @@ namespace CapaPresentacion.Modulos
                 txtPersonaContacto.Clear();
                 txtDireccion.Clear();
 
+                dgdStock.ItemsSource = null;
             }
             catch (Exception ex)
             {
@@ -108,20 +124,24 @@ namespace CapaPresentacion.Modulos
             }
         }
 
-        private void BtnQuitar_Click(object sender, RoutedEventArgs e)
+        private void BtnEliminarStockActual_Click(object sender, RoutedEventArgs e)
         {
             stock = dgdStock.SelectedItem as StockModel;
 
             if (stock != null)
             {
-                if (MessageBox.Show("¿Está seguro de quitar este stock?", "Eliminar stock", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("¿Está seguro de eliminar este stock?", "Eliminar stock", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    dgdStock.Items.Remove(dgdStock.SelectedItem);
+                    stock.Estado = EntityState.Eliminado;
+
+                    string resultado = stock.GuardarCambios();
+                    MessageBox.Show(resultado, "Eliminar stock", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ListarStockActual(stock.NumReferencia);
                 }
             }
             else
             {
-                MessageBox.Show("Por favor seleccione una fila", "Quitar stock", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor seleccione una fila", "Eliminar stock", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -137,7 +157,7 @@ namespace CapaPresentacion.Modulos
 
                     string resultado = stock.GuardarCambios();
                     MessageBox.Show(resultado, "Eliminar stock", MessageBoxButton.OK, MessageBoxImage.Information);
-                    ListarHistorialStock();
+                    ListarHistorialStock(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
                 }
             }
             else
@@ -181,17 +201,20 @@ namespace CapaPresentacion.Modulos
             stock.FechaHora = DateTime.Now;
             stock.IngresadoPor = txtIngresadoPor.Text.Trim();
             stock.EstadoProducto = "Pendiente";
-            stock.IdVendedor = Convert.ToInt32(cmbProveedor.SelectedValue);
-            stock.NombreVendedor = cmbProveedor.Text;
+            stock.IdProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
+            stock.NombreProveedor = cmbProveedor.Text;
 
             bool validar = new Helps.DataValidation(stock).Validar();
 
             if (validar)
             {
-                dgdStock.Items.Add(stock);
+                stock.Estado = EntityState.Agregado;
+                stock.GuardarCambios();
 
                 txtProducto.Clear();
                 txtCantidad.Clear();
+
+                ListarStockActual(stock.NumReferencia);
             }
         }
 
@@ -201,8 +224,8 @@ namespace CapaPresentacion.Modulos
 
             if (indice != -1)
             {
-                txtPersonaContacto.Text = listaVendedor[indice].PersonaDeContacto;
-                txtDireccion.Text = listaVendedor[indice].Direccion;
+                txtPersonaContacto.Text = listaProveedor[indice].PersonaDeContacto;
+                txtDireccion.Text = listaProveedor[indice].Direccion;
             }
         }
 
@@ -215,23 +238,8 @@ namespace CapaPresentacion.Modulos
         #region TAB 2: Historial
         private void BtnCargarRegistros_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                dgdHistorialStock.ItemsSource = null;
-                dgdHistorialStock.ItemsSource = stock.BuscarPorFecha(dtpFechaInicio.SelectedDate, dtpFechaFin.SelectedDate);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Listar Stock", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void BtnListarTodoHistorial_Click(object sender, RoutedEventArgs e)
-        {
-            ListarHistorialStock();
-
-            dtpFechaInicio.SelectedDate = null;
-            dtpFechaFin.SelectedDate = null;
+            ListarHistorialStock(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
+            EsRangoCorrecto();
         }
         #endregion
     }

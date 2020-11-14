@@ -149,11 +149,11 @@ namespace CapaPresentacion
 
             dgdProductos.ItemsSource = null;
 
-            lblSubTotal.Content = "0";
-            lblDescuento.Content = "0";
-            lblIgv.Content = "0";
-            lblTotal.Content = "0";
-            lblMuestraTotal.Content = "0";
+            lblSubTotal.Content = "0.00";
+            lblDescuento.Content = "0.00";
+            lblIgv.Content = "0.00";
+            lblTotal.Content = "0.00";
+            lblMuestraTotal.Content = "0.00";
 
             ObtenerNrTransaccion();
         }
@@ -285,6 +285,7 @@ namespace CapaPresentacion
 
             productosVendidos.dtpFechaInicio.IsEnabled = false;
             productosVendidos.dtpFechaFin.IsEnabled = false;
+            productosVendidos.btnHoy.Visibility = Visibility.Collapsed;
             productosVendidos.cmbCajero.Text = UserCache.Username;
             productosVendidos.cmbCajero.IsEnabled = false;
 

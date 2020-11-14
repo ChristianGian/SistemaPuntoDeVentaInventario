@@ -61,7 +61,7 @@
 
                         <Label Content="Proveedor" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="10 0 0 0"/>
                         <ComboBox Name="cmbProveedor" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Height="25" SelectionChanged="CmbProveedor_SelectionChanged"/>
-                        
+
                         <Label Content="Ingresado por" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 5"/>
                         <TextBox x:Name="txtIngresadoPor" Padding="2" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="25" IsReadOnly="True"/>
 
@@ -97,13 +97,11 @@
                             <DataGridTextColumn Header="CANTIDAD" Binding="{Binding Cantidad}"/>
                             <DataGridTextColumn Header="FECHA DE INGRESO" Binding="{Binding FechaHora}"/>
                             <DataGridTextColumn Header="INGRESADO POR" Binding="{Binding IngresadoPor}"/>
-                            <DataGridTextColumn Header="PROVEEDOR" Binding="{Binding NombreProveeedor}"/>
-                            <!--<DataGridTextColumn Header="ESTADO" Binding="{Binding EstadoProducto}"/>-->
-                            
+                            <DataGridTextColumn Header="PROVEEDOR" Binding="{Binding NombreProveedor}"/>
                             <DataGridTemplateColumn Header="QUITAR">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button x:Name="btnQuitar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnQuitar_Click">
+                                        <Button Name="btnEliminarStockActual" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEliminarStockActual_Click">
                                             <Image Source="ImagenesModulos/Eliminar_48px.png"/>
                                         </Button>
                                     </DataTemplate>
@@ -120,22 +118,25 @@
             <!--Tab Historial-->
             <TabItem Header="Historial">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="403*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <!--Filtro de búsqueda-->
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,7">
                         <Label Content="Filtro por fecha:"/>
                         <DatePicker Name="dtpFechaInicio" Width="150" Margin="5 0 10 0"/>
                         <DatePicker Name="dtpFechaFin" Width="150"/>
                         <Button x:Name="btnCargarRegistros" Content="Cargar" Margin="10 0" Style="{StaticResource BotonModulo}" Click="BtnCargarRegistros_Click"/>
-                        <Button x:Name="btnListarTodoHistorial" Content="Listar todo" Style="{StaticResource BotonModulo}" Click="BtnListarTodoHistorial_Click"/>
                     </StackPanel>
-                    
+
                     <!--DataGrid Historial Stock-->
-                    <DataGrid x:Name="dgdHistorialStock" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">
+                    <DataGrid x:Name="dgdHistorialStock" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="REF#" Binding="{Binding NumReferencia}"/>
                             <DataGridTextColumn Header="COD." Binding="{Binding IdProducto}"/>

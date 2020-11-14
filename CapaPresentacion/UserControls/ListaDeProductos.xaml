@@ -33,7 +33,7 @@
                 <TextBox Grid.Column="1" Name="txtBuscar" FontSize="15" Padding="2" Margin="0 0 5 0" VerticalAlignment="Center" TextChanged="TxtBuscar_TextChanged"></TextBox>
             </Grid>
 
-            <Button Grid.Column="2" x:Name="btnAgregarProducto" Background="White" BorderBrush="White" Click="BtnAgregarProducto_Click">
+            <Button Grid.Column="2" x:Name="btnAgregarProducto" ToolTip="Agregar nuevo producto" Background="White" BorderBrush="White" Click="BtnAgregarProducto_Click">
                 <Image Source="ImagenesControl/Nuevo_32px.png" Width="30"/>
             </Button>
         </Grid>

@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Content="LISTA DE CATEGORIAS" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold" Foreground="#242424"/>
-            <Button Grid.Column="1" x:Name="btnAgregarCategoria" Background="White" BorderBrush="White" Click="BtnAgregarCategoria_Click">
+            <Button Grid.Column="1" x:Name="btnAgregarCategoria" ToolTip="Agregar nueva categoría" Background="White" BorderBrush="White" Click="BtnAgregarCategoria_Click">
                     <Image Source="ImagenesControl/Nuevo_32px.png" Width="30"/>
                 </Button>
         </Grid>

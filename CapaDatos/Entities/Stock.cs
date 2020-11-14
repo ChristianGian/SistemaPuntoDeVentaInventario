@@ -16,8 +16,8 @@ namespace CapaDatos.Entities
         public DateTime FechaHora { get; set; }
         public string IngresadoPor { get; set; }
         public string EstadoProducto { get; set; }
-        public int IdVendedor { get; set; }
-        public string NombreVendedor { get; set; }
+        public int IdProveedor { get; set; }
+        public string NombreProveedor { get; set; }
 
 
     }

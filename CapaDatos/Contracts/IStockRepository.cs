@@ -11,5 +11,6 @@ namespace CapaDatos.Contracts
     {
         //Métodos propios
         List<Stock> BuscarStockPorFecha(DateTime fechaInicio, DateTime fechaFin);
+        List<Stock> ReadStockActual(string numReferencia);
     }
 }

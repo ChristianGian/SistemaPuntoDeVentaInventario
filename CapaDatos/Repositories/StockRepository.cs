@@ -21,7 +21,7 @@ namespace CapaDatos.Repositories
             parametros.Add(new SqlParameter("@FechaHora", entidad.FechaHora));
             parametros.Add(new SqlParameter("@IngresadoPor", entidad.IngresadoPor));
             parametros.Add(new SqlParameter("@EstadoProducto", entidad.EstadoProducto));
-            parametros.Add(new SqlParameter("@IdVendedor", entidad.IdVendedor));
+            parametros.Add(new SqlParameter("@IdProveedor", entidad.IdProveedor));
 
             return ExecuteNonQuery("CrearStock");
         }
@@ -36,30 +36,15 @@ namespace CapaDatos.Repositories
 
         public List<Stock> Read()
         {
-            var tabla = ExecuteReader("MostrarStock");
-            var lista = new List<Stock>();
-
-            foreach (DataRow item in tabla.Rows)
-            {
-                lista.Add(new Stock
-                {
-                    IdStock = Convert.ToInt32(item[0]),
-                    NumReferencia = item[1].ToString(),
-                    IdProducto = item[2].ToString(),
-                    NombreProducto = item[3].ToString(),
-                    Cantidad = Convert.ToInt32(item[4]),
-                    FechaHora = Convert.ToDateTime(item[5]),
-                    IngresadoPor = item[6].ToString(),
-                    EstadoProducto = item[7].ToString(),
-                    NombreVendedor = item[8].ToString()
-                });
-            }
-            return lista;
+            throw new NotImplementedException();
         }
 
         public int Update(Stock entidad)
         {
-            throw new NotImplementedException();
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@IdStock", entidad.IdStock));
+
+            return ExecuteNonQuery("ActualizarEstadoStock");
         }
 
         //Métodos propios
@@ -84,7 +69,33 @@ namespace CapaDatos.Repositories
                     FechaHora = Convert.ToDateTime(item[5]),
                     IngresadoPor = item[6].ToString(),
                     EstadoProducto = item[7].ToString(),
-                    //IdVendedor = Convert.ToInt32(item[8])
+                    IdProveedor = Convert.ToInt32(item[8])
+                });
+            }
+            return lista;
+        }
+
+        public List<Stock> ReadStockActual(string numReferencia)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@NumReferencia", numReferencia));
+
+            var tabla = ExecuteReaderParameters("MostrarStock");
+            var lista = new List<Stock>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Stock
+                {
+                    IdStock = Convert.ToInt32(item[0]),
+                    NumReferencia = item[1].ToString(),
+                    IdProducto = item[2].ToString(),
+                    NombreProducto = item[3].ToString(),
+                    Cantidad = Convert.ToInt32(item[4]),
+                    FechaHora = Convert.ToDateTime(item[5]),
+                    IngresadoPor = item[6].ToString(),
+                    EstadoProducto = item[7].ToString(),
+                    NombreProveedor = item[8].ToString()
                 });
             }
             return lista;

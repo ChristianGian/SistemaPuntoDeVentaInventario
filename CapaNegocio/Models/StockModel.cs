@@ -22,8 +22,8 @@ namespace CapaNegocio.Models
         private DateTime fechaHora;
         private string ingresadoPor;
         private string estadoProducto;
-        private int idVendedor;
-        private string nombreVendedor;
+        private int idProveedor;
+        private string nombreProveedor;
 
         private IStockRepository stockRepository;
         public EntityState Estado{ private get; set; }
@@ -48,8 +48,8 @@ namespace CapaNegocio.Models
         public string EstadoProducto { get => estadoProducto; set => estadoProducto = value; }
         [Required(ErrorMessage = "Por favor seleccione un vendedor.")]
         [RegularExpression("^[1-9][0-9]*$", ErrorMessage = "Por favor seleccione un vendedor.")]
-        public int IdVendedor { get => idVendedor; set => idVendedor = value; }
-        public string NombreVendedor { get => nombreVendedor; set => nombreVendedor = value; }
+        public int IdProveedor { get => idProveedor; set => idProveedor = value; }
+        public string NombreProveedor { get => nombreProveedor; set => nombreProveedor = value; }
 
         //Método constructor
         public StockModel()
@@ -76,7 +76,7 @@ namespace CapaNegocio.Models
                 stock.FechaHora = fechaHora;
                 stock.IngresadoPor = ingresadoPor;
                 stock.EstadoProducto = estadoProducto;
-                stock.IdVendedor = idVendedor;
+                stock.IdProveedor = idProveedor;
 
                 switch (Estado)
                 {
@@ -120,17 +120,17 @@ namespace CapaNegocio.Models
                     fechaHora = item.FechaHora,
                     ingresadoPor = item.IngresadoPor,
                     estadoProducto = item.EstadoProducto,
-                    nombreVendedor = item.NombreVendedor
+                    nombreProveedor = item.NombreProveedor
                 });
             }
             return listaStock;
         }
 
         //Otros métodos
-        public List<StockModel> BuscarPorFecha(DateTime? inicio, DateTime? fin)
-        {
-            return listaStock.FindAll(s => s.fechaHora >= inicio && s.fechaHora <= fin);
-        }
+        //public List<StockModel> BuscarPorFecha(DateTime? inicio, DateTime? fin)
+        //{
+        //    return listaStock.FindAll(s => s.fechaHora >= inicio && s.fechaHora <= fin);
+        //}
 
         public List<StockModel> BuscarStockPorFecha(DateTime fechaInicio, DateTime fechaFin)
         {
@@ -148,7 +148,31 @@ namespace CapaNegocio.Models
                     cantidad = item.Cantidad,
                     fechaHora = item.FechaHora,
                     ingresadoPor = item.IngresadoPor,
-                    estadoProducto = item.EstadoProducto
+                    estadoProducto = item.EstadoProducto,
+                    idProveedor = item.IdProveedor
+                });
+            }
+            return listaStock;
+        }
+
+        public List<StockModel> ObtenerStockActual(string numReferencia)
+        {
+            var stock = stockRepository.ReadStockActual(numReferencia);
+            listaStock = new List<StockModel>();
+
+            foreach (Stock item in stock)
+            {
+                listaStock.Add(new StockModel
+                {
+                    idStock = item.IdStock,
+                    numReferencia = item.NumReferencia,
+                    idProducto = item.IdProducto,
+                    nombreProducto = item.NombreProducto,
+                    cantidad = item.Cantidad,
+                    fechaHora = item.FechaHora,
+                    ingresadoPor = item.IngresadoPor,
+                    estadoProducto = item.EstadoProducto,
+                    nombreProveedor = item.NombreProveedor
                 });
             }
             return listaStock;

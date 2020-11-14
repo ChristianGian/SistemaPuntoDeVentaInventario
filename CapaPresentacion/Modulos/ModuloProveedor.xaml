@@ -23,7 +23,7 @@
 
             <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="10 0 0 0"
                        FontSize="15" Foreground="White">
-                Vendedor
+                Módulo de Proveedor
             </TextBlock>
             <Button Grid.Column="1" Name="btnCerrar" ToolTip="Cerrar"
                         Click="BtnCerrar_Click"
@@ -39,7 +39,7 @@
                     <Label Content="Proveedor:" Width="110"/>
                     <TextBox x:Name="txtVendedor" Width="300" Padding="2" Text="{Binding NombreProveedor}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 5">
                     <Label Content="Dirección:" Width="110"/>
                     <TextBox x:Name="txtDireccion" Width="300" Padding="2" Text="{Binding Direccion}"/>
                 </StackPanel>
