@@ -36,8 +36,8 @@
         <Border BorderBrush="#088F84" BorderThickness="1" Grid.Row="1">
             <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
-                    <Label Content="Precio:" Width="110"/>
-                    <TextBox x:Name="txtPrecio" Width="300" Padding="2" Text="{Binding Precio}" IsReadOnly="True"/>
+                    <Label Content="Precio total:" Width="110"/>
+                    <TextBox x:Name="txtPrecio" Width="300" Padding="2" Text="{Binding Total}" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
                     <Label Content="Descuento (%):" Width="110"/>

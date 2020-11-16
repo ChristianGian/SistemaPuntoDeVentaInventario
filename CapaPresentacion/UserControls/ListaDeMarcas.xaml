@@ -43,7 +43,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="btnEliminar" Width="20" Height="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Click="BtnEliminar_Click">
-                                <Image Source="ImagenesControl/Eliminar_48px.png"/>
+                                <Image Source="ImagenesControl/Eliminar_30px.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

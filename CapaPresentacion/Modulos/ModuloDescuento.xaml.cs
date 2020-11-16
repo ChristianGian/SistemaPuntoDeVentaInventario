@@ -41,6 +41,7 @@ namespace CapaPresentacion.Modulos
                 {
                     transaccion = DataContext as TransaccionModel;
                     transaccion.Estado = CapaNegocio.ValueObjects.EntityState.Actualizado;
+                    transaccion.PorcentajeDesc = Convert.ToDecimal(txtDescuento.Text) / 100;
                     transaccion.Descuento = Convert.ToDecimal(txtTotalDescuento.Text);
 
                     bool validar = new Helps.DataValidation(transaccion).Validar();

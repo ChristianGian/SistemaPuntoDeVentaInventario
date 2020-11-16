@@ -43,6 +43,7 @@ namespace CapaDatos.Repositories
         {
             parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@IdTransaccion", entidad.IdTransaccion));
+            parametros.Add(new SqlParameter("@PorcentajeDesc", entidad.PorcentajeDesc));
             parametros.Add(new SqlParameter("@Descuento", entidad.Descuento));
 
             return ExecuteNonQuery("ActualizarTransaccionDescuento");

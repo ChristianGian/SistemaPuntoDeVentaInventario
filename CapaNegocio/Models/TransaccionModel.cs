@@ -23,6 +23,7 @@ namespace CapaNegocio.Models
         private string nombreProducto;
         private decimal precio;
         private int cantidad;
+        private decimal porcentajeDesc;
         private decimal descuento;
         private decimal total;
         private DateTime fecha;
@@ -48,6 +49,7 @@ namespace CapaNegocio.Models
         [Required]
         [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "El campo cantidad debe ser mayor que cero.")]
         public int Cantidad { get => cantidad; set => cantidad = value; }
+        public decimal PorcentajeDesc { get => porcentajeDesc; set => porcentajeDesc = value; }
         public decimal Descuento { get => descuento; set => descuento = value; }
         public decimal Total { get => total; set => total = value; }
         [Required]
@@ -82,6 +84,7 @@ namespace CapaNegocio.Models
                 transaccion.IdProducto = idProducto;
                 transaccion.Precio = precio;
                 transaccion.Cantidad = cantidad;
+                transaccion.PorcentajeDesc = porcentajeDesc;
                 transaccion.Descuento = descuento;
                 transaccion.Fecha = fecha;
                 transaccion.Cajero = cajero;
