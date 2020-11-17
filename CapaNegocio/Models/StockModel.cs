@@ -155,6 +155,29 @@ namespace CapaNegocio.Models
             return listaStock;
         }
 
+        public List<StockModel> BuscarStockPorFechaDetalle(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var stock = stockRepository.BuscarStockPorFechaDetalle(fechaInicio, fechaFin);
+            listaStock = new List<StockModel>();
+
+            foreach (Stock item in stock)
+            {
+                listaStock.Add(new StockModel
+                {
+                    idStock = item.IdStock,
+                    numReferencia = item.NumReferencia,
+                    idProducto = item.IdProducto,
+                    nombreProducto = item.NombreProducto,
+                    cantidad = item.Cantidad,
+                    fechaHora = item.FechaHora,
+                    ingresadoPor = item.IngresadoPor,
+                    estadoProducto = item.EstadoProducto,
+                    nombreProveedor = item.NombreProveedor
+                });
+            }
+            return listaStock;
+        }
+
         public List<StockModel> ObtenerStockActual(string numReferencia)
         {
             var stock = stockRepository.ReadStockActual(numReferencia);

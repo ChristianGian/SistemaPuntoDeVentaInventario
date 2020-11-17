@@ -164,9 +164,9 @@ namespace CapaPresentacion.UserControls
             }
         }
 
-        private void EsRangoCorrecto()
+        private void EsRangoCorrecto(string fechaInicio, string fechaFin)
         {
-            if (Convert.ToDateTime(dtpFechaInicio.Text) > Convert.ToDateTime(dtpFechaFin.Text))
+            if (Convert.ToDateTime(fechaInicio) > Convert.ToDateTime(fechaFin))
             {
                 MessageBox.Show("Asegúrese de ingresar un rango de fechas válida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -178,7 +178,7 @@ namespace CapaPresentacion.UserControls
         {
             ListarRegProductoseVendidos(Convert.ToDateTime(dtpFechaInicio.Text), Convert.ToDateTime(dtpFechaFin.Text));
             CargarGraficoTopVentas();
-            EsRangoCorrecto();
+            EsRangoCorrecto(dtpFechaInicio.Text, dtpFechaFin.Text);
         }
 
         private void BtnImprimirTab1_Click(object sender, RoutedEventArgs e)
@@ -225,7 +225,7 @@ namespace CapaPresentacion.UserControls
         private void BtnCargarDatosTab2_Click(object sender, RoutedEventArgs e)
         {
             ListarProductosVendidosAgrupados(Convert.ToDateTime(dtpFechaInicioTab2.Text), Convert.ToDateTime(dtpFechaFinTab2.Text));
-            EsRangoCorrecto();
+            EsRangoCorrecto(dtpFechaInicioTab2.Text, dtpFechaFinTab2.Text);
         }
 
         private void BtnVerGraficoTab2_Click(object sender, RoutedEventArgs e)
@@ -289,18 +289,35 @@ namespace CapaPresentacion.UserControls
         private void BtnCargarDatosTab5_Click(object sender, RoutedEventArgs e)
         {
             ListarOrdenesCanceladas(Convert.ToDateTime(dtpFechaInicioTab5.Text), Convert.ToDateTime(dtpFechaFinTab5.Text));
-            EsRangoCorrecto();
+            EsRangoCorrecto(dtpFechaInicioTab5.Text, dtpFechaFinTab5.Text);
         }
 
+
+        //TAB 6: Stock en historia
         private void BtnCargarDatosTab6_Click(object sender, RoutedEventArgs e)
         {
             ListarStock(Convert.ToDateTime(dtpFechaInicioTab6.Text), Convert.ToDateTime(dtpFechaFinTab6.Text));
-            EsRangoCorrecto();
+            EsRangoCorrecto(dtpFechaInicioTab6.Text, dtpFechaFinTab6.Text);
         }
 
-        private void btnImprimirTab6_Click(object sender, RoutedEventArgs e)
+        private void BtnImprimirTab6_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                List<ReportDataSource> datos = new List<ReportDataSource>();
+                ReportDataSource stockHistoria = new ReportDataSource();
 
+                stockHistoria.Name = "ds_StockEnHistoria";
+                stockHistoria.Value = stock.BuscarStockPorFechaDetalle(Convert.ToDateTime(dtpFechaInicioTab6.Text), Convert.ToDateTime(dtpFechaFinTab6.Text));
+                datos.Add(stockHistoria);
+
+                Reportes.ReporteStockEnHistoria listaStockHistoria = new Reportes.ReporteStockEnHistoria("CapaPresentacion.Reportes.ReporteStockEnHistoria.rdlc", datos);
+                listaStockHistoria.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Imprimir", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

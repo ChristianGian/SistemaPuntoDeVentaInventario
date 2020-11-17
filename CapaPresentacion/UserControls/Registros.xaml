@@ -239,7 +239,7 @@
                         <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Right" Grid.Column="1">
                             <Button x:Name="btnImprimirTab6" Content="Vista previa de impresión" Margin="10 0"
                                 Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
-                                Click="btnImprimirTab6_Click"/>
+                                Click="BtnImprimirTab6_Click"/>
                         </StackPanel>
                     </Grid>
 

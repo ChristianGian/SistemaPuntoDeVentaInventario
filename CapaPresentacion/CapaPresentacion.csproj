@@ -142,6 +142,9 @@
     <Compile Include="Reportes\ReporteListaDeInventario.xaml.cs">
       <DependentUpon>ReporteListaDeInventario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteStockEnHistoria.xaml.cs">
+      <DependentUpon>ReporteStockEnHistoria.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteRegistrosTop10.xaml.cs">
       <DependentUpon>ReporteRegistrosTop10.xaml</DependentUpon>
     </Compile>
@@ -264,6 +267,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Reportes\ReporteStockEnHistoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Reportes\ReporteRegistrosTop10.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -329,11 +336,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReporteLiquidarPago.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteListaDeInventario.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteStockEnHistoria.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteRegistrosTop10.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteProductosVendidos.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CapaNegocio.Models.MReportes.R_LiquidarPagoModel.datasource" />
     <None Include="Properties\DataSources\CapaNegocio.Models.ProductoModel.datasource" />
+    <None Include="Properties\DataSources\CapaNegocio.Models.StockModel.datasource" />
     <None Include="Properties\DataSources\CapaNegocio.Models.TransaccionModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
