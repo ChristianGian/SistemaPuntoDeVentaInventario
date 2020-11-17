@@ -47,7 +47,7 @@ namespace CapaPresentacion.Modulos
         {
             try
             {
-                var cajero = usuario.ObtenerCajeros();
+                var cajero = usuario.ObtenerCajeros(UserCache.Username);
                 string passAnterior = cajero[0].Password;
 
                 if (txtPasswordAnterior.Password != passAnterior)

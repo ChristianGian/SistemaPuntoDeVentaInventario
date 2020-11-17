@@ -77,7 +77,7 @@ namespace CapaPresentacion.Modulos
         {
             UsuarioModel usuario = new UsuarioModel();
 
-            var lista = usuario.ObtenerCajeros();
+            var lista = usuario.ObtenerCajeros("%");
             lista.Insert(0, new UsuarioModel
             {
                 Username = "Todos"

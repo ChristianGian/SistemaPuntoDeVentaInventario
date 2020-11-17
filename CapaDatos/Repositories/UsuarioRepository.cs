@@ -74,9 +74,35 @@ namespace CapaDatos.Repositories
             return lista;
         }
 
-        public List<Usuario> ReadCajero()
+        public List<Usuario> ReadCajero(string username)
         {
-            var tabla = ExecuteReader("MostrarUsuarioCajero");
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Username", username));
+
+            var tabla = ExecuteReaderParameters("MostrarUsuarioCajero");
+            var lista = new List<Usuario>();
+
+            foreach (DataRow item in tabla.Rows)
+            {
+                lista.Add(new Usuario
+                {
+                    Username = item[0].ToString(),
+                    Password = item[1].ToString(),
+                    Rol = item[2].ToString(),
+                    Nombres = item[3].ToString(),
+                    Apellidos = item[4].ToString(),
+                    EstadoUsuario = item[5].ToString()
+                });
+            }
+            return lista;
+        }
+
+        public List<Usuario> ReadAdmin(string username)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Username", username));
+
+            var tabla = ExecuteReaderParameters("MostrarUsuarioAdmin");
             var lista = new List<Usuario>();
 
             foreach (DataRow item in tabla.Rows)

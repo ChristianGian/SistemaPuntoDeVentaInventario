@@ -116,9 +116,9 @@ namespace CapaNegocio.Models
         }
 
         //Mostrar cajeros
-        public List<UsuarioModel> ObtenerCajeros()
+        public List<UsuarioModel> ObtenerCajeros(string username)
         {
-            var usuario = usuarioRepository.ReadCajero();
+            var usuario = usuarioRepository.ReadCajero(username);
             var listaCajeros = new List<UsuarioModel>();
 
             foreach (Usuario item in usuario)
@@ -134,6 +134,26 @@ namespace CapaNegocio.Models
                 });
             }
             return listaCajeros;
+        }
+
+        public List<UsuarioModel> ObtenerAdmin(string username)
+        {
+            var usuario = usuarioRepository.ReadAdmin(username);
+            var listaAdmin = new List<UsuarioModel>();
+
+            foreach (Usuario item in usuario)
+            {
+                listaAdmin.Add(new UsuarioModel
+                {
+                    username = item.Username,
+                    password = item.Password,
+                    rol = item.Rol,
+                    nombres = item.Nombres,
+                    apellidos = item.Apellidos,
+                    estadoUsuario = item.EstadoUsuario
+                });
+            }
+            return listaAdmin;
         }
 
         public int CambiarPassword(string username, string password)
