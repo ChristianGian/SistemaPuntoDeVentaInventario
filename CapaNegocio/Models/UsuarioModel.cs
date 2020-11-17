@@ -160,5 +160,10 @@ namespace CapaNegocio.Models
         {
             return usuarioRepository.CambiarPassword(username, password);
         }
+
+        public int ActualizarEstadoUsuario(string username, string estadoUsuario)
+        {
+            return usuarioRepository.ActualizarEstadoUsuario(username, estadoUsuario);
+        }
     }
 }

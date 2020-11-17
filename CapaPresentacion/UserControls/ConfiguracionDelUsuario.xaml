@@ -98,7 +98,23 @@
                     </StackPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Eliminar cuenta">
+
+            <!--Activar/Desactivar cuenta-->
+            <TabItem Header="Activar/Desactivar cuenta">
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
+                        <Label Content="Nombre de usuario:" Width="130"/>
+                        <TextBox x:Name="txtUsernameTab3" Width="300" Padding="2" TextChanged="TxtUsernameTab3_TextChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 10 0 5">
+                        <Border Width="130"/>
+                        <CheckBox x:Name="chkEstadoUsuario" Content="¿Está activo?"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="btnGuardarTab3" Content="Guardar" Style="{StaticResource BotonModulo}" Click="BtnGuardarTab3_Click"/>
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

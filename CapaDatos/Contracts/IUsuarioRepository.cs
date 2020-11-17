@@ -16,5 +16,6 @@ namespace CapaDatos.Contracts
         bool Login(string username, string password);
         List<Usuario> LoginPermisos(string username, string password);
         int CambiarPassword(string username, string password);
+        int ActualizarEstadoUsuario(string username, string estadoUsuario);
     }
 }

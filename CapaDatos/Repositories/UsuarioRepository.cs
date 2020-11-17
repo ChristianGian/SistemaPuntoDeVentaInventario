@@ -128,5 +128,14 @@ namespace CapaDatos.Repositories
 
             return ExecuteNonQuery("CambiarPassword");
         }
+
+        public int ActualizarEstadoUsuario(string username, string estadoUsuario)
+        {
+            parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@Username", username));
+            parametros.Add(new SqlParameter("@EstadoUsuario", estadoUsuario));
+
+            return ExecuteNonQuery("ActualizarEstado");
+        }
     }
 }

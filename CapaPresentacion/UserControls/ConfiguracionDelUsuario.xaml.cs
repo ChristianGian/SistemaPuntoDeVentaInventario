@@ -130,6 +130,57 @@ namespace CapaPresentacion.UserControls
             LimpiarTab2();
         }
         #endregion
-        
+
+        #region Tab 3: Activar/Desactivar cuenta
+        private void TxtUsernameTab3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var usuarioEstado = usuario.ObtenerCajeros(txtUsernameTab3.Text);
+
+            if (usuarioEstado.Count > 0)
+            {
+                if (usuarioEstado[0].EstadoUsuario == "A") chkEstadoUsuario.IsChecked = true;
+            }
+            else
+            {
+                chkEstadoUsuario.IsChecked = false;
+            }
+        }
+
+        private void BtnGuardarTab3_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (txtUsernameTab3.Text == "")
+                {
+                    MessageBox.Show("Por favor ingrese el nombre de usuario.", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    string estado;
+
+                    if (chkEstadoUsuario.IsChecked == true) estado = "A";
+                    else estado = "D";
+
+                    int resultado = usuario.ActualizarEstadoUsuario(txtUsernameTab3.Text, estado);
+
+                    if (resultado > 0)
+                    {
+                        MessageBox.Show("El estado del usuario se ha actualizado.", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
+                        txtUsernameTab3.Clear();
+                        chkEstadoUsuario.IsChecked = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Esta cuenta no existe.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+        }
+        #endregion
     }
 }
