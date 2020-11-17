@@ -185,14 +185,22 @@
                     </Grid.RowDefinitions>
 
                     <!--Filtros-->
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
-                        <Label Content="Filtrar por:" VerticalAlignment="Center"/>
-                        <DatePicker Name="dtpFechaInicioTab5" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
-                        <DatePicker Name="dtpFechaFinTab5" Width="200" Height="26" VerticalAlignment="Center"/>
-                        <Button x:Name="btnCargarDatosTab5" Content="Cargar Datos" Margin="10 0"
+                    <Grid Grid.Row="0">
+                        <StackPanel Orientation="Horizontal" Height="40">
+                            <Label Content="Filtrar por:" VerticalAlignment="Center"/>
+                            <DatePicker Name="dtpFechaInicioTab5" Width="200" Height="26" Margin="10 0" VerticalAlignment="Center"/>
+                            <DatePicker Name="dtpFechaFinTab5" Width="200" Height="26" VerticalAlignment="Center"/>
+                            <Button x:Name="btnCargarDatosTab5" Content="Cargar Datos" Margin="10 0"
                                 Style="{StaticResource BotonGeneral}" Width="100" Height="26" VerticalAlignment="Center"
                                 Click="BtnCargarDatosTab5_Click"/>
-                    </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Right" Grid.Column="1">
+                            <Button x:Name="btnImprimirTab5" Content="Vista previa de impresión" Margin="10 0"
+                                Style="{StaticResource BotonGeneral}" Width="150" Height="26" 
+                                Click="BtnImprimirTab5_Click"/>
+                        </StackPanel>
+                    </Grid>
 
                     <!--Datagrid Órdenes canceladas-->
                     <DataGrid Grid.Row="1" x:Name="dgdOrdenesCanceladas" IsReadOnly="True" AutoGenerateColumns="False" Style="{StaticResource GridPersonalizado}">

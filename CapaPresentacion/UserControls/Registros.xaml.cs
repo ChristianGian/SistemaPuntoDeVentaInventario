@@ -292,6 +292,26 @@ namespace CapaPresentacion.UserControls
             EsRangoCorrecto(dtpFechaInicioTab5.Text, dtpFechaFinTab5.Text);
         }
 
+        private void BtnImprimirTab5_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<ReportDataSource> datos = new List<ReportDataSource>();
+                ReportDataSource ordenCancel = new ReportDataSource();
+
+                ordenCancel.Name = "DS_OrdenesCanceladas";
+                ordenCancel.Value = ordenCancelada.ObtenerTodo(Convert.ToDateTime(dtpFechaInicioTab5.Text), Convert.ToDateTime(dtpFechaFinTab5.Text));
+                datos.Add(ordenCancel);
+
+                Reportes.ReporteOrdenesCanceladas listaOrdenCancel = new Reportes.ReporteOrdenesCanceladas("CapaPresentacion.Reportes.ReporteOrdenesCanceladas.rdlc", datos);
+                listaOrdenCancel.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Imprimir", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
 
         //TAB 6: Stock en historia
         private void BtnCargarDatosTab6_Click(object sender, RoutedEventArgs e)
